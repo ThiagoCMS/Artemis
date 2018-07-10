@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Pessoa.GUI.homeActivity"
+    tools:showIn="@layout/app_bar_home">
+
+    <ImageView
+        android:id="@+id/eventosId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginRight="58dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tecnologiaId"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:srcCompat="@drawable/drinkred" />
+
+    <ImageView
+        android:id="@+id/domiciliarId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="18dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginRight="58dp"
+        android:layout_marginTop="57dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/saudeId"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/home" />
+
+    <ImageView
+        android:id="@+id/modaId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginRight="58dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/reformaId"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:srcCompat="@drawable/tshirt" />
+
+    <ImageView
+        android:id="@+id/tecnologiaId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginLeft="62dp"
+        android:layout_marginRight="78dp"
+        android:layout_marginStart="62dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintEnd_toStartOf="@+id/eventosId"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:srcCompat="@drawable/computer" />
+
+    <ImageView
+        android:id="@+id/saudeId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="18dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginLeft="62dp"
+        android:layout_marginRight="78dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="57dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintEnd_toStartOf="@+id/domiciliarId"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cruzred" />
+
+    <ImageView
+        android:id="@+id/reformaId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginLeft="62dp"
+        android:layout_marginRight="78dp"
+        android:layout_marginStart="62dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView11"
+        app:layout_constraintEnd_toStartOf="@+id/modaId"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:srcCompat="@drawable/tolls" />
+
+    <TextView
+        android:id="@+id/textView7"
+        style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
+        android:layout_width="97dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginRight="58dp"
+        android:text="Domiciliares"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/eventosId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/domiciliarId" />
+
+    <TextView
+        android:id="@+id/textView9"
+        style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="21dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginRight="72dp"
+        android:text="Eventos"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/modaId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/eventosId" />
+
+    <TextView
+        android:id="@+id/textView12"
+        style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginRight="46dp"
+        android:text="Moda e Beleza"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/modaId" />
+
+    <TextView
+        android:id="@+id/textView11"
+        style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="88dp"
+        android:layout_marginStart="75dp"
+        android:text="Reformas"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reformaId" />
+
+    <TextView
+        android:id="@+id/textView10"
+        style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="21dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginStart="75dp"
+        android:text="Tecnologia"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/reformaId"
+        app:layout_constraintEnd_toStartOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tecnologiaId" />
+
+    <TextView
+        android:id="@+id/textView8"
+        style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
+        android:layout_width="59dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginLeft="87dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginStart="87dp"
+        android:text="Saúde"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tecnologiaId"
+        app:layout_constraintEnd_toStartOf="@+id/textView7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saudeId" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cursoandroid.com.semiprojeto">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_artemis"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_artemis_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Usuario.GUI.LoginActicity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Usuario.GUI.CriarContaUsuarioActivity" />
+        <activity
+            android:name=".Pessoa.GUI.homeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Servico.GUI.SubDomiciliarActivity" />
+        <activity android:name=".Servico.GUI.SubEventosActivity" />
+        <activity android:name=".Servico.GUI.SubSaudeActivity" />
+        <activity android:name=".Servico.GUI.SubTecnologiaActivity" />
+        <activity android:name=".Servico.GUI.SubModaActivity" />
+        <activity android:name=".Servico.GUI.SubReformaActivity" />
+        <activity android:name=".Servico.GUI.ServicosListActivity" />
+        <activity android:name=".Servico.GUI.AddServicoActivity" />
+        <activity android:name=".Servico.GUI.CriarServicoActivity"></activity>
+    </application>
+
+</manifest>
