@@ -53,9 +53,9 @@ public class SubModaActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0){//13
-                    startActivity(new Intent(SubModaActivity.this, ServicosListActivity.class).putExtra("id", 13));
+                    startActivity(new Intent(SubModaActivity.this, ServicosListActivity.class).putExtra("id", "13"));
                 }else if(position == 1){//16
-                    startActivity(new Intent(SubModaActivity.this, ServicosListActivity.class).putExtra("id", 16));
+                    startActivity(new Intent(SubModaActivity.this, ServicosListActivity.class).putExtra("id", "16"));
                 }
                 //star....
             }

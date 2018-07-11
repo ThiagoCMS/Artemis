@@ -50,13 +50,13 @@ public class SubSaudeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0){//1
-                    startActivity(new Intent(SubSaudeActivity.this, ServicosListActivity.class).putExtra("id", 1));
+                    startActivity(new Intent(SubSaudeActivity.this, ServicosListActivity.class).putExtra("id", "1"));
                 }else if(position == 1){//2
-                    startActivity(new Intent(SubSaudeActivity.this, ServicosListActivity.class).putExtra("id", 2));
+                    startActivity(new Intent(SubSaudeActivity.this, ServicosListActivity.class).putExtra("id", "2"));
                 }else if(position == 1){//3
-                    startActivity(new Intent(SubSaudeActivity.this, ServicosListActivity.class).putExtra("id", 3));
+                    startActivity(new Intent(SubSaudeActivity.this, ServicosListActivity.class).putExtra("id", "3"));
                 }else if(position == 1){//4
-                    startActivity(new Intent(SubSaudeActivity.this, ServicosListActivity.class).putExtra("id", 4));
+                    startActivity(new Intent(SubSaudeActivity.this, ServicosListActivity.class).putExtra("id", "4"));
                 }
                 //star....
             }

@@ -49,11 +49,11 @@ public class SubTecnologiaActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0){//5
-                    startActivity(new Intent(SubTecnologiaActivity.this, ServicosListActivity.class).putExtra("id", 5));
+                    startActivity(new Intent(SubTecnologiaActivity.this, ServicosListActivity.class).putExtra("id", "5"));
                 }else if(position == 1){//6
-                    startActivity(new Intent(SubTecnologiaActivity.this, ServicosListActivity.class).putExtra("id", 6));
+                    startActivity(new Intent(SubTecnologiaActivity.this, ServicosListActivity.class).putExtra("id", "6"));
                 }else if(position == 1){//7
-                    startActivity(new Intent(SubTecnologiaActivity.this, ServicosListActivity.class).putExtra("id", 7));
+                    startActivity(new Intent(SubTecnologiaActivity.this, ServicosListActivity.class).putExtra("id", "7"));
                 }
                 //star....
             }

@@ -39,7 +39,7 @@ public class ServicoDao {
     public ArrayList<Servico> recuperarDoBancoSub(int idSub){
         Servico servico = new Servico();
         ArrayList<Servico> list = new ArrayList<Servico>();
-        String where = "SELECT * FROM usuario WHERE idsubcategoria = '" + idSub + "'";
+        String where = "SELECT * FROM servico WHERE idsubcategoria = '" + idSub + "'";
         Cursor cursor = banco.rawQuery(where, null);
         while(cursor.getCount() > 0){
             cursor.moveToFirst();
@@ -57,7 +57,7 @@ public class ServicoDao {
     public ArrayList<Servico> recuperarDoBancoUs(int idUsuario){
         Servico servico = new Servico();
         ArrayList<Servico> list = new ArrayList<Servico>();
-        String where = "SELECT * FROM usuario WHERE idusuario = '" + idUsuario + "'";
+        String where = "SELECT * FROM servico WHERE idusuario = '" + idUsuario + "'";
         Cursor cursor = banco.rawQuery(where, null);
         while(cursor.getCount() > 0){
             cursor.moveToFirst();

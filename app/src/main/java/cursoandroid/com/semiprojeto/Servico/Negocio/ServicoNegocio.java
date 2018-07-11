@@ -3,6 +3,7 @@ package cursoandroid.com.semiprojeto.Servico.Negocio;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cursoandroid.com.semiprojeto.Servico.Dao.ServicoDao;
 import cursoandroid.com.semiprojeto.Servico.Dominio.Servico;

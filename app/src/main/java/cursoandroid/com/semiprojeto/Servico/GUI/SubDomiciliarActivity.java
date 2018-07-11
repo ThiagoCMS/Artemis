@@ -11,16 +11,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import cursoandroid.com.semiprojeto.R;
 
 public class SubDomiciliarActivity extends AppCompatActivity {
-    private String[] subCategoriaDomiciliar= {"Comida Caseira", "Limpeza Doméstica"};
+    private ArrayList<String> subCategoriaDomiciliar;
     private ListView listaSubDomiciliar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_domiciliar);
+        subCategoriaDomiciliar = new ArrayList<String>();
+        subCategoriaDomiciliar.add("Comida Caseira");
+        subCategoriaDomiciliar.add("Limpeza Doméstica");
 
         listaSubDomiciliar = findViewById(R.id.domiciliarListaId);
 
@@ -49,9 +54,9 @@ public class SubDomiciliarActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0){//14
-                    startActivity(new Intent(SubDomiciliarActivity.this, ServicosListActivity.class).putExtra("id", 14));
+                    startActivity(new Intent(SubDomiciliarActivity.this, ServicosListActivity.class).putExtra("id", "14"));
                 }else if(position == 1){//15
-                    startActivity(new Intent(SubDomiciliarActivity.this, ServicosListActivity.class).putExtra("id", 15));
+                    startActivity(new Intent(SubDomiciliarActivity.this, ServicosListActivity.class).putExtra("id", "15"));
                 }
                 //star....
             }

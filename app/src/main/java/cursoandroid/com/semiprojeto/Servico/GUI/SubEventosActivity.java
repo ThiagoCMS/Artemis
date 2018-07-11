@@ -53,9 +53,9 @@ public class SubEventosActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0){//11
-                    startActivity(new Intent(SubEventosActivity.this, ServicosListActivity.class).putExtra("id", 11));
+                    startActivity(new Intent(SubEventosActivity.this, ServicosListActivity.class).putExtra("id", "11"));
                 }else if(position == 1){//12
-                    startActivity(new Intent(SubEventosActivity.this, ServicosListActivity.class).putExtra("id", 12));
+                    startActivity(new Intent(SubEventosActivity.this, ServicosListActivity.class).putExtra("id", "12"));
                 }
                 //star....
             }

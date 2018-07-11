@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cursoandroid.com.semiprojeto.R;
 import cursoandroid.com.semiprojeto.Servico.Dominio.Servico;
@@ -32,17 +33,18 @@ public class ServicosListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servicos_list);
 
+        /*arrayListServicoNome = new ArrayList<String>();
+        arrayListServico = new ArrayList<Servico>();*/
+        Bundle extras = getIntent().getExtras();
+        subCat = Integer.parseInt(extras.getString("id"));
+        setLists();
+
         listViewGeral = findViewById(R.id.reformaListaId);
-        //arrayListServicoNome.add(arrayListServico.get(0).getnome());
-
-        //Bundle extras = getIntent().getExtras();
-        //subCat = Integer.parseInt(extras.getString("id"));
-        //setLists();
-
+        //+arrayListServicoNome.add(arrayListServico.get(0).getnome());
 
 
         ArrayAdapter<String> teAdaptador = new ArrayAdapter<String>(
-                getApplicationContext(),android.R.layout.simple_list_item_1, android.R.id.text1, arrayListServicoNome
+                getApplicationContext(), android.R.layout.simple_list_item_1, android.R.id.text1, arrayListServicoNome
         ){
             @Override
             public View getView(int position, View convertView, ViewGroup parent){
@@ -63,11 +65,11 @@ public class ServicosListActivity extends AppCompatActivity {
         listViewGeral.setAdapter(teAdaptador);
 
         listViewGeral.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //star....
-            }
-        });
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    //star....
+                }
+            });
 
 
 

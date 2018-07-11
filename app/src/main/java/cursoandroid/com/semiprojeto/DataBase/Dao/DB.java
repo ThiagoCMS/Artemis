@@ -13,7 +13,7 @@ public class DB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table usuario (id integer primary key autoincrement, senha text not null, cpf text not null);");
-        db.execSQL("create table servico (id integer primary key autoincrement, nome text not null, texto text not null, idusuario integer, idsubcategoria)");
+        db.execSQL("create table servico (id integer primary key autoincrement, nome text not null, texto text not null, idusuario integer, idsubcategoria integer)");
         db.execSQL("create table categoria (id integer primary key autoincrement, nome text not null)");
         db.execSQL("create table subcategoria (id integer primary key autoincrement, nome text not null, idcategoria integer)");
         db.execSQL("create table pessoa (id integer primary key autoincrement, nome text not null, idusuario integer)");
@@ -38,7 +38,7 @@ public class DB extends SQLiteOpenHelper {
     }
 
     public void criarSubCategoria(SQLiteDatabase bd) {
-        String addSubCategoria = "INSERT INTO subcategoria (nome, idCategoria) values";
+        String addSubCategoria = "INSERT INTO subcategoria (nome, idcategoria) values";
 
         bd.execSQL(addSubCategoria + "('Cuidadora de Idosos','1');");
         bd.execSQL(addSubCategoria + "('Personal','1');");
