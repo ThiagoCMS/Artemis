@@ -19,6 +19,7 @@ public class DB extends SQLiteOpenHelper {
         db.execSQL("create table pessoa (id integer primary key autoincrement, nome text not null, idusuario integer)");
         criarCategoria(db);
         criarSubCategoria(db);
+        criarServico(db);
     }
 
     @Override
@@ -56,5 +57,11 @@ public class DB extends SQLiteOpenHelper {
         bd.execSQL(addSubCategoria + "('Comida Caseira','6');");
         bd.execSQL(addSubCategoria + "('Limpeza Doméstica','6');");
         bd.execSQL(addSubCategoria + "('Cabelo','5');");
+    }
+
+    public void criarServico(SQLiteDatabase bd){
+        String addServico = " INSERT INTO servico (nome, texto, idusuario, idsubcategoria) values";
+
+        bd.execSQL(addServico + "('Formatar', 'teste', '1', '5');");
     }
 }

@@ -41,8 +41,8 @@ public class ServicoDao {
         ArrayList<Servico> list = new ArrayList<Servico>();
         String where = "SELECT * FROM servico WHERE idsubcategoria = '" + idSub + "'";
         Cursor cursor = banco.rawQuery(where, null);
-        while(cursor.getCount() > 0){
-            cursor.moveToFirst();
+        if(cursor.getCount()>0){cursor.moveToFirst();}
+        for(int i = 0; i < cursor.getCount(); i++){
             servico.setId(cursor.getInt(0));
             servico.setNome(cursor.getString(1));
             servico.setTexto(cursor.getString(2));
@@ -59,8 +59,8 @@ public class ServicoDao {
         ArrayList<Servico> list = new ArrayList<Servico>();
         String where = "SELECT * FROM servico WHERE idusuario = '" + idUsuario + "'";
         Cursor cursor = banco.rawQuery(where, null);
-        while(cursor.getCount() > 0){
-            cursor.moveToFirst();
+        if(cursor.getCount()>0){cursor.moveToFirst();}
+        for(int i = 0; i < cursor.getCount(); i++){
             servico.setId(cursor.getInt(0));
             servico.setNome(cursor.getString(1));
             servico.setTexto(cursor.getString(2));

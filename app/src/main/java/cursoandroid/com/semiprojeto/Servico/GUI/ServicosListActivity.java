@@ -23,25 +23,16 @@ public class ServicosListActivity extends AppCompatActivity {
     private ListView listViewGeral;
     private int subCat;
 
-    /*public ServicosListActivity(ArrayList<Object> arrayListServico, ArrayList<String> arrayListServicoNome) {
-        this.arrayListServico = arrayListServico;
-        this.arrayListServicoNome = arrayListServicoNome;
-    }*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servicos_list);
 
-        /*arrayListServicoNome = new ArrayList<String>();
-        arrayListServico = new ArrayList<Servico>();*/
         Bundle extras = getIntent().getExtras();
         subCat = Integer.parseInt(extras.getString("id"));
         setLists();
 
         listViewGeral = findViewById(R.id.reformaListaId);
-        //+arrayListServicoNome.add(arrayListServico.get(0).getnome());
-
 
         ArrayAdapter<String> teAdaptador = new ArrayAdapter<String>(
                 getApplicationContext(), android.R.layout.simple_list_item_1, android.R.id.text1, arrayListServicoNome

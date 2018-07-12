@@ -74,4 +74,13 @@ public class UsuarioDao {
         }
         return usuario;
     }
+
+    public void alterarSenhaUsuario(Usuario usuario) {
+        String where = "id = '" + usuario.getId() + "'";
+        ContentValues valores = new ContentValues();
+        valores.put("cpf", usuario.getCpf());
+        valores.put("senha", usuario.getSenha());
+        banco.update("usuario", valores, where, null);
+        banco.close();
+    }
 }

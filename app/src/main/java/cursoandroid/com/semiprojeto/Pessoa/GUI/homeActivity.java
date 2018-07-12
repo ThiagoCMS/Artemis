@@ -14,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import cursoandroid.com.semiprojeto.Pessoa.Dominio.Pessoa;
 import cursoandroid.com.semiprojeto.Pessoa.Negocio.PessoaNegocio;
@@ -26,6 +25,7 @@ import cursoandroid.com.semiprojeto.Servico.GUI.SubModaActivity;
 import cursoandroid.com.semiprojeto.Servico.GUI.SubReformaActivity;
 import cursoandroid.com.semiprojeto.Servico.GUI.SubSaudeActivity;
 import cursoandroid.com.semiprojeto.Servico.GUI.SubTecnologiaActivity;
+import cursoandroid.com.semiprojeto.Usuario.GUI.ConfiguracoesActivity;
 
 public class homeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,7 +47,8 @@ public class homeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         Bundle extras = getIntent().getExtras();
-        carregarPessoa(Integer.parseInt(extras.getString("id")));
+        id = extras.getString("id");
+        carregarPessoa(Integer.parseInt(id));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -186,11 +187,11 @@ public class homeActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
 
-        } else if (id == R.id.nav_servicos) {
+        } else if (id == R.id.nav_profile) {
             //startActivity(new Intent(new Intent(homeActivity.this, opcoesActivity.class)));
 
-        } else if (id == R.id.nav_configuracoes) {
-
+        } else if (id == R.id.nav_config) {
+            startActivity( new Intent(homeActivity.this, ConfiguracoesActivity.class).putExtra("id", this.id));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

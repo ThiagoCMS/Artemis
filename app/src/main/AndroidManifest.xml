@@ -29,7 +29,13 @@
         <activity android:name=".Servico.GUI.SubReformaActivity" />
         <activity android:name=".Servico.GUI.ServicosListActivity" />
         <activity android:name=".Servico.GUI.AddServicoActivity" />
-        <activity android:name=".Servico.GUI.CriarServicoActivity"></activity>
+        <activity android:name=".Servico.GUI.CriarServicoActivity" />
+        <activity android:name=".Servico.GUI.SubCategoriaActivity" />
+        <activity
+            android:name=".Usuario.GUI.ConfiguracoesActivity"
+            android:label="@string/title_activity_configuracoes" />
+        <activity android:name=".Usuario.GUI.AlterarSenhaActivity"
+            android:label="@string/title_activity_alterar_senha"></activity>
     </application>
 
 </manifest>

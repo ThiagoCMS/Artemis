@@ -45,4 +45,20 @@ public class UsuarioNegocio {
         banco.escreverNoBanco(ctx);
         return banco.recuperarDoBanco(id);
     }
+
+    public Boolean verificarSenha(int id, String senha, Context ctx){
+        Usuario usuario = recuperarUsuario(id, ctx);
+        if(usuario.getSenha().equals(senha)){
+            return true;
+        } return false;
+    }
+
+    public void alterarSenha(int id, String senha, Context ctx){
+        UsuarioDao banco = new UsuarioDao();
+        banco.escreverNoBanco(ctx);
+        Usuario usuario = recuperarUsuario(id, ctx);
+        usuario.setSenha(senha);
+        banco.alterarSenhaUsuario(usuario);
+
+    }
 }
