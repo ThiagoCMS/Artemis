@@ -37,8 +37,7 @@ public class AlterarSenhaActivity extends AppCompatActivity {
                 UsuarioNegocio negocio = new UsuarioNegocio();
                 if(!negocio.verificarSenha(idUsuario, senhaAtual.getText().toString(), AlterarSenhaActivity.this)){
                     Toast.makeText(AlterarSenhaActivity.this, "Senha incorreta", Toast.LENGTH_SHORT).show();
-                }
-                if(novaSenha.getText().toString().equals(confirmarNovaSenha.getText().toString())){
+                }else if(novaSenha.getText().toString().equals(confirmarNovaSenha.getText().toString())){
                     negocio.alterarSenha(idUsuario, novaSenha.getText().toString(), AlterarSenhaActivity.this);
                     Toast.makeText(AlterarSenhaActivity.this, "Senha alterada com sucesso", Toast.LENGTH_SHORT).show();
                 } else {

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import cursoandroid.com.semiprojeto.Pessoa.GUI.homeActivity;
@@ -16,7 +15,7 @@ import cursoandroid.com.semiprojeto.Usuario.Negocio.UsuarioNegocio;
 import static cursoandroid.com.semiprojeto.R.*;
 
 public class LoginActicity extends AppCompatActivity {
-    private TextView botaoEsqueceu;
+    private Button botaoRegistro;
     private EditText login;
     private EditText senha;
     private Button botaoLogar;
@@ -25,11 +24,11 @@ public class LoginActicity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(layout.activity_main);
+        setContentView(layout.activity_login);
 
         login = findViewById(id.nomeRegistroId);
         botaoLogar = findViewById(id.botaoLoginId);
-        botaoEsqueceu = findViewById(id.botaoRegistroId);
+        botaoRegistro = findViewById(id.botaoRegistroId);
         senha = findViewById(id.senhaId);
 
         botaoLogar.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +45,7 @@ public class LoginActicity extends AppCompatActivity {
             }
         });
 
-       botaoEsqueceu.setOnClickListener(new View.OnClickListener() {
+       botaoRegistro.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                startActivity(new Intent(LoginActicity.this,CriarContaUsuarioActivity.class));
@@ -56,14 +55,11 @@ public class LoginActicity extends AppCompatActivity {
 
     public Boolean verificarLogin(String cpf, String senha){
         UsuarioNegocio negocio = new UsuarioNegocio();
-        Usuario usuario = negocio.criarUsuario(cpf, senha);
+        usuario = negocio.criarUsuario(cpf, senha);
         return negocio.verificarUsuario(usuario, this);
     }
 
     private int recuperarId(){
-        UsuarioNegocio negocio = new UsuarioNegocio();
-        Usuario usuario = negocio.criarUsuario(login.getText().toString(), senha.getText().toString());
-        Usuario usuario1 = negocio.recuperarUsuario(usuario, this);
-        return usuario1.getId();
+        return usuario.getId();
     }
 }

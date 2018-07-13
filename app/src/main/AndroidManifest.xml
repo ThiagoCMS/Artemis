@@ -34,8 +34,9 @@
         <activity
             android:name=".Usuario.GUI.ConfiguracoesActivity"
             android:label="@string/title_activity_configuracoes" />
-        <activity android:name=".Usuario.GUI.AlterarSenhaActivity"
-            android:label="@string/title_activity_alterar_senha"></activity>
+        <activity
+            android:name=".Usuario.GUI.AlterarSenhaActivity"
+            android:label="@string/title_activity_alterar_senha" />
     </application>
 
 </manifest>

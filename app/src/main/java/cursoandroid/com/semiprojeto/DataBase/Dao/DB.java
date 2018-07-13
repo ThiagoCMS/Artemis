@@ -13,10 +13,10 @@ public class DB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table usuario (id integer primary key autoincrement, senha text not null, cpf text not null);");
-        db.execSQL("create table servico (id integer primary key autoincrement, nome text not null, texto text not null, idusuario integer, idsubcategoria integer)");
-        db.execSQL("create table categoria (id integer primary key autoincrement, nome text not null)");
-        db.execSQL("create table subcategoria (id integer primary key autoincrement, nome text not null, idcategoria integer)");
-        db.execSQL("create table pessoa (id integer primary key autoincrement, nome text not null, idusuario integer)");
+        db.execSQL("create table servico (id integer primary key autoincrement, nome text not null, texto text not null, idusuario integer, idsubcategoria integer);");
+        db.execSQL("create table categoria (id integer primary key autoincrement, nome text not null);");
+        db.execSQL("create table subcategoria (id integer primary key autoincrement, nome text not null, idcategoria integer);");
+        db.execSQL("create table pessoa (id integer primary key autoincrement, nome text not null, idusuario integer);");
         criarCategoria(db);
         criarSubCategoria(db);
         criarServico(db);
@@ -30,12 +30,12 @@ public class DB extends SQLiteOpenHelper {
     public void criarCategoria(SQLiteDatabase bd){
         String addCategoria = "INSERT INTO categoria (nome) values";
 
-        bd.execSQL(addCategoria + "('Saude')");
+        bd.execSQL(addCategoria + "('Saude');");
         bd.execSQL(addCategoria + "('Tecnologia');");
-        bd.execSQL(addCategoria + "('Reformas')");
-        bd.execSQL(addCategoria + "('Eventos')");
-        bd.execSQL(addCategoria + "('Moda e Beleza')");
-        bd.execSQL(addCategoria + "('Domiciliares')");
+        bd.execSQL(addCategoria + "('Reformas');");
+        bd.execSQL(addCategoria + "('Eventos');");
+        bd.execSQL(addCategoria + "('Moda e Beleza');");
+        bd.execSQL(addCategoria + "('Domiciliares');");
     }
 
     public void criarSubCategoria(SQLiteDatabase bd) {

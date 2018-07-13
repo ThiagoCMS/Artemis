@@ -17,7 +17,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:text="Registrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nomeRegistroId" />
 
     <EditText
-        android:id="@+id/cpfRegistroId2"
+        android:id="@+id/senhaRegistroId"
         android:layout_width="0dp"
         android:layout_height="46dp"
         android:layout_marginEnd="10dp"
@@ -66,28 +66,12 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="@string/CPFinput"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomeRegistroId" />
-
-    <EditText
-        android:id="@+id/senhaRegistroId"
-        android:layout_width="0dp"
-        android:layout_height="46dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="124dp"
-        android:ems="10"
         android:hint="@string/Senhainput"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cpfRegistroId" />
+        app:layout_constraintTop_toBottomOf="@+id/emailId" />
 
     <EditText
         android:id="@+id/confirmarSenhaRegistroId"
@@ -97,7 +81,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="@string/ConfirmarSenhainput"
         android:inputType="textPassword"
@@ -106,8 +90,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/senhaRegistroId" />
 
-    <EditText
-        android:id="@+id/editText"
+    <!--<EditText
+        android:id="@+id/nascimentoId"
         android:layout_width="0dp"
         android:layout_height="46dp"
         android:layout_marginEnd="10dp"
@@ -117,28 +101,26 @@
         android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Data de Nascimento"
+        android:hint="Data de Nascimento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cpfRegistroId" />
+        app:layout_constraintTop_toBottomOf="@+id/cpfRegistroId" />-->
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/emailId"
         android:layout_width="0dp"
-        android:layout_height="46"
+        android:layout_height="46dp"
         android:layout_marginEnd="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="Email"
         android:inputType="textPersonName|textFilter"
-        android:text="Email"
-        app:layout_constraintBottom_toTopOf="@+id/senhaRegistroId"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/cpfRegistroId" />
 
 </android.support.constraint.ConstraintLayout>
