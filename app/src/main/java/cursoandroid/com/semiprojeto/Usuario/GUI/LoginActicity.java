@@ -17,16 +17,8 @@ import static cursoandroid.com.semiprojeto.R.*;
 
 public class LoginActicity extends AppCompatActivity {
     private Button botaoRegistro;
-<<<<<<< HEAD
-<<<<<<< HEAD
     private EditText cpfLogin;
     private EditText senhaLogin;
-=======
-=======
->>>>>>> 6147b5b03b5c5a7073e972718b6fa8e001eb0b43
-    private EditText cpf;
-    private EditText senha;
->>>>>>> 6147b5b03b5c5a7073e972718b6fa8e001eb0b43
     private Button botaoLogar;
 
     @Override
@@ -34,39 +26,12 @@ public class LoginActicity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_login);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         setButtons();
-=======
-=======
->>>>>>> 6147b5b03b5c5a7073e972718b6fa8e001eb0b43
-        cpf = findViewById(R.id.cpfId);
-        botaoLogar = findViewById(R.id.botaoLoginId);
-        botaoRegistro = findViewById(R.id.botaoRegistroId);
-        senha = findViewById(R.id.senhaId);
-<<<<<<< HEAD
->>>>>>> 6147b5b03b5c5a7073e972718b6fa8e001eb0b43
-=======
->>>>>>> 6147b5b03b5c5a7073e972718b6fa8e001eb0b43
 
         botaoLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
-<<<<<<< HEAD
                 login();
-=======
-=======
->>>>>>> 6147b5b03b5c5a7073e972718b6fa8e001eb0b43
-                if(verificarLogin(cpf.getText().toString(), senha.getText().toString())){
-                    Toast.makeText(LoginActicity.this,"Login efetuado com suscesso",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(new Intent(LoginActicity.this,homeActivity.class));
-                    intent.putExtra("id", String.valueOf(recuperarId()));
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(LoginActicity.this,"Cpf/Senha incorreto(s).",Toast.LENGTH_SHORT).show();
-                }
->>>>>>> 6147b5b03b5c5a7073e972718b6fa8e001eb0b43
             }
         });
 
