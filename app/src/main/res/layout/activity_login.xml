@@ -42,6 +42,7 @@
 
     <EditText
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:id="@+id/cpfId"
         android:layout_width="0dp"
         android:layout_height="46dp"
@@ -58,6 +59,8 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <EditText
+=======
+>>>>>>> 6147b5b03b5c5a7073e972718b6fa8e001eb0b43
 =======
 >>>>>>> 6147b5b03b5c5a7073e972718b6fa8e001eb0b43
         android:id="@+id/senhaId"
@@ -94,7 +97,10 @@
         app:layout_constraintTop_toBottomOf="@+id/botaoLoginId" />
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 6147b5b03b5c5a7073e972718b6fa8e001eb0b43
     <EditText
         android:id="@+id/cpfId"
         android:layout_width="0dp"
@@ -110,6 +116,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+<<<<<<< HEAD
+>>>>>>> 6147b5b03b5c5a7073e972718b6fa8e001eb0b43
+=======
 >>>>>>> 6147b5b03b5c5a7073e972718b6fa8e001eb0b43
 
 </android.support.constraint.ConstraintLayout>
