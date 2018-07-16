@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import cursoandroid.com.semiprojeto.Pessoa.GUI.homeActivity;
+import cursoandroid.com.semiprojeto.R;
 import cursoandroid.com.semiprojeto.Usuario.Dominio.Usuario;
 import cursoandroid.com.semiprojeto.Usuario.Negocio.UsuarioNegocio;
 
@@ -16,7 +17,7 @@ import static cursoandroid.com.semiprojeto.R.*;
 
 public class LoginActicity extends AppCompatActivity {
     private Button botaoRegistro;
-    private EditText login;
+    private EditText cpf;
     private EditText senha;
     private Button botaoLogar;
     private Usuario usuario = new Usuario();
@@ -26,15 +27,15 @@ public class LoginActicity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_login);
 
-        login = findViewById(id.nomeRegistroId);
-        botaoLogar = findViewById(id.botaoLoginId);
-        botaoRegistro = findViewById(id.botaoRegistroId);
-        senha = findViewById(id.senhaId);
+        cpf = findViewById(R.id.cpfId);
+        botaoLogar = findViewById(R.id.botaoLoginId);
+        botaoRegistro = findViewById(R.id.botaoRegistroId);
+        senha = findViewById(R.id.senhaId);
 
         botaoLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(verificarLogin(login.getText().toString(), senha.getText().toString())){
+                if(verificarLogin(cpf.getText().toString(), senha.getText().toString())){
                     Toast.makeText(LoginActicity.this,"Login efetuado com suscesso",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(new Intent(LoginActicity.this,homeActivity.class));
                     intent.putExtra("id", String.valueOf(recuperarId()));
