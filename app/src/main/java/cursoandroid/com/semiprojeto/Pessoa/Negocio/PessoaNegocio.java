@@ -8,30 +8,11 @@ import cursoandroid.com.semiprojeto.Usuario.Dominio.Usuario;
 
 public class PessoaNegocio {
 
-    public Pessoa criarPessoa(Usuario usuario, String nome){
-        Pessoa pessoa = new Pessoa();
-        pessoa.setIdUsuario(usuario.getId());
-        pessoa.setNome(nome);
-        return pessoa;
-    }
-
     public void inserirPessoaBanco(Pessoa pessoa, Context ctx){
         PessoaDao banco = new PessoaDao();
         banco.escreverNoBanco(ctx);
         banco.inserirNoBanco(pessoa);
     }
-
-    /*public Boolean existeUsuario(Usuario usuario, Context ctx){
-        UsuarioDao banco = new UsuarioDao();
-        banco.escreverNoBanco(ctx);
-        return banco.existeNoBanco(usuario);
-    }
-
-    public Boolean verificarUsuario(Usuario usuario, Context ctx){
-        UsuarioDao banco = new UsuarioDao();
-        banco.escreverNoBanco(ctx);
-        return banco.lerDoBanco(usuario);
-    }*/
 
     public Pessoa recuperarPessoa(Usuario usuario, Context ctx){
         PessoaDao banco = new PessoaDao();

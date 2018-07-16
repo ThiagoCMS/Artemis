@@ -32,24 +32,6 @@ public class PessoaDao {
         banco.close();
     }
 
-    /*public Boolean existeNoBanco(Usuario usuario){
-        String where = "SELECT cpf FROM usuario WHERE cpf = '" + usuario.getCpf() + "'";
-        Cursor cursor = banco.rawQuery(where, null);
-        if(cursor.getCount() > 0){
-            return true;
-        }
-        return false;
-    }*/
-
-    /*public Boolean lerDoBanco(Usuario usuario){
-        String where = "SELECT cpf FROM usuario WHERE cpf = '" + usuario.getCpf() + "' AND senha = '" + usuario.getSenha() + "'";
-        Cursor cursor = banco.rawQuery(where, null);
-        if(cursor.getCount() > 0){
-            return true;
-        }
-        return false;
-    }*/
-
     public Pessoa recuperarDoBanco(Usuario usuario){
         Pessoa pessoa = new Pessoa();
         String where = "SELECT * FROM pessoa WHERE idusuario = '" + usuario.getId() + "'";

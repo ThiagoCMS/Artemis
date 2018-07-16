@@ -11,8 +11,12 @@ import cursoandroid.com.semiprojeto.Usuario.Dominio.Usuario;
 public class UsuarioDao {
     private SQLiteDatabase banco;
 
-    public SQLiteDatabase escreverNoBanco(Context context){
-        DB auxDB = new DB(context);
+    public UsuarioDao(Context ctx){
+        escreverNoBanco(ctx);
+    }
+
+    private SQLiteDatabase escreverNoBanco(Context ctx){
+        DB auxDB = new DB(ctx);
         banco = auxDB.getWritableDatabase();
         return banco;
     }
@@ -40,8 +44,8 @@ public class UsuarioDao {
         return false;
     }
 
-    public Boolean lerDoBanco(Usuario usuario){
-        String where = "SELECT cpf FROM usuario WHERE cpf = '" + usuario.getCpf() + "' AND senha = '" + usuario.getSenha() + "'";
+    public Boolean verificarLogin(String cpf, String senha){
+        String where = "SELECT cpf FROM usuario WHERE cpf = '" + cpf + "' AND senha = '" + senha + "'";
         Cursor cursor = banco.rawQuery(where, null);
         if(cursor.getCount() > 0){
             return true;
@@ -49,17 +53,17 @@ public class UsuarioDao {
         return false;
     }
 
-    public Usuario recuperarDoBanco(Usuario usuario){
-        Usuario usuario1 = new Usuario();
-        String where = "SELECT * FROM usuario WHERE cpf = '" + usuario.getCpf() + "'";
+    public Usuario recuperarDoBanco(String cpf){
+        Usuario usuario = new Usuario();
+        String where = "SELECT * FROM usuario WHERE cpf = '" + cpf + "'";
         Cursor cursor = banco.rawQuery(where, null);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            usuario1.setId(cursor.getInt(0));
-            usuario1.setCpf(cursor.getString(2));
-            usuario1.setSenha(cursor.getString(1));
+            usuario.setId(cursor.getInt(0));
+            usuario.setCpf(cursor.getString(2));
+            usuario.setSenha(cursor.getString(1));
         }
-        return usuario1;
+        return usuario;
     }
 
     public Usuario recuperarDoBanco(int id){

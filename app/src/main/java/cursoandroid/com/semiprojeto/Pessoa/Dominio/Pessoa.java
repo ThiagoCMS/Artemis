@@ -3,6 +3,7 @@ package cursoandroid.com.semiprojeto.Pessoa.Dominio;
 public class Pessoa {
     private int id;
     private String nome;
+    private String email;
     private int idUsuario;
 
     public int getId() {
@@ -28,4 +29,14 @@ public class Pessoa {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
 }
