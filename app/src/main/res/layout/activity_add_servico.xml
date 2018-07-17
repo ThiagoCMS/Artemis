@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Servico.GUI.AddServicoActivity">
+    tools:context="br.ufrpe.artemis.Servico.GUI.AddServicoActivity">
 
     <Button
         android:id="@+id/button"

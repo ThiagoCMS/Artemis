@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cursoandroid.com.semiprojeto.Servico.GUI.SubTecnologiaActivity">
+    tools:context="br.ufrpe.artemis.Servico.GUI.SubTecnologiaActivity">
 
     <ListView
         android:id="@+id/tecnologiaListaId"
