@@ -1,5 +1,6 @@
 package br.ufrpe.artemis.Servico.GUI;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,15 +60,16 @@ public class ServicosListActivity extends AppCompatActivity {
         listViewGeral.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //star....
+                    Toast.makeText(ServicosListActivity.this, String.valueOf(arrayListServico.get(position).getNome()), Toast.LENGTH_SHORT).show();
+                    Servico servico = arrayListServico.get(position);
+                    int idServico = servico.getId();
+                    Intent intent = new Intent(ServicosListActivity.this, ServicosActivity.class);
+                    intent.putExtra("id", String.valueOf(idServico));
+                    startActivity(intent);
                 }
             });
-
-
-
-
-
     }
+
     private void setLists(){
         ServicoNegocio negocio = new ServicoNegocio();
         arrayListServico = negocio.listarSevicosSub(subCat, this);

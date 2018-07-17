@@ -4,6 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.telecom.Connection;
+
+import java.sql.PreparedStatement;
 
 import br.ufrpe.artemis.DataBase.Dao.DB;
 import br.ufrpe.artemis.Usuario.Dominio.Usuario;

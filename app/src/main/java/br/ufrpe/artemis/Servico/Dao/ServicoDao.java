@@ -71,4 +71,40 @@ public class ServicoDao {
         }
         return list;
     }
+
+    public Servico recuperarServico(int id){
+        Servico servico = new Servico();
+        String where = "SELECT * FROM servico WHERE id = '" + id + "'";
+        Cursor cursor = banco.rawQuery(where, null);
+        int i = cursor.getCount();
+        cursor.moveToFirst();
+        servico.setId(cursor.getInt(0));
+        servico.setNome(cursor.getString(1));
+        servico.setTexto(cursor.getString(2));
+        servico.setIdUsuario(cursor.getInt(3));
+        servico.setIdSubCategoria(cursor.getInt(4));
+        return servico;
+    }
+
+    public String recuperarCategoria(int id){
+        int idCategoria = recuperarIdCategoria(id);
+        String where = "SELECT nome FROM categoria WHERE id = '" + idCategoria + "'";
+        Cursor cursor = banco.rawQuery(where, null);
+        cursor.moveToFirst();
+        return cursor.getString(0);
+    }
+
+    private int recuperarIdCategoria(int id){
+        String where = "SELECT idcategoria FROM subcategoria WHERE id = '" + id + "'";
+        Cursor cursor = banco.rawQuery(where, null);
+        cursor.moveToFirst();
+        return cursor.getInt(0);
+    }
+
+    public String recuperarSubCategoria(int id){
+        String where = "SELECT nome FROM subcategoria WHERE id = '" + id + "'";
+        Cursor cursor = banco.rawQuery(where, null);
+        cursor.moveToFirst();
+        return cursor.getString(0);
+    }
 }

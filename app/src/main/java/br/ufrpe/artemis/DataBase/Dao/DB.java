@@ -22,46 +22,71 @@ public class DB extends SQLiteOpenHelper {
         criarServico(db);
     }
 
+    /*@Override
+    public void onOpen(SQLiteDatabase db){
+        db.execSQL("DELETE FROM usuario;");
+        db.execSQL("DELETE FROM pessoa;");
+        db.execSQL("DELETE FROM servico;");
+        db.execSQL("DELETE FROM categoria;");
+        db.execSQL("DELETE FROM subcategoria;");
+        criarCategoria(db);
+        criarSubCategoria(db);
+        criarServico(db);
+
+    }*/
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table usuario;");
+        db.execSQL("drop table pessoa;");
+        db.execSQL("drop table servico;");
+        db.execSQL("drop table categoria;");
+        db.execSQL("drop table subcategoria;");
     }
 
-    public void criarCategoria(SQLiteDatabase bd){
+    public void delete(SQLiteDatabase db){
+        db.execSQL("drop table usuario");
+        db.execSQL("drop table pessoa");
+        db.execSQL("drop table servico");
+        db.execSQL("drop table categoria");
+        db.execSQL("drop table subcategoria");
+    }
+
+    public void criarCategoria(SQLiteDatabase db){
         String addCategoria = "INSERT INTO categoria (nome) values";
 
-        bd.execSQL(addCategoria + "('Saude');");
-        bd.execSQL(addCategoria + "('Tecnologia');");
-        bd.execSQL(addCategoria + "('Reformas');");
-        bd.execSQL(addCategoria + "('Eventos');");
-        bd.execSQL(addCategoria + "('Moda e Beleza');");
-        bd.execSQL(addCategoria + "('Domiciliares');");
+        db.execSQL(addCategoria + "('Saude');");
+        db.execSQL(addCategoria + "('Tecnologia');");
+        db.execSQL(addCategoria + "('Reformas');");
+        db.execSQL(addCategoria + "('Eventos');");
+        db.execSQL(addCategoria + "('Moda e Beleza');");
+        db.execSQL(addCategoria + "('Domiciliares');");
     }
 
-    public void criarSubCategoria(SQLiteDatabase bd) {
+    public void criarSubCategoria(SQLiteDatabase db) {
         String addSubCategoria = "INSERT INTO subcategoria (nome, idcategoria) values";
 
-        bd.execSQL(addSubCategoria + "('Cuidadora de Idosos','1');");
-        bd.execSQL(addSubCategoria + "('Personal','1');");
-        bd.execSQL(addSubCategoria + "('Nutricionista','1');");
-        bd.execSQL(addSubCategoria + "('Massagista','1');");
-        bd.execSQL(addSubCategoria + "('Computadores','2');");
-        bd.execSQL(addSubCategoria + "('Eletrodomésticos','2');");
-        bd.execSQL(addSubCategoria + "('Celulares','2');");
-        bd.execSQL(addSubCategoria + "('Serviços Elétricos','3');");
-        bd.execSQL(addSubCategoria + "('Ajuste de Móveis','3');");
-        bd.execSQL(addSubCategoria + "('Marcenarias','3');");
-        bd.execSQL(addSubCategoria + "('Festas de Aniversário','4');");
-        bd.execSQL(addSubCategoria + "('Casamentos','4');");
-        bd.execSQL(addSubCategoria + "('Costura','5');");
-        bd.execSQL(addSubCategoria + "('Comida Caseira','6');");
-        bd.execSQL(addSubCategoria + "('Limpeza Doméstica','6');");
-        bd.execSQL(addSubCategoria + "('Cabelo','5');");
+        db.execSQL(addSubCategoria + "('Cuidadora de Idosos','1');");
+        db.execSQL(addSubCategoria + "('Personal','1');");
+        db.execSQL(addSubCategoria + "('Nutricionista','1');");
+        db.execSQL(addSubCategoria + "('Massagista','1');");
+        db.execSQL(addSubCategoria + "('Computadores','2');");
+        db.execSQL(addSubCategoria + "('Eletrodomésticos','2');");
+        db.execSQL(addSubCategoria + "('Celulares','2');");
+        db.execSQL(addSubCategoria + "('Serviços Elétricos','3');");
+        db.execSQL(addSubCategoria + "('Ajuste de Móveis','3');");
+        db.execSQL(addSubCategoria + "('Marcenarias','3');");
+        db.execSQL(addSubCategoria + "('Festas de Aniversário','4');");
+        db.execSQL(addSubCategoria + "('Casamentos','4');");
+        db.execSQL(addSubCategoria + "('Costura','5');");
+        db.execSQL(addSubCategoria + "('Comida Caseira','6');");
+        db.execSQL(addSubCategoria + "('Limpeza Doméstica','6');");
+        db.execSQL(addSubCategoria + "('Cabelo','5');");
     }
 
-    public void criarServico(SQLiteDatabase bd){
+    public void criarServico(SQLiteDatabase db){
         String addServico = " INSERT INTO servico (nome, texto, idusuario, idsubcategoria) values";
 
-        bd.execSQL(addServico + "('Formatar', 'teste', '1', '5');");
+        db.execSQL(addServico + "('Formatar', 'teste', '1', '5');");
     }
 }
