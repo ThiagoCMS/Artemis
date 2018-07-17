@@ -3,6 +3,7 @@ package br.ufrpe.artemis.Usuario.Negocio;
 import android.content.Context;
 
 import br.ufrpe.artemis.Infra.ArtemisApp;
+import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
 import br.ufrpe.artemis.Usuario.Dao.UsuarioDao;
@@ -51,6 +52,11 @@ public class UsuarioNegocio {
         Usuario usuario = recuperarUsuario(id);
         usuario.setSenha(senha);
         banco.alterarSenhaUsuario(usuario);
+    }
+
+    public void login(String cpf){
+        Usuario usuario = recuperarUsuario(cpf);
+        Sessao.instance.setUsuario(usuario);
 
     }
 }

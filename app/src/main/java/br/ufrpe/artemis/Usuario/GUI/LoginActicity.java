@@ -52,6 +52,7 @@ public class LoginActicity extends AppCompatActivity {
 
     private void login(){
         if(validarLogin()){
+            logar();
             Intent intent = new Intent(LoginActicity.this, homeActivity.class);
             intent.putExtra("id", String.valueOf(recuperarId()));
             startActivity(intent);
@@ -65,6 +66,12 @@ public class LoginActicity extends AppCompatActivity {
         String cpf = cpfLogin.getText().toString().trim();
         String senha = senhaLogin.getText().toString().trim();
         return negocio.verificarUsuario(cpf, senha);
+    }
+
+    private void logar(){
+        UsuarioNegocio negocio = new UsuarioNegocio();
+        String cpf = cpfLogin.getText().toString().trim();
+        negocio.login(cpf);
     }
 
     private int recuperarId(){

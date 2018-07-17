@@ -14,7 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
@@ -37,6 +39,7 @@ public class homeActivity extends AppCompatActivity
     private ImageView domiciliares;
     private ImageView moda;
     private ImageView tecnologia;
+    private TextView teste;
 
 
     @Override
