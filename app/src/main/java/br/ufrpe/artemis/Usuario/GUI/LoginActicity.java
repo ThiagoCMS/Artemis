@@ -64,13 +64,13 @@ public class LoginActicity extends AppCompatActivity {
         UsuarioNegocio negocio = new UsuarioNegocio();
         String cpf = cpfLogin.getText().toString().trim();
         String senha = senhaLogin.getText().toString().trim();
-        return negocio.verificarUsuario(cpf, senha, this);
+        return negocio.verificarUsuario(cpf, senha);
     }
 
     private int recuperarId(){
         UsuarioNegocio negocio = new UsuarioNegocio();
         String cpf = cpfLogin.getText().toString().trim();
-        Usuario usuario = negocio.recuperarUsuario(cpf, this);
+        Usuario usuario = negocio.recuperarUsuario(cpf);
         return usuario.getId();
     }
 

@@ -1,4 +1,4 @@
-package br.ufrpe.artemis.DataBase.Dao;
+package br.ufrpe.artemis.Infra.DataBase.Dao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

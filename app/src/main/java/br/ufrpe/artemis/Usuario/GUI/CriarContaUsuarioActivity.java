@@ -130,7 +130,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         String senha = senhaRegistro.getText().toString();
         usuario.setCpf(senha);
         usuario.setCpf(cpf);
-        if(negocio.existeUsuario(usuario, this)){
+        if(negocio.existeUsuario(usuario)){
             Toast.makeText(this, "Cpf já registrado", Toast.LENGTH_SHORT).show();
         }else{
             inserirUsuario(cpf, senha);
@@ -147,7 +147,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         pessoa.setNome(nome);
         pessoa.setEmail(email);
         UsuarioNegocio negocio = new UsuarioNegocio();
-        negocio.inserirUsuarioBanco(usuario, pessoa,this);
+        negocio.inserirUsuarioBanco(usuario, pessoa);
         Toast.makeText(CriarContaUsuarioActivity.this, "Usuario registrado", Toast.LENGTH_SHORT).show();
         CriarContaUsuarioActivity.this.finish();
     }

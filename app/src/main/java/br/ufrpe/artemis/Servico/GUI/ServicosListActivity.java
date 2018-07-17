@@ -60,7 +60,6 @@ public class ServicosListActivity extends AppCompatActivity {
         listViewGeral.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(ServicosListActivity.this, String.valueOf(arrayListServico.get(position).getNome()), Toast.LENGTH_SHORT).show();
                     Servico servico = arrayListServico.get(position);
                     int idServico = servico.getId();
                     Intent intent = new Intent(ServicosListActivity.this, ServicosActivity.class);
@@ -72,7 +71,7 @@ public class ServicosListActivity extends AppCompatActivity {
 
     private void setLists(){
         ServicoNegocio negocio = new ServicoNegocio();
-        arrayListServico = negocio.listarSevicosSub(subCat, this);
+        arrayListServico = negocio.listarSevicosSub(subCat);
         arrayListServicoNome = negocio.listarServicoStr(arrayListServico);
     }
 }

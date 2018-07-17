@@ -51,7 +51,7 @@ public class ServicosActivity extends AppCompatActivity {
 
     private void getList(){
         ServicoNegocio negocio = new ServicoNegocio();
-        info = negocio.infoTelaServico(idServico, this);
+        info = negocio.infoTelaServico(idServico);
     }
 
     private void setText(){

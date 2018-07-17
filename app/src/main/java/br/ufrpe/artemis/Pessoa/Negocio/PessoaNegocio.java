@@ -8,21 +8,18 @@ import br.ufrpe.artemis.Usuario.Dominio.Usuario;
 
 public class PessoaNegocio {
 
-    public void inserirPessoaBanco(Pessoa pessoa, Context ctx){
+    public void inserirPessoaBanco(Pessoa pessoa){
         PessoaDao banco = new PessoaDao();
-        banco.escreverNoBanco(ctx);
         banco.inserirNoBanco(pessoa);
     }
 
-    public Pessoa recuperarPessoa(Usuario usuario, Context ctx){
+    public Pessoa recuperarPessoa(Usuario usuario){
         PessoaDao banco = new PessoaDao();
-        banco.escreverNoBanco(ctx);
         return banco.recuperarDoBanco(usuario);
     }
 
-    public Pessoa recuperarPessoa(int id, Context ctx){
+    public Pessoa recuperarPessoa(int id){
         PessoaDao banco = new PessoaDao();
-        banco.escreverNoBanco(ctx);
         return banco.recuperarDoBanco(id);
     }
 }

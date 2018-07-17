@@ -21,28 +21,24 @@ public class ServicoNegocio {
         return servico;
     }
 
-    public void inserirServicoNoBanco(Servico servico, Context ctx){
+    public void inserirServicoNoBanco(Servico servico){
         ServicoDao banco = new ServicoDao();
-        banco.escreverNoBanco(ctx);
         banco.inserirNoBanco(servico);
     }
 
-    public void deletarServicoDoBanco(Servico servico, Context ctx){
+    public void deletarServicoDoBanco(Servico servico){
         ServicoDao banco = new ServicoDao();
-        banco.escreverNoBanco(ctx);
         banco.deletarDoBanco(servico);
     }
 
-    public ArrayList<Servico> listarSevicosSub(int idSub, Context ctx){
+    public ArrayList<Servico> listarSevicosSub(int idSub){
         ServicoDao banco = new ServicoDao();
-        banco.escreverNoBanco(ctx);
         ArrayList<Servico> list = banco.recuperarDoBancoSub(idSub);
         return list;
     }
 
-    public ArrayList<Servico> listarSevicosUs(int idUsuario, Context ctx){
+    public ArrayList<Servico> listarSevicosUs(int idUsuario){
         ServicoDao banco = new ServicoDao();
-        banco.escreverNoBanco(ctx);
         ArrayList<Servico> list = banco.recuperarDoBancoUs(idUsuario);
         return list;
     }
@@ -55,12 +51,11 @@ public class ServicoNegocio {
         return list1;
     }
 
-    public ArrayList<String> infoTelaServico(int id, Context ctx){
+    public ArrayList<String> infoTelaServico(int id){
         ServicoDao banco = new ServicoDao();
-        banco.escreverNoBanco(ctx);
         Servico servico = banco.recuperarServico(id);
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
-        Pessoa pessoa = pessoaNegocio.recuperarPessoa(servico.getIdUsuario(), ctx);
+        Pessoa pessoa = pessoaNegocio.recuperarPessoa(servico.getIdUsuario());
         String subCategoria = banco.recuperarSubCategoria(servico.getIdSubCategoria());
         String categoria = banco.recuperarCategoria(servico.getIdSubCategoria());
         ArrayList<String> list = new ArrayList<>();

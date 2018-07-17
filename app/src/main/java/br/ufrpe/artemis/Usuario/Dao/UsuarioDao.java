@@ -4,18 +4,16 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.telecom.Connection;
 
-import java.sql.PreparedStatement;
-
-import br.ufrpe.artemis.DataBase.Dao.DB;
+import br.ufrpe.artemis.Infra.ArtemisApp;
+import br.ufrpe.artemis.Infra.DataBase.Dao.DB;
 import br.ufrpe.artemis.Usuario.Dominio.Usuario;
 
 public class UsuarioDao {
     private SQLiteDatabase banco;
 
-    public UsuarioDao(Context ctx){
-        escreverNoBanco(ctx);
+    public UsuarioDao(){
+        escreverNoBanco(ArtemisApp.getContext());
     }
 
     private SQLiteDatabase escreverNoBanco(Context ctx){

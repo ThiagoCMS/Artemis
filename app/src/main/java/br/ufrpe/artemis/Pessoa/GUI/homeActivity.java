@@ -201,6 +201,6 @@ public class homeActivity extends AppCompatActivity
 
     private void carregarPessoa(int id){
         PessoaNegocio negocio = new PessoaNegocio();
-        this.pessoa = negocio.recuperarPessoa(id, this);
+        this.pessoa = negocio.recuperarPessoa(id);
     }
 }

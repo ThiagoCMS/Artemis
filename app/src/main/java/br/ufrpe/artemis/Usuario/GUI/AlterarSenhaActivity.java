@@ -35,10 +35,10 @@ public class AlterarSenhaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 UsuarioNegocio negocio = new UsuarioNegocio();
-                if(!negocio.verificarSenha(idUsuario, senhaAtual.getText().toString(), AlterarSenhaActivity.this)){
+                if(!negocio.verificarSenha(idUsuario, senhaAtual.getText().toString())){
                     Toast.makeText(AlterarSenhaActivity.this, "Senha incorreta", Toast.LENGTH_SHORT).show();
                 }else if(novaSenha.getText().toString().equals(confirmarNovaSenha.getText().toString())){
-                    negocio.alterarSenha(idUsuario, novaSenha.getText().toString(), AlterarSenhaActivity.this);
+                    negocio.alterarSenha(idUsuario, novaSenha.getText().toString());
                     Toast.makeText(AlterarSenhaActivity.this, "Senha alterada com sucesso", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(AlterarSenhaActivity.this, "Senhas não correspondem", Toast.LENGTH_SHORT).show();
