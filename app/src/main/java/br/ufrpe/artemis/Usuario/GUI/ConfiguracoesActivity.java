@@ -21,17 +21,27 @@ import br.ufrpe.artemis.Usuario.Negocio.UsuarioNegocio;
 public class ConfiguracoesActivity extends AppCompatActivity {
     private ListView lv;
     private ArrayList<String> listaConfig =  new ArrayList<String>();
-    private int idUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracoes);
 
-        setUsuario();
+        setTela();
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    startActivity(new Intent(ConfiguracoesActivity.this, AlterarSenhaActivity.class));
+                }
+            }
+        });
+    }
+
+    private void setTela(){
         listaConfig.add("Alterar senha");
         lv = findViewById(R.id.ListViewConfig);
-
         ArrayAdapter<String> teAdaptador = new ArrayAdapter<String>(
                 getApplicationContext(),android.R.layout.simple_list_item_1, android.R.id.text1, listaConfig
         ){
@@ -50,21 +60,6 @@ public class ConfiguracoesActivity extends AppCompatActivity {
                 return view;
             }
         };
-
         lv.setAdapter(teAdaptador);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    startActivity(new Intent(ConfiguracoesActivity.this, AlterarSenhaActivity.class).putExtra("id", String.valueOf(idUsuario)));
-                }
-            }
-        });
-    }
-
-    private void setUsuario(){
-        Bundle extras = getIntent().getExtras();
-        idUsuario = Integer.parseInt(extras.getString("id"));
     }
 }

@@ -22,19 +22,6 @@ public class DB extends SQLiteOpenHelper {
         criarServico(db);
     }
 
-    /*@Override
-    public void onOpen(SQLiteDatabase db){
-        db.execSQL("DELETE FROM usuario;");
-        db.execSQL("DELETE FROM pessoa;");
-        db.execSQL("DELETE FROM servico;");
-        db.execSQL("DELETE FROM categoria;");
-        db.execSQL("DELETE FROM subcategoria;");
-        criarCategoria(db);
-        criarSubCategoria(db);
-        criarServico(db);
-
-    }*/
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table usuario;");

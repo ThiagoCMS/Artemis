@@ -51,34 +51,19 @@ public class LoginActicity extends AppCompatActivity {
     }
 
     private void login(){
-        if(validarLogin()){
-            logar();
+        if(logar() != null){
             Intent intent = new Intent(LoginActicity.this, homeActivity.class);
-            intent.putExtra("id", String.valueOf(recuperarId()));
             startActivity(intent);
         }else{
             Toast.makeText(LoginActicity.this,"Cpf/Senha incorreto(s).",Toast.LENGTH_SHORT).show();
         }
     }
 
-    private Boolean validarLogin(){
+    private Usuario logar(){
         UsuarioNegocio negocio = new UsuarioNegocio();
         String cpf = cpfLogin.getText().toString().trim();
-        String senha = senhaLogin.getText().toString().trim();
-        return negocio.verificarUsuario(cpf, senha);
-    }
-
-    private void logar(){
-        UsuarioNegocio negocio = new UsuarioNegocio();
-        String cpf = cpfLogin.getText().toString().trim();
-        negocio.login(cpf);
-    }
-
-    private int recuperarId(){
-        UsuarioNegocio negocio = new UsuarioNegocio();
-        String cpf = cpfLogin.getText().toString().trim();
-        Usuario usuario = negocio.recuperarUsuario(cpf);
-        return usuario.getId();
+        String senha = senhaLogin.getText().toString();
+        return negocio.login(cpf, senha);
     }
 
     public void telaRegistro(){

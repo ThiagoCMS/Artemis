@@ -130,7 +130,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         String senha = senhaRegistro.getText().toString();
         usuario.setCpf(senha);
         usuario.setCpf(cpf);
-        if(negocio.existeUsuario(usuario)){
+        if(negocio.existeUsuario(cpf)){
             Toast.makeText(this, "Cpf já registrado", Toast.LENGTH_SHORT).show();
         }else{
             inserirUsuario(cpf, senha);

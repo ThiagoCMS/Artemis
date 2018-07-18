@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Usuario.Dominio.Usuario;
 import br.ufrpe.artemis.Usuario.Negocio.UsuarioNegocio;
@@ -16,7 +17,6 @@ public class AlterarSenhaActivity extends AppCompatActivity {
     private EditText novaSenha;
     private EditText confirmarNovaSenha;
     private Button botaoAlterarSenha;
-    private int idUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,23 +28,38 @@ public class AlterarSenhaActivity extends AppCompatActivity {
         confirmarNovaSenha = findViewById(R.id.confirmarSenhaNovaId);
         botaoAlterarSenha = findViewById(R.id.buttonAlterarSenhaId);
 
-        Bundle extra = getIntent().getExtras();
-        idUsuario = Integer.parseInt(extra.getString("id"));
-
         botaoAlterarSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UsuarioNegocio negocio = new UsuarioNegocio();
-                if(!negocio.verificarSenha(idUsuario, senhaAtual.getText().toString())){
+                if(!verificarSenha()){
                     Toast.makeText(AlterarSenhaActivity.this, "Senha incorreta", Toast.LENGTH_SHORT).show();
-                }else if(novaSenha.getText().toString().equals(confirmarNovaSenha.getText().toString())){
-                    negocio.alterarSenha(idUsuario, novaSenha.getText().toString());
+                }else if(compararSenhas()){
+                    negocio.alterarSenha(novaSenha.getText().toString());
                     Toast.makeText(AlterarSenhaActivity.this, "Senha alterada com sucesso", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(AlterarSenhaActivity.this, "Senhas não correspondem", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private boolean verificarSenha(){
+        Usuario usuario = Sessao.instance.getUsuario();
+        String senha = senhaAtual.getText().toString();
+        if(usuario.getSenha().equals(senha)){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean compararSenhas(){
+        String senha = novaSenha.getText().toString();
+        String senha1 = confirmarNovaSenha.getText().toString();
+        if(senha.equals(senha1)){
+            return true;
+        }
+        return false;
     }
 
 

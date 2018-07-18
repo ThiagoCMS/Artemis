@@ -36,56 +36,72 @@ public class UsuarioDao {
         banco.close();
     }
 
-    public Boolean existeNoBanco(Usuario usuario){
-        String where = "SELECT cpf FROM usuario WHERE cpf = '" + usuario.getCpf() + "'";
-        Cursor cursor = banco.rawQuery(where, null);
+    public boolean existeNoBanco(String cpf){
+        Cursor cursor = banco.query("usuario", new String[]{"*"}, "cpf = ?", new String[]{cpf}, null, null, null);
+        boolean resposta = false;
         if(cursor.getCount() > 0){
-            return true;
+            resposta = true;
         }
-        return false;
+        banco.close();
+        cursor.close();
+        return resposta;
     }
 
-    public Boolean verificarLogin(String cpf, String senha){
-        String where = "SELECT cpf FROM usuario WHERE cpf = '" + cpf + "' AND senha = '" + senha + "'";
-        Cursor cursor = banco.rawQuery(where, null);
+    public Usuario verificarLogin(String cpf, String senha){
+        Usuario usuario;
+        Cursor cursor = banco.query("usuario", new String[]{"*"}, "cpf = ? and senha = ?", new String[]{cpf, senha}, null, null, null);
         if(cursor.getCount() > 0){
-            return true;
+            usuario = montarUsuario(cursor);
+        }else{
+            usuario = null;
         }
-        return false;
+        cursor.close();
+        banco.close();
+        return usuario;
+    }
+
+    private Usuario montarUsuario(Cursor cursor) {
+        Usuario usuario = new Usuario();
+        cursor.moveToFirst();
+        usuario.setId(cursor.getInt(0));
+        usuario.setSenha(cursor.getString(1));
+        usuario.setCpf(cursor.getString(2));
+        return usuario;
     }
 
     public Usuario recuperarDoBanco(String cpf){
-        Usuario usuario = new Usuario();
-        String where = "SELECT * FROM usuario WHERE cpf = '" + cpf + "'";
-        Cursor cursor = banco.rawQuery(where, null);
+        Usuario usuario;
+        Cursor cursor = banco.query("usuario", new String[]{"*"}, "cpf = ?", new String[]{cpf}, null, null, null);
         if(cursor.getCount() > 0){
-            cursor.moveToFirst();
-            usuario.setId(cursor.getInt(0));
-            usuario.setCpf(cursor.getString(2));
-            usuario.setSenha(cursor.getString(1));
+            usuario = montarUsuario(cursor);
+        }else{
+            usuario = null;
         }
+        cursor.close();
+        banco.close();
         return usuario;
     }
 
     public Usuario recuperarDoBanco(int id){
-        Usuario usuario = new Usuario();
+        Usuario usuario;
         String where = "SELECT * FROM usuario WHERE id = '" + id + "'";
         Cursor cursor = banco.rawQuery(where, null);
         if(cursor.getCount()>0){
-            cursor.moveToFirst();
-            usuario.setId(cursor.getInt(0));
-            usuario.setCpf(cursor.getString(2));
-            usuario.setSenha(cursor.getString(1));
+            usuario = montarUsuario(cursor);
+        }else{
+            usuario = null;
         }
+        banco.close();
+        cursor.close();
         return usuario;
     }
 
     public void alterarSenhaUsuario(Usuario usuario) {
-        String where = "id = '" + usuario.getId() + "'";
+        String where = "id = ?";
         ContentValues valores = new ContentValues();
         valores.put("cpf", usuario.getCpf());
         valores.put("senha", usuario.getSenha());
-        banco.update("usuario", valores, where, null);
+        banco.update("usuario", valores, where, new String[]{String.valueOf(usuario.getId())});
         banco.close();
     }
 }

@@ -32,7 +32,6 @@ import br.ufrpe.artemis.Usuario.GUI.ConfiguracoesActivity;
 public class homeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Pessoa pessoa;
-    private String id;
     private ImageView saude;
     private ImageView reformas;
     private ImageView eventos;
@@ -48,10 +47,6 @@ public class homeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        Bundle extras = getIntent().getExtras();
-        id = extras.getString("id");
-        carregarPessoa(Integer.parseInt(id));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -191,10 +186,9 @@ public class homeActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
 
         } else if (id == R.id.nav_profile) {
-            //startActivity(new Intent(new Intent(homeActivity.this, opcoesActivity.class)));
 
         } else if (id == R.id.nav_config) {
-            startActivity( new Intent(homeActivity.this, ConfiguracoesActivity.class).putExtra("id", this.id));
+            startActivity( new Intent(homeActivity.this, ConfiguracoesActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

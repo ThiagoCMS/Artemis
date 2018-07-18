@@ -20,12 +20,12 @@ public class UsuarioNegocio {
         negocio.inserirPessoaBanco(pessoa);
     }
 
-    public Boolean existeUsuario(Usuario usuario){
+    public boolean existeUsuario(String cpf){
         UsuarioDao banco = new UsuarioDao();
-        return banco.existeNoBanco(usuario);
+        return banco.existeNoBanco(cpf);
     }
 
-    public Boolean verificarUsuario(String cpf, String senha){
+    public Usuario verificarUsuario(String cpf, String senha){
         UsuarioDao banco = new UsuarioDao();
         return banco.verificarLogin(cpf, senha);
     }
@@ -47,16 +47,18 @@ public class UsuarioNegocio {
         } return false;
     }
 
-    public void alterarSenha(int id, String senha){
+    public void alterarSenha(String senha){
         UsuarioDao banco = new UsuarioDao();
-        Usuario usuario = recuperarUsuario(id);
+        Usuario usuario = Sessao.instance.getUsuario();
         usuario.setSenha(senha);
         banco.alterarSenhaUsuario(usuario);
     }
 
-    public void login(String cpf){
-        Usuario usuario = recuperarUsuario(cpf);
-        Sessao.instance.setUsuario(usuario);
-
+    public Usuario login(String cpf, String senha){
+        Usuario usuario = verificarUsuario(cpf, senha);
+        if(usuario != null){
+            Sessao.instance.setUsuario(usuario);
+        }
+        return usuario;
     }
 }
