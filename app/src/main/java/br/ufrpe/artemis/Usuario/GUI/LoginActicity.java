@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import br.ufrpe.artemis.Infra.Codificacao.Codificar;
 import br.ufrpe.artemis.Pessoa.GUI.homeActivity;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Usuario.Dominio.Usuario;
@@ -59,14 +60,17 @@ public class LoginActicity extends AppCompatActivity {
         }
     }
 
-    private Usuario logar(){
+    private Usuario logar(){///aqqqq
         UsuarioNegocio negocio = new UsuarioNegocio();
         String cpf = cpfLogin.getText().toString().trim();
-        String senha = senhaLogin.getText().toString();
+        Codificar codificar = new Codificar();
+        String senha = codificar.codificarString(senhaLogin.getText().toString());
         return negocio.login(cpf, senha);
     }
 
     public void telaRegistro(){
         startActivity(new Intent(LoginActicity.this,CriarContaUsuarioActivity.class));
     }
+
+
 }

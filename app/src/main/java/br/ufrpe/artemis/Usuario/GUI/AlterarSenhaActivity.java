@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import br.ufrpe.artemis.Infra.Codificacao.Codificar;
 import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Usuario.Dominio.Usuario;
@@ -46,7 +47,8 @@ public class AlterarSenhaActivity extends AppCompatActivity {
 
     private boolean verificarSenha(){
         Usuario usuario = Sessao.instance.getUsuario();
-        String senha = senhaAtual.getText().toString();
+        Codificar codificar = new Codificar();
+        String senha = codificar.codificarString(senhaAtual.getText().toString());
         if(usuario.getSenha().equals(senha)){
             return true;
         }

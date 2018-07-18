@@ -3,6 +3,7 @@ package br.ufrpe.artemis.Usuario.Negocio;
 import android.content.Context;
 
 import br.ufrpe.artemis.Infra.ArtemisApp;
+import br.ufrpe.artemis.Infra.Codificacao.Codificar;
 import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
@@ -50,7 +51,9 @@ public class UsuarioNegocio {
     public void alterarSenha(String senha){
         UsuarioDao banco = new UsuarioDao();
         Usuario usuario = Sessao.instance.getUsuario();
-        usuario.setSenha(senha);
+        Codificar codificar = new Codificar();
+        String senhaCodificada = codificar.codificarString(senha);
+        usuario.setSenha(senhaCodificada);
         banco.alterarSenhaUsuario(usuario);
     }
 

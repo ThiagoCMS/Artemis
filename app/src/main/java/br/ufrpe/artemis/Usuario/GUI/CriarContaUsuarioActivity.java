@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import br.ufrpe.artemis.Infra.Codificacao.Codificar;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Usuario.Dominio.Usuario;
@@ -127,8 +128,9 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         UsuarioNegocio negocio = new UsuarioNegocio();
         Usuario usuario = new Usuario();
         String cpf = cpfRegistro.getText().toString().trim();
-        String senha = senhaRegistro.getText().toString();
-        usuario.setCpf(senha);
+        Codificar codificar = new Codificar();
+        String senha = codificar.codificarString(senhaRegistro.getText().toString());
+        usuario.setSenha(senha);
         usuario.setCpf(cpf);
         if(negocio.existeUsuario(cpf)){
             Toast.makeText(this, "Cpf já registrado", Toast.LENGTH_SHORT).show();
