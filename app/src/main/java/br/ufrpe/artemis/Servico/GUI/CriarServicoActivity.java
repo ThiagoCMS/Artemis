@@ -162,16 +162,19 @@ public class CriarServicoActivity extends AppCompatActivity {
 
 
     private void cadastrarServico(){
-        validarCampos();
-        Servico servico = new Servico();
-        servico.setNome(nomet.getText().toString().trim());
-        servico.setTexto(texto.getText().toString().trim());
-        int idsub = listaSubcategoria.get(subcategoria.getSelectedItemPosition()).getId();
-        servico.setIdSubCategoria(idsub);
-        int idusuario = Sessao.instance.getUsuario().getId();
-        servico.setIdUsuario(idusuario);
-        ServicoNegocio servicoNegocio = new ServicoNegocio();
-        servicoNegocio.inserirServicoNoBanco(servico);
+        if(validarCampos()) {
+            Servico servico = new Servico();
+            servico.setNome(nomet.getText().toString().trim());
+            servico.setTexto(texto.getText().toString().trim());
+            int idsub = listaSubcategoria.get(subcategoria.getSelectedItemPosition()).getId();
+            servico.setIdSubCategoria(idsub);
+            int idusuario = Sessao.instance.getUsuario().getId();
+            servico.setIdUsuario(idusuario);
+            ServicoNegocio servicoNegocio = new ServicoNegocio();
+            servicoNegocio.inserirServicoNoBanco(servico);
+            Toast.makeText(ArtemisApp.getContext(), "Serviço cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+            CriarServicoActivity.this.finish();
+        }
     }
 }
 
