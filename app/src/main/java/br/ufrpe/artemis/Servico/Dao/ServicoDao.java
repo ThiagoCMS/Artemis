@@ -43,12 +43,12 @@ public class ServicoDao {
     }
 
     public ArrayList<Servico> recuperarDoBancoSub(int idSub){
-        Servico servico = new Servico();
         ArrayList<Servico> list = new ArrayList<Servico>();
         String where = "SELECT * FROM servico WHERE idsubcategoria = '" + idSub + "'";
         Cursor cursor = banco.rawQuery(where, null);
         if(cursor.getCount()>0){cursor.moveToFirst();}
         for(int i = 0; i < cursor.getCount(); i++){
+            Servico servico = new Servico();
             servico.setId(cursor.getInt(0));
             servico.setNome(cursor.getString(1));
             servico.setTexto(cursor.getString(2));
