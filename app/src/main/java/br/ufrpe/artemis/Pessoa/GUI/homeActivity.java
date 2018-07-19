@@ -21,6 +21,7 @@ import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
 
+import br.ufrpe.artemis.Servico.GUI.CriarServicoActivity;
 import br.ufrpe.artemis.Servico.GUI.SubDomiciliarActivity;
 import br.ufrpe.artemis.Servico.GUI.SubEventosActivity;
 import br.ufrpe.artemis.Servico.GUI.SubModaActivity;
@@ -189,6 +190,8 @@ public class homeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_config) {
             startActivity( new Intent(homeActivity.this, ConfiguracoesActivity.class));
+        } else if (id == R.id.nav_services) {
+            startActivity(new Intent(homeActivity.this, CriarServicoActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

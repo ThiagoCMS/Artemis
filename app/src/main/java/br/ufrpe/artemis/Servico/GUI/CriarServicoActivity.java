@@ -13,8 +13,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import br.ufrpe.artemis.Infra.ArtemisApp;
+import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.Dominio.Categoria;
+import br.ufrpe.artemis.Servico.Dominio.Servico;
 import br.ufrpe.artemis.Servico.Dominio.Subcategoria;
 import br.ufrpe.artemis.Servico.Negocio.ServicoNegocio;
 
@@ -34,17 +36,31 @@ public class CriarServicoActivity extends AppCompatActivity {
 
         setListaCategoria();
         setButtons();
+        setSpinnerCategoria();
 
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                cadastrarServico();
             }
         });
+
         categoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setListaSubcategoria(i);
+                setSpinnerSubcategoria();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        subcategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
             }
 
             @Override
@@ -65,6 +81,7 @@ public class CriarServicoActivity extends AppCompatActivity {
 
     private void setSpinnerCategoria(){
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item , listarNomesCategoria());
+        categoria.setAdapter(adapter);
     }
 
 
@@ -98,6 +115,7 @@ public class CriarServicoActivity extends AppCompatActivity {
 
     private void setSpinnerSubcategoria(){
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item , listarNomesSubcategoria());
+        subcategoria.setAdapter(adapter);
     }
 
     private boolean validarCampos(){
@@ -112,7 +130,7 @@ public class CriarServicoActivity extends AppCompatActivity {
     }
     private boolean validarNome(){
         boolean erro = false;
-        String nome = nomet.getText().toString();
+        String nome = nomet.getText().toString().trim();
         if(nome.isEmpty()){
             erro = true;
             nomet.setError("Campo em branco");
@@ -128,17 +146,33 @@ public class CriarServicoActivity extends AppCompatActivity {
 
     private boolean validarTexto() {
         boolean erro = false;
-        String textot = texto.getText().toString();
+        String textot = texto.getText().toString().trim();
         if (textot.isEmpty()) {
             erro = true;
             texto.setError("Campo em branco");
+        }else if (textot.length() > 450){
+            erro = true;
+            texto.setError("Texto muito grande");
+        }else if (textot.length() < 6){
+            erro = true;
+            texto.setError("Texto muito pequeno");
         }
         return erro;
     }
 
 
-    private void criarServico(){
-
+    private void cadastrarServico(){
+        validarCampos();
+        Servico servico = new Servico();
+        servico.setNome(nomet.getText().toString().trim());
+        servico.setTexto(texto.getText().toString().trim());
+        int idsub = listaSubcategoria.get(subcategoria.getSelectedItemPosition()).getId();
+        servico.setIdSubCategoria(idsub);
+        int idusuario = Sessao.instance.getUsuario().getId();
+        servico.setIdUsuario(idusuario);
+        ServicoNegocio servicoNegocio = new ServicoNegocio();
+        servicoNegocio.inserirServicoNoBanco(servico);
     }
 }
+
 
