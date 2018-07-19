@@ -2,6 +2,7 @@ package br.ufrpe.artemis.Servico.GUI;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Button;
@@ -40,6 +41,17 @@ public class CriarServicoActivity extends AppCompatActivity {
 
             }
         });
+        categoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setListaSubcategoria(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
     }
 
@@ -51,9 +63,11 @@ public class CriarServicoActivity extends AppCompatActivity {
         cadastrar = findViewById(R.id.cadastrarId);
     }
 
-//    private void setSpinnerCategoria(){
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(CriarServicoActivity.this, android.R.layout.simple_spinner_item, listarNomesCategoria());
-//    }
+    private void setSpinnerCategoria(){
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item , listarNomesCategoria());
+    }
+
+
 
     private ArrayList<String> listarNomesCategoria(){
         ArrayList<String> nomesCategoria = new ArrayList<>();
@@ -61,7 +75,6 @@ public class CriarServicoActivity extends AppCompatActivity {
             nomesCategoria.add(listaCategoria.get(i).getNome());
         }
         return nomesCategoria;
-
     }
 
     private void setListaCategoria(){
@@ -69,10 +82,23 @@ public class CriarServicoActivity extends AppCompatActivity {
         listaCategoria = negocio.listarCategoria();
     }
 
-//    private void setListaSubcategoria(){
-//        ServicoNegocio negocio = new ServicoNegocio();
-//        listaSubcategoria = negocio.listarSubcategoria();
-//    }
+    private void setListaSubcategoria(int position){
+        ServicoNegocio negocio = new ServicoNegocio();
+        int idcategoria = listaCategoria.get(position).getId();
+        listaSubcategoria = negocio.listarSubcategoria(idcategoria);
+    }
+
+    private ArrayList<String> listarNomesSubcategoria(){
+        ArrayList<String> nomesSubcategoria = new ArrayList<>();
+        for (int i = 0; i < listaSubcategoria.size(); i++){
+            nomesSubcategoria.add(listaSubcategoria.get(i).getNome());
+        }
+        return nomesSubcategoria;
+    }
+
+    private void setSpinnerSubcategoria(){
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item , listarNomesSubcategoria());
+    }
 
     private boolean validarCampos(){
         boolean erro = true;
