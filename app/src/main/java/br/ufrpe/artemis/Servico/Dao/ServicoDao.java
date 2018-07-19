@@ -9,7 +9,9 @@ import java.util.ArrayList;
 
 import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Infra.DataBase.Dao.DB;
+import br.ufrpe.artemis.Servico.Dominio.Categoria;
 import br.ufrpe.artemis.Servico.Dominio.Servico;
+import br.ufrpe.artemis.Servico.Dominio.Subcategoria;
 
 public class ServicoDao {
     private SQLiteDatabase banco;
@@ -111,4 +113,34 @@ public class ServicoDao {
         cursor.moveToFirst();
         return cursor.getString(0);
     }
+
+    public ArrayList<Categoria> recuperarListaCategoria(){
+        ArrayList<Categoria> lista = new ArrayList<>();
+        Cursor cursor = banco.query("categoria", new String[]{"*"}, null, null, null, null,null);
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++){
+            Categoria categoria = new Categoria();
+            categoria.setId(cursor.getInt(0));
+            categoria.setNome(cursor.getString(1));
+            lista.add(categoria);
+            cursor.moveToNext();
+        }
+        return lista;
+    }
+    public ArrayList<Subcategoria> recuperarListaSubcategoria(int idcategoria) {
+        ArrayList<Subcategoria> lista = new ArrayList<>();
+        String numCategoria = String.valueOf(idcategoria);
+        Cursor cursor = banco.query("subcategoria", new String[]{"*"}, "idcategoria = ?", new String[]{numCategoria}, null, null, null);
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++) {
+            Subcategoria subcategoria = new Subcategoria();
+            subcategoria.setId(cursor.getInt(0));
+            subcategoria.setNome(cursor.getString(1));
+            subcategoria.setIdCategoria(cursor.getInt(2));
+            lista.add(subcategoria);
+            cursor.moveToNext();
+        }
+        return lista;
+    }
 }
+

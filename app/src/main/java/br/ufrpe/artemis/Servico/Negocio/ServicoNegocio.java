@@ -8,7 +8,9 @@ import java.util.List;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
 import br.ufrpe.artemis.Servico.Dao.ServicoDao;
+import br.ufrpe.artemis.Servico.Dominio.Categoria;
 import br.ufrpe.artemis.Servico.Dominio.Servico;
+import br.ufrpe.artemis.Servico.Dominio.Subcategoria;
 
 public class ServicoNegocio {
 
@@ -65,5 +67,17 @@ public class ServicoNegocio {
         list.add(subCategoria);
         list.add(pessoa.getNome());
         return list;
+    }
+
+    public ArrayList<Categoria> listarCategoria(){
+        ServicoDao banco = new ServicoDao();
+        ArrayList<Categoria> listaCategoria = banco.recuperarListaCategoria();
+        return listaCategoria;
+    }
+
+    public ArrayList<Subcategoria> listarSubcategoria(int idcategoria){
+        ServicoDao banco = new ServicoDao();
+        ArrayList<Subcategoria> listaSubcategoria = banco.recuperarListaSubcategoria(idcategoria);
+        return listaSubcategoria;
     }
 }
