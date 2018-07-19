@@ -60,9 +60,10 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:hint="Descreva seu serviço"
+        android:gravity="top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoriasId" />
+        app:layout_constraintTop_toBottomOf="@+id/subcategoriaId" />
 
     <Button
         android:id="@+id/cadastrarId"
