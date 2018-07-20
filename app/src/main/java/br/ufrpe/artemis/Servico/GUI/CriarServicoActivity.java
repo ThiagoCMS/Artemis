@@ -21,8 +21,8 @@ import br.ufrpe.artemis.Servico.Dominio.Subcategoria;
 import br.ufrpe.artemis.Servico.Negocio.ServicoNegocio;
 
 public class CriarServicoActivity extends AppCompatActivity {
-    private EditText nomet;
-    private EditText texto;
+    private EditText titulo;
+    private EditText descricao;
     private Spinner subcategoria;
     private Spinner categoria;
     private Button cadastrar;
@@ -35,7 +35,7 @@ public class CriarServicoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_criar_servico);
 
         setListaCategoria();
-        setButtons();
+        setView();
         setSpinnerCategoria();
 
         cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -71,9 +71,9 @@ public class CriarServicoActivity extends AppCompatActivity {
 
     }
 
-    private void setButtons() {
-        nomet = findViewById(R.id.tituloId);
-        texto = findViewById(R.id.textoId);
+    private void setView() {
+        titulo = findViewById(R.id.tituloId);
+        descricao = findViewById(R.id.textoId);
         subcategoria = findViewById(R.id.subcategoriaId);
         categoria = findViewById(R.id.categoriasId);
         cadastrar = findViewById(R.id.cadastrarId);
@@ -130,32 +130,32 @@ public class CriarServicoActivity extends AppCompatActivity {
     }
     private boolean validarNome(){
         boolean erro = false;
-        String nome = nomet.getText().toString().trim();
+        String nome = titulo.getText().toString().trim();
         if(nome.isEmpty()){
             erro = true;
-            nomet.setError("Campo em branco");
+            titulo.setError("Campo em branco");
         }else if (nome.length() > 20){
             erro = true;
-            nomet.setError("Título muito grande");
+            titulo.setError("Título muito grande");
         }else if (nome.length() < 4){
             erro = true;
-            nomet.setError("Título muito pequeno");
+            titulo.setError("Título muito pequeno");
         }
         return erro;
     }
 
     private boolean validarTexto() {
         boolean erro = false;
-        String textot = texto.getText().toString().trim();
-        if (textot.isEmpty()) {
+        String texto = descricao.getText().toString().trim();
+        if (texto.isEmpty()) {
             erro = true;
-            texto.setError("Campo em branco");
-        }else if (textot.length() > 450){
+            descricao.setError("Campo em branco");
+        }else if (texto.length() > 450){
             erro = true;
-            texto.setError("Texto muito grande");
-        }else if (textot.length() < 6){
+            descricao.setError("Texto muito grande");
+        }else if (texto.length() < 6){
             erro = true;
-            texto.setError("Texto muito pequeno");
+            descricao.setError("Texto muito pequeno");
         }
         return erro;
     }
@@ -164,8 +164,8 @@ public class CriarServicoActivity extends AppCompatActivity {
     private void cadastrarServico(){
         if(validarCampos()) {
             Servico servico = new Servico();
-            servico.setNome(nomet.getText().toString().trim());
-            servico.setTexto(texto.getText().toString().trim());
+            servico.setNome(titulo.getText().toString().trim());
+            servico.setTexto(descricao.getText().toString().trim());
             int idsub = listaSubcategoria.get(subcategoria.getSelectedItemPosition()).getId();
             servico.setIdSubCategoria(idsub);
             int idusuario = Sessao.instance.getUsuario().getId();

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.ufrpe.artemis.Servico.GUI.EditarServicoActivity">
+
+    <EditText
+        android:id="@+id/tituloEditarId"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Título"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/categoriasEditarId"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloEditarId" />
+
+    <TextView
+        android:id="@+id/subcategoriaEditarId"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoriasEditarId" />
+
+    <EditText
+        android:id="@+id/textoEditarId"
+        android:layout_width="0dp"
+        android:layout_height="193dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:hint="Descreva seu serviço"
+        android:gravity="top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subcategoriaEditarId" />
+
+    <Button
+        android:id="@+id/botaoEditarId"
+        style="@android:style/Widget.Holo.Button.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="28dp"
+        android:text="Editar"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoEditarId" />
+
+    <Button
+        android:id="@+id/botaoDeletarId"
+        style="@android:style/Widget.Holo.Button.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Deletar"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botaoEditarId" />
+</android.support.constraint.ConstraintLayout>

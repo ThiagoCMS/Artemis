@@ -11,14 +11,12 @@ import java.util.ArrayList;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.Negocio.ServicoNegocio;
 
-public class ServicosActivity extends AppCompatActivity {
+public class ServicoActivity extends AppCompatActivity {
     private TextView cateSubcate;
-    private TextView data;
     private TextView titulo;
     private TextView descricao;
     private TextView nomePrestador;
     private TextView classificacaoPrestador;
-    private ImageView fotoPrestador;
     private Button contratar;
     private int idServico;
     private ArrayList<String> info;
@@ -40,12 +38,10 @@ public class ServicosActivity extends AppCompatActivity {
 
     private void setView(){
         cateSubcate = findViewById(R.id.textViewCategoria);
-        data = findViewById(R.id.textViewDataHora);
         titulo = findViewById(R.id.textViewTitulo);
         descricao = findViewById(R.id.textViewDescricao);
         nomePrestador = findViewById(R.id.textViewNomePres);
         classificacaoPrestador = findViewById(R.id.textViewClassif);
-        fotoPrestador = findViewById(R.id.imageViewPres);
         contratar = findViewById(R.id.botaoContratar);
     }
 
@@ -59,7 +55,7 @@ public class ServicosActivity extends AppCompatActivity {
         descricao.setText(info.get(1));
         cateSubcate.setText(info.get(2) + "/" + info.get(3));
         nomePrestador.setText(info.get(4));
-
+        classificacaoPrestador.setText("");
     }
 
     private void getId(){

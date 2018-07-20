@@ -61,12 +61,12 @@ public class ServicoDao {
     }
 
     public ArrayList<Servico> recuperarDoBancoUs(int idUsuario){
-        Servico servico = new Servico();
         ArrayList<Servico> list = new ArrayList<Servico>();
         String where = "SELECT * FROM servico WHERE idusuario = '" + idUsuario + "'";
         Cursor cursor = banco.rawQuery(where, null);
         if(cursor.getCount()>0){cursor.moveToFirst();}
         for(int i = 0; i < cursor.getCount(); i++){
+            Servico servico = new Servico();
             servico.setId(cursor.getInt(0));
             servico.setNome(cursor.getString(1));
             servico.setTexto(cursor.getString(2));
@@ -141,6 +141,15 @@ public class ServicoDao {
             cursor.moveToNext();
         }
         return lista;
+    }
+
+    public void atualizarServico(Servico servico){
+        String where = "id = ?";
+        ContentValues valores = new ContentValues();
+        valores.put("nome", servico.getNome());
+        valores.put("texto", servico.getTexto());
+        banco.update("servico", valores, where, new String[]{String.valueOf(servico.getId())});
+        banco.close();
     }
 }
 

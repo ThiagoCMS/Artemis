@@ -52,7 +52,6 @@
         android:ems="10"
         android:hint="@string/CPFinput"
         android:inputType="number"
-        android:text="12695388454"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -69,7 +68,6 @@
         android:ems="10"
         android:hint="@string/Senhainput"
         android:inputType="textPassword"
-        android:text="123456"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

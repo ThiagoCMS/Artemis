@@ -14,15 +14,6 @@ import br.ufrpe.artemis.Servico.Dominio.Subcategoria;
 
 public class ServicoNegocio {
 
-    public Servico criarServico(String nome, String texto, int idSubCategoria, int idUsuario){
-        Servico servico = new Servico();
-        servico.setNome(nome);
-        servico.setTexto(texto);
-        servico.setIdSubCategoria(idSubCategoria);
-        servico.setIdUsuario(idUsuario);
-        return servico;
-    }
-
     public void inserirServicoNoBanco(Servico servico){
         ServicoDao banco = new ServicoDao();
         banco.inserirNoBanco(servico);
@@ -43,14 +34,6 @@ public class ServicoNegocio {
         ServicoDao banco = new ServicoDao();
         ArrayList<Servico> list = banco.recuperarDoBancoUs(idUsuario);
         return list;
-    }
-
-    public ArrayList<String> listarServicoStr(ArrayList<Servico> list){
-        ArrayList<String> list1 = new ArrayList<String>();
-        for(int i = 0; i < list.size() ; i++){
-            list1.add(list.get(i).getNome());
-        }
-        return list1;
     }
 
     public ArrayList<String> infoTelaServico(int id){
@@ -79,5 +62,25 @@ public class ServicoNegocio {
         ServicoDao banco = new ServicoDao();
         ArrayList<Subcategoria> listaSubcategoria = banco.recuperarListaSubcategoria(idcategoria);
         return listaSubcategoria;
+    }
+
+    public Servico pegarServico(int id){
+        ServicoDao banco = new ServicoDao();
+        return banco.recuperarServico(id);
+    }
+
+    public String pegarCategoria(int id){
+        ServicoDao banco = new ServicoDao();
+        return banco.recuperarCategoria(id);
+    }
+
+    public String pegarSubcategoria(int id){
+        ServicoDao banco = new ServicoDao();
+        return banco.recuperarSubCategoria(id);
+    }
+
+    public void editarServico(Servico servico){
+        ServicoDao banco = new ServicoDao();
+        banco.atualizarServico(servico);
     }
 }

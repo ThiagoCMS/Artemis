@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import br.ufrpe.artemis.Pessoa.GUI.homeActivity;
+import br.ufrpe.artemis.Pessoa.GUI.HomeActivity;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Usuario.Dominio.Usuario;
 import br.ufrpe.artemis.Usuario.Negocio.UsuarioNegocio;
@@ -52,8 +52,9 @@ public class LoginActicity extends AppCompatActivity {
 
     private void login(){
         if(logar() != null){
-            Intent intent = new Intent(LoginActicity.this, homeActivity.class);
+            Intent intent = new Intent(LoginActicity.this, HomeActivity.class);
             startActivity(intent);
+            LoginActicity.this.finish();
         }else{
             Toast.makeText(LoginActicity.this,"Cpf/Senha incorreto(s).",Toast.LENGTH_SHORT).show();
         }

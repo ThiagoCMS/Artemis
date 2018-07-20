@@ -8,67 +8,71 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.Dominio.Servico;
 import br.ufrpe.artemis.Servico.Negocio.ServicoNegocio;
 
-public class ServicosListActivity extends AppCompatActivity {
-    private ArrayList<Servico> arrayListServico;
-    private ListView listViewGeral;
+public class MeusServicosActivity extends AppCompatActivity {
+    private Button button;
+    private ListView list;
+    private ArrayList<Servico> listaServicos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_servicos_list);
+        setContentView(R.layout.activity_meus_servicos);
 
         setTela();
 
-        listViewGeral.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    escolherServico(position);
-                }
-            });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                irCriarServico();
+            }
+        });
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                editarServico(position);
+            }
+        });
     }
 
-    private void escolherServico(int position){
-        Servico servico = arrayListServico.get(position);
-        int idServico = servico.getId();
-        Intent intent = new Intent(ServicosListActivity.this, ServicoActivity.class);
-        intent.putExtra("id", String.valueOf(idServico));
+    private void editarServico(int position){
+        Intent intent = new Intent(MeusServicosActivity.this, EditarServicoActivity.class);
+        intent.putExtra("id", String.valueOf(listaServicos.get(position).getId()));
         startActivity(intent);
     }
 
+    private void irCriarServico(){
+        startActivity(new Intent(MeusServicosActivity.this, CriarServicoActivity.class));
+    }
+
     private void setTela(){
-        setLists();
+        setView();
+        setListaServicos();
         setListView();
     }
 
-    private int getId(){
-        Bundle extras = getIntent().getExtras();
-        return Integer.parseInt(extras.getString("id"));
+    private void setView(){
+        button = findViewById(R.id.buttonId);
+        list = findViewById(R.id.listId);
     }
 
-    private void setLists(){
+    private void setListaServicos(){
         ServicoNegocio negocio = new ServicoNegocio();
-        arrayListServico = negocio.listarSevicosSub(getId());
-    }
-
-    private ArrayList<String> listarNomeServicos(){
-        ArrayList<String> list = new ArrayList<>();
-        for(int i = 0; i < arrayListServico.size() ; i++){
-            list.add(arrayListServico.get(i).getNome());
-        }
-        return list;
+        listaServicos = negocio.listarSevicosUs(Sessao.instance.getUsuario().getId());
     }
 
     private void setListView(){
-        listViewGeral = findViewById(R.id.reformaListaId);
         ArrayAdapter<String> teAdaptador = new ArrayAdapter<String>(
                 getApplicationContext(), android.R.layout.simple_list_item_1, android.R.id.text1, listarNomeServicos()
         ){
@@ -87,6 +91,14 @@ public class ServicosListActivity extends AppCompatActivity {
                 return view;
             }
         };
-        listViewGeral.setAdapter(teAdaptador);
+        list.setAdapter(teAdaptador);
+    }
+
+    private ArrayList<String> listarNomeServicos(){
+        ArrayList<String> list = new ArrayList<>();
+        for(int i = 0; i < listaServicos.size() ; i++){
+            list.add(listaServicos.get(i).getNome());
+        }
+        return list;
     }
 }

@@ -19,17 +19,11 @@
         </activity>
         <activity android:name=".Usuario.GUI.CriarContaUsuarioActivity" />
         <activity
-            android:name=".Pessoa.GUI.homeActivity"
+            android:name=".Pessoa.GUI.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Servico.GUI.SubDomiciliarActivity" />
-        <activity android:name=".Servico.GUI.SubEventosActivity" />
-        <activity android:name=".Servico.GUI.SubSaudeActivity" />
-        <activity android:name=".Servico.GUI.SubTecnologiaActivity" />
-        <activity android:name=".Servico.GUI.SubModaActivity" />
-        <activity android:name=".Servico.GUI.SubReformaActivity" />
         <activity android:name=".Servico.GUI.ServicosListActivity" />
-        <activity android:name=".Servico.GUI.AddServicoActivity" />
+        <activity android:name=".Servico.GUI.MeusServicosActivity" />
         <activity android:name=".Servico.GUI.CriarServicoActivity" />
         <activity android:name=".Servico.GUI.SubCategoriaActivity" />
         <activity
@@ -38,7 +32,8 @@
         <activity
             android:name=".Usuario.GUI.AlterarSenhaActivity"
             android:label="@string/title_activity_alterar_senha" />
-        <activity android:name=".Servico.GUI.ServicosActivity"></activity>
+        <activity android:name=".Servico.GUI.ServicoActivity" />
+        <activity android:name=".Servico.GUI.EditarServicoActivity"></activity>
     </application>
 
 </manifest>

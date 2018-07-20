@@ -6,7 +6,7 @@
     android:id="@+id/Titulo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.ufrpe.artemis.Servico.GUI.ServicosActivity">
+    tools:context="br.ufrpe.artemis.Servico.GUI.ServicoActivity">
 
     <TextView
         android:id="@+id/textViewTitulo"
@@ -16,22 +16,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:text="Titulo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDataHora" />
-
-    <TextView
-        android:id="@+id/textViewDataHora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="159dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginRight="159dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="10dp"
-        android:text="Data/Hora"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCategoria" />
@@ -59,48 +45,38 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="12dp"
         android:text="Descrição"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitulo" />
 
-    <ImageView
-        android:id="@+id/imageViewPres"
-        android:layout_width="51dp"
-        android:layout_height="51dp"
-        android:layout_marginLeft="76dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="23dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescricao"
-        app:srcCompat="?android:attr/alertDialogIcon" />
-
     <TextView
         android:id="@+id/textViewNomePres"
         android:layout_width="150dp"
         android:layout_height="28dp"
-        android:layout_marginEnd="83dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="83dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="23dp"
         android:text="Nome"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageViewPres"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDescricao" />
 
     <TextView
         android:id="@+id/textViewClassif"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
-        android:layout_marginEnd="117dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginRight="117dp"
-        android:layout_marginStart="56dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:text="Classificação"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageViewPres"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNomePres" />
 
     <Button
@@ -112,11 +88,11 @@
         android:layout_marginLeft="13dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="12dp"
         android:text="Entrar em Contato"
         android:textAllCaps="true"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewPres" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewClassif" />
 </android.support.constraint.ConstraintLayout>

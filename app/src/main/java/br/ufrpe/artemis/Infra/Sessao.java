@@ -20,4 +20,8 @@ public class Sessao {
     private void setValue(String key, Object value){
         values.put(key, value);
     }
+
+    public void reset(){
+        setUsuario(null);
+    }
 }
