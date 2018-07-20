@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import br.ufrpe.artemis.Infra.Criptografia.Criptografia;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Usuario.Dominio.Usuario;
@@ -128,7 +129,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         Usuario usuario = new Usuario();
         String cpf = cpfRegistro.getText().toString().trim();
         String senha = senhaRegistro.getText().toString();
-        usuario.setCpf(senha);
+        usuario.setSenha(senha);
         usuario.setCpf(cpf);
         if(negocio.existeUsuario(cpf)){
             Toast.makeText(this, "Cpf já registrado", Toast.LENGTH_SHORT).show();
@@ -142,7 +143,9 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         String email = emailRegistro.getText().toString().trim();
         Usuario usuario = new Usuario();
         usuario.setCpf(cpf);
-        usuario.setSenha(senha);
+        Criptografia criptografia = new Criptografia();
+        String senhaCriptografada = criptografia.criptografarString(senha);
+        usuario.setSenha(senhaCriptografada);
         Pessoa pessoa = new Pessoa();
         pessoa.setNome(nome);
         pessoa.setEmail(email);

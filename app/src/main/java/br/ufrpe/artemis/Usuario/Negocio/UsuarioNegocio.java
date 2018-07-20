@@ -3,6 +3,7 @@ package br.ufrpe.artemis.Usuario.Negocio;
 import android.content.Context;
 
 import br.ufrpe.artemis.Infra.ArtemisApp;
+import br.ufrpe.artemis.Infra.Criptografia.Criptografia;
 import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
@@ -42,7 +43,9 @@ public class UsuarioNegocio {
 
     public Boolean verificarSenha(int id, String senha){
         Usuario usuario = recuperarUsuario(id);
-        if(usuario.getSenha().equals(senha)){
+        Criptografia criptografia = new Criptografia();
+        String senhaCriptografada = criptografia.criptografarString(senha);
+        if(usuario.getSenha().equals(senhaCriptografada)){
             return true;
         } return false;
     }
@@ -50,12 +53,16 @@ public class UsuarioNegocio {
     public void alterarSenha(String senha){
         UsuarioDao banco = new UsuarioDao();
         Usuario usuario = Sessao.instance.getUsuario();
-        usuario.setSenha(senha);
+        Criptografia criptografia = new Criptografia();
+        String senhaCriptografada = criptografia.criptografarString(senha);
+        usuario.setSenha(senhaCriptografada);
         banco.alterarSenhaUsuario(usuario);
     }
 
     public Usuario login(String cpf, String senha){
-        Usuario usuario = verificarUsuario(cpf, senha);
+        Criptografia criptografia = new Criptografia();
+        String senhaCriptografada = criptografia.criptografarString(senha);
+        Usuario usuario = verificarUsuario(cpf, senhaCriptografada);
         if(usuario != null){
             Sessao.instance.setUsuario(usuario);
         }
