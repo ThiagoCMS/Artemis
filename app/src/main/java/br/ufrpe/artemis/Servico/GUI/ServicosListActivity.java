@@ -74,16 +74,9 @@ public class ServicosListActivity extends AppCompatActivity {
         ){
             @Override
             public View getView(int position, View convertView, ViewGroup parent){
-                // Get the Item from ListView
                 View view = super.getView(position, convertView, parent);
-
-                // Initialize a TextView for ListView each Item
                 TextView tv = (TextView) view.findViewById(android.R.id.text1);
-
-                // Set the text color of TextView (ListView Item)
                 tv.setTextColor(Color.parseColor("#ED0621"));
-
-                // Generate ListView Item using TextView
                 return view;
             }
         };

@@ -26,7 +26,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criar_conta_usuario);
 
-        setButtons();
+        setView();
 
         botaoRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +37,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
 
     }
 
-    private void setButtons(){
+    private void setView(){
         nomeRegistro = findViewById(R.id.nomeRegistroId);
         cpfRegistro = findViewById(R.id.cpfRegistroId);
         emailRegistro = findViewById(R.id.emailRegistroId);

@@ -34,9 +34,7 @@ public class CriarServicoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criar_servico);
 
-        setListaCategoria();
-        setView();
-        setSpinnerCategoria();
+        setTela();
 
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +67,12 @@ public class CriarServicoActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setTela(){
+        setListaCategoria();
+        setView();
+        setSpinnerCategoria();
     }
 
     private void setView() {
