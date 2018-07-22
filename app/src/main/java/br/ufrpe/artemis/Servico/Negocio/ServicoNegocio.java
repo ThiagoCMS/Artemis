@@ -36,20 +36,10 @@ public class ServicoNegocio {
         return list;
     }
 
-    public ArrayList<String> infoTelaServico(int id){
+    public Servico infoTelaServico(int id){
         ServicoDao banco = new ServicoDao();
         Servico servico = banco.recuperarServico(id);
-        PessoaNegocio pessoaNegocio = new PessoaNegocio();
-        Pessoa pessoa = pessoaNegocio.recuperarPessoa(servico.getIdUsuario());
-        String subCategoria = banco.recuperarSubCategoria(servico.getIdSubCategoria());
-        String categoria = banco.recuperarCategoria(servico.getIdSubCategoria());
-        ArrayList<String> list = new ArrayList<>();
-        list.add(servico.getNome());
-        list.add(servico.getTexto());
-        list.add(categoria);
-        list.add(subCategoria);
-        list.add(pessoa.getNome());
-        return list;
+        return servico;
     }
 
     public ArrayList<Categoria> listarCategoria(){
@@ -82,5 +72,10 @@ public class ServicoNegocio {
     public void editarServico(Servico servico){
         ServicoDao banco = new ServicoDao();
         banco.atualizarServico(servico);
+    }
+
+    public Pessoa recuperarPessoa(int id){
+        PessoaNegocio negocio = new PessoaNegocio();
+        return negocio.recuperarPessoa(id);
     }
 }

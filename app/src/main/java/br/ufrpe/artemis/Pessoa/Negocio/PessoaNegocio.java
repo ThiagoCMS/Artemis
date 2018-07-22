@@ -1,7 +1,5 @@
 package br.ufrpe.artemis.Pessoa.Negocio;
 
-import android.content.Context;
-
 import br.ufrpe.artemis.Pessoa.Dao.PessoaDao;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Usuario.Dominio.Usuario;
@@ -15,11 +13,11 @@ public class PessoaNegocio {
 
     public Pessoa recuperarPessoa(Usuario usuario){
         PessoaDao banco = new PessoaDao();
-        return banco.recuperarDoBanco(usuario);
+        return banco.recuperarDoBancoPorUsuario(usuario);
     }
 
     public Pessoa recuperarPessoa(int id){
         PessoaDao banco = new PessoaDao();
-        return banco.recuperarDoBanco(id);
+        return banco.recuperarDoBancoPorUsuario(id);
     }
 }

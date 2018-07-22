@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Infra.DataBase.Dao.DB;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
+import br.ufrpe.artemis.Usuario.Dao.UsuarioDao;
 import br.ufrpe.artemis.Usuario.Dominio.Usuario;
 
 public class PessoaDao {
@@ -26,39 +27,52 @@ public class PessoaDao {
     public void inserirNoBanco(Pessoa pessoa){
         ContentValues valores = new ContentValues();
         valores.put("nome", pessoa.getNome());
-        valores.put("idusuario", pessoa.getIdUsuario());
+        valores.put("idusuario", pessoa.getUsuario().getId());
         banco.insert("pessoa", null, valores);
         banco.close();
     }
 
     public void deletarDoBanco(Pessoa pessoa){
-        String where = "id = '" + pessoa.getId() + "'";
-        banco.delete("pessoa", where, null);
+        banco.delete("pessoa", "id = ?", new String[]{String.valueOf(pessoa.getId())});
         banco.close();
     }
 
-    public Pessoa recuperarDoBanco(Usuario usuario){
+    public Pessoa recuperarDoBancoPorUsuario(Usuario usuario){
         Pessoa pessoa = new Pessoa();
-        String where = "SELECT * FROM pessoa WHERE idusuario = '" + usuario.getId() + "'";
-        Cursor cursor = banco.rawQuery(where, null);
+        Cursor cursor = banco.query("pessoa", new String[]{"*"}, "idusuario = ?", new String[]{String.valueOf(usuario.getId())},null, null, null);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
             pessoa.setId(cursor.getInt(0));
             pessoa.setNome(cursor.getString(1));
-            pessoa.setIdUsuario(cursor.getInt(2));
+            pessoa.setUsuario(usuario);
+        }
+        return pessoa;
+    }
+
+    public Pessoa recuperarDoBancoPorUsuario(int id){
+        Pessoa pessoa = new Pessoa();
+        Cursor cursor = banco.query("pessoa", new String[]{"*"}, "idusuario = ?", new String[]{String.valueOf(id)}, null, null, null);
+        if(cursor.getCount()>0){
+            cursor.moveToFirst();
+            pessoa.setId(cursor.getInt(0));
+            pessoa.setNome(cursor.getString(1));
+            UsuarioDao bancoUsuario = new UsuarioDao();
+            Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(2));
+            pessoa.setUsuario(usuario);
         }
         return pessoa;
     }
 
     public Pessoa recuperarDoBanco(int id){
         Pessoa pessoa = new Pessoa();
-        String where = "SELECT * FROM pessoa WHERE idusuario = '" + id + "'";
-        Cursor cursor = banco.rawQuery(where, null);
+        Cursor cursor = banco.query("pessoa", new String[]{"*"}, "id = ?", new String[]{String.valueOf(id)}, null, null, null);
         if(cursor.getCount()>0){
             cursor.moveToFirst();
             pessoa.setId(cursor.getInt(0));
             pessoa.setNome(cursor.getString(1));
-            pessoa.setIdUsuario(cursor.getInt(2));
+            UsuarioDao bancoUsuario = new UsuarioDao();
+            Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(2));
+            pessoa.setUsuario(usuario);
         }
         return pessoa;
     }

@@ -59,11 +59,10 @@ public class EditarServicoActivity extends AppCompatActivity {
     }
 
     private void setInfo(){
-        ServicoNegocio negocio = new ServicoNegocio();
         titulo.setText(servico.getNome().toString());
         descricao.setText(servico.getTexto().toString());
-        categoria.setText(negocio.pegarCategoria(servico.getIdSubCategoria()));
-        subcategoria.setText(negocio.pegarSubcategoria(servico.getIdSubCategoria()));
+        categoria.setText(servico.getSubcategoria().getCategoria().getNome());
+        subcategoria.setText(servico.getSubcategoria().getNome());
     }
 
     private int getId(){

@@ -3,15 +3,7 @@ package br.ufrpe.artemis.Servico.Dominio;
 public class Subcategoria {
     private int id;
     private String nome;
-    private int idCategoria;
-
-    public int getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
-    }
+    private Categoria categoria;
 
     public int getId() {
         return id;
@@ -27,5 +19,13 @@ public class Subcategoria {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

@@ -26,7 +26,7 @@ public class LoginActicity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_login);
 
-        setButtons();
+        setView();
 
         botaoLogar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +43,7 @@ public class LoginActicity extends AppCompatActivity {
        });
     }
 
-    private void setButtons(){
+    private void setView(){
         cpfLogin = findViewById(R.id.cpfId);
         botaoLogar = findViewById(R.id.botaoLoginId);
         botaoRegistro = findViewById(R.id.botaoRegistroId);

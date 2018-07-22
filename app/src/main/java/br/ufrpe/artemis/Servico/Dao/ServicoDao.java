@@ -9,9 +9,13 @@ import java.util.ArrayList;
 
 import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Infra.DataBase.Dao.DB;
+import br.ufrpe.artemis.Pessoa.Dao.PessoaDao;
+import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Servico.Dominio.Categoria;
 import br.ufrpe.artemis.Servico.Dominio.Servico;
 import br.ufrpe.artemis.Servico.Dominio.Subcategoria;
+import br.ufrpe.artemis.Usuario.Dao.UsuarioDao;
+import br.ufrpe.artemis.Usuario.Dominio.Usuario;
 
 public class ServicoDao {
     private SQLiteDatabase banco;
@@ -30,15 +34,14 @@ public class ServicoDao {
         ContentValues valores = new ContentValues();
         valores.put("nome", servico.getNome());
         valores.put("texto", servico.getTexto());
-        valores.put("idusuario", servico.getIdUsuario());
-        valores.put("idsubcategoria", servico.getIdSubCategoria());
+        valores.put("idpessoa", servico.getPessoa().getId());
+        valores.put("idsubcategoria", servico.getSubcategoria().getId());
         banco.insert("servico", null, valores);
         banco.close();
     }
 
     public void deletarDoBanco(Servico servico){
-        String where = "id = '" + servico.getId() + "'";
-        banco.delete("servico", where, null);
+        banco.delete("servico", "id = ?", new String[]{String.valueOf(servico.getId())});
         banco.close();
     }
 
@@ -52,13 +55,37 @@ public class ServicoDao {
             servico.setId(cursor.getInt(0));
             servico.setNome(cursor.getString(1));
             servico.setTexto(cursor.getString(2));
-            servico.setIdUsuario(cursor.getInt(3));
-            servico.setIdSubCategoria(cursor.getInt(4));
+            PessoaDao bancoPessoa = new PessoaDao();
+            Pessoa pessoa = bancoPessoa.recuperarDoBanco(cursor.getInt(3));
+            servico.setPessoa(pessoa);
+            Subcategoria subcategoria = retornarSubcategoria(cursor.getInt(4));
+            servico.setSubcategoria(subcategoria);
             list.add(servico);
             cursor.moveToNext();
         }
         return list;
     }
+
+    /*public ArrayList<Servico> recuperarDoBancoUs(int idUsuario){
+        ArrayList<Servico> list = new ArrayList<Servico>();
+        String where = "SELECT * FROM servico WHERE idusuario = '" + idUsuario + "'";
+        Cursor cursor = banco.rawQuery(where, null);
+        if(cursor.getCount()>0){cursor.moveToFirst();}
+        for(int i = 0; i < cursor.getCount(); i++){
+            Servico servico = new Servico();
+            servico.setId(cursor.getInt(0));
+            servico.setNome(cursor.getString(1));
+            servico.setTexto(cursor.getString(2));
+            UsuarioDao bancoUsuario = new UsuarioDao();
+            Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(3));
+            servico.setUsuario(usuario);
+            Subcategoria subcategoria = retornarSubcategoria(cursor.getInt(4));
+            servico.setSubcategoria(subcategoria);
+            list.add(servico);
+            cursor.moveToNext();
+        }
+        return list;
+    }*/
 
     public ArrayList<Servico> recuperarDoBancoUs(int idUsuario){
         ArrayList<Servico> list = new ArrayList<Servico>();
@@ -70,8 +97,11 @@ public class ServicoDao {
             servico.setId(cursor.getInt(0));
             servico.setNome(cursor.getString(1));
             servico.setTexto(cursor.getString(2));
-            servico.setIdUsuario(cursor.getInt(3));
-            servico.setIdSubCategoria(cursor.getInt(4));
+            PessoaDao bancoPessoa = new PessoaDao();
+            Pessoa pessoa = bancoPessoa.recuperarDoBanco(cursor.getInt(3));
+            servico.setPessoa(pessoa);
+            Subcategoria subcategoria = retornarSubcategoria(cursor.getInt(4));
+            servico.setSubcategoria(subcategoria);
             list.add(servico);
             cursor.moveToNext();
         }
@@ -87,8 +117,11 @@ public class ServicoDao {
         servico.setId(cursor.getInt(0));
         servico.setNome(cursor.getString(1));
         servico.setTexto(cursor.getString(2));
-        servico.setIdUsuario(cursor.getInt(3));
-        servico.setIdSubCategoria(cursor.getInt(4));
+        PessoaDao bancoPessoa = new PessoaDao();
+        Pessoa pessoa = bancoPessoa.recuperarDoBanco(cursor.getInt(3));
+        servico.setPessoa(pessoa);
+        Subcategoria subcategoria = retornarSubcategoria(cursor.getInt(4));
+        servico.setSubcategoria(subcategoria);
         return servico;
     }
 
@@ -108,8 +141,7 @@ public class ServicoDao {
     }
 
     public String recuperarSubCategoria(int id){
-        String where = "SELECT nome FROM subcategoria WHERE id = '" + id + "'";
-        Cursor cursor = banco.rawQuery(where, null);
+        Cursor cursor = banco.query("subcategoria", new String[]{"nome"}, "id = ?", new String[]{String.valueOf(id)}, null, null, null);
         cursor.moveToFirst();
         return cursor.getString(0);
     }
@@ -136,7 +168,9 @@ public class ServicoDao {
             Subcategoria subcategoria = new Subcategoria();
             subcategoria.setId(cursor.getInt(0));
             subcategoria.setNome(cursor.getString(1));
-            subcategoria.setIdCategoria(cursor.getInt(2));
+            Categoria categoria = new Categoria();
+            categoria = retornarCategoria(cursor.getInt(2));
+            subcategoria.setCategoria(categoria);
             lista.add(subcategoria);
             cursor.moveToNext();
         }
@@ -150,6 +184,34 @@ public class ServicoDao {
         valores.put("texto", servico.getTexto());
         banco.update("servico", valores, where, new String[]{String.valueOf(servico.getId())});
         banco.close();
+    }
+
+    public Subcategoria retornarSubcategoria(int id){
+        Cursor cursor = banco.query("subcategoria", new String[]{"*"}, "id = ?", new String[]{String.valueOf(id)}, null, null, null);
+        Subcategoria subcategoria = new Subcategoria();
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            subcategoria.setId(cursor.getInt(0));
+            subcategoria.setNome(cursor.getString(1));
+            Categoria categoria = retornarCategoria(cursor.getInt(2));
+            subcategoria.setCategoria(categoria);
+        } else{
+            subcategoria = null;
+        }
+        return subcategoria;
+    }
+
+    public Categoria retornarCategoria(int id){
+        Cursor cursor = banco.query("categoria", new String[]{"*"}, "id = ?", new String[]{String.valueOf(id)}, null, null, null);
+        Categoria categoria =  new Categoria();
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            categoria.setId(cursor.getInt(0));
+            categoria.setNome(cursor.getString(1));
+        } else{
+            categoria = null;
+        }
+        return categoria;
     }
 }
 

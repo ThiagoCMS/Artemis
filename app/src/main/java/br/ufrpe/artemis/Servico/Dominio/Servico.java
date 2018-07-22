@@ -1,19 +1,13 @@
 package br.ufrpe.artemis.Servico.Dominio;
 
+import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
+
 public class Servico {
     private String nome;
     private String texto;
     private int id;
-    private int idSubCategoria;
-    private int idUsuario;
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+    private Pessoa pessoa;
+    private Subcategoria subcategoria;
 
     public String getNome() {
         return nome;
@@ -39,11 +33,19 @@ public class Servico {
         this.id = id;
     }
 
-    public int getIdSubCategoria() {
-        return idSubCategoria;
+    public Subcategoria getSubcategoria() {
+        return subcategoria;
     }
 
-    public void setIdSubCategoria(int idSubCategoria) {
-        this.idSubCategoria = idSubCategoria;
+    public void setSubcategoria(Subcategoria subcategoria) {
+        this.subcategoria = subcategoria;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 }

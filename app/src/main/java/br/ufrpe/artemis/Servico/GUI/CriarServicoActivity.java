@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Infra.Sessao;
+import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.Dominio.Categoria;
 import br.ufrpe.artemis.Servico.Dominio.Servico;
@@ -23,8 +24,8 @@ import br.ufrpe.artemis.Servico.Negocio.ServicoNegocio;
 public class CriarServicoActivity extends AppCompatActivity {
     private EditText titulo;
     private EditText descricao;
-    private Spinner subcategoria;
-    private Spinner categoria;
+    private Spinner subcategoriaSpinner;
+    private Spinner categoriaSpinner;
     private Button cadastrar;
     private ArrayList<Categoria> listaCategoria;
     private ArrayList<Subcategoria> listaSubcategoria;
@@ -43,7 +44,7 @@ public class CriarServicoActivity extends AppCompatActivity {
             }
         });
 
-        categoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        categoriaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setListaSubcategoria(i);
@@ -55,7 +56,7 @@ public class CriarServicoActivity extends AppCompatActivity {
 
             }
         });
-        subcategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        subcategoriaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -78,14 +79,14 @@ public class CriarServicoActivity extends AppCompatActivity {
     private void setView() {
         titulo = findViewById(R.id.tituloId);
         descricao = findViewById(R.id.textoId);
-        subcategoria = findViewById(R.id.subcategoriaId);
-        categoria = findViewById(R.id.categoriasId);
+        subcategoriaSpinner = findViewById(R.id.subcategoriaId);
+        categoriaSpinner = findViewById(R.id.categoriasId);
         cadastrar = findViewById(R.id.cadastrarId);
     }
 
     private void setSpinnerCategoria(){
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item , listarNomesCategoria());
-        categoria.setAdapter(adapter);
+        categoriaSpinner.setAdapter(adapter);
     }
 
 
@@ -119,7 +120,7 @@ public class CriarServicoActivity extends AppCompatActivity {
 
     private void setSpinnerSubcategoria(){
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item , listarNomesSubcategoria());
-        subcategoria.setAdapter(adapter);
+        subcategoriaSpinner.setAdapter(adapter);
     }
 
     private boolean validarCampos(){
@@ -170,11 +171,12 @@ public class CriarServicoActivity extends AppCompatActivity {
             Servico servico = new Servico();
             servico.setNome(titulo.getText().toString().trim());
             servico.setTexto(descricao.getText().toString().trim());
-            int idsub = listaSubcategoria.get(subcategoria.getSelectedItemPosition()).getId();
-            servico.setIdSubCategoria(idsub);
-            int idusuario = Sessao.instance.getUsuario().getId();
-            servico.setIdUsuario(idusuario);
+            Subcategoria subcategoria = listaSubcategoria.get(subcategoriaSpinner.getSelectedItemPosition());
+            servico.setSubcategoria(subcategoria);
             ServicoNegocio servicoNegocio = new ServicoNegocio();
+            int idusuario = Sessao.instance.getUsuario().getId();
+            Pessoa pessoa = servicoNegocio.recuperarPessoa(idusuario);
+            servico.setPessoa(pessoa);
             servicoNegocio.inserirServicoNoBanco(servico);
             Toast.makeText(ArtemisApp.getContext(), "Serviço cadastrado com sucesso", Toast.LENGTH_SHORT).show();
             CriarServicoActivity.this.finish();

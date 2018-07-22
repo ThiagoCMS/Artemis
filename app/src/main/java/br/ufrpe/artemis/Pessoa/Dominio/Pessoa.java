@@ -1,10 +1,12 @@
 package br.ufrpe.artemis.Pessoa.Dominio;
 
+import br.ufrpe.artemis.Usuario.Dominio.Usuario;
+
 public class Pessoa {
     private int id;
     private String nome;
     private String email;
-    private int idUsuario;
+    private Usuario usuario;
 
     public int getId() {
         return id;
@@ -22,14 +24,6 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -38,5 +32,11 @@ public class Pessoa {
         this.email = email;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

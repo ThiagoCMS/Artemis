@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import br.ufrpe.artemis.R;
+import br.ufrpe.artemis.Servico.Dominio.Servico;
 import br.ufrpe.artemis.Servico.Negocio.ServicoNegocio;
 
 public class ServicoActivity extends AppCompatActivity {
@@ -19,7 +20,7 @@ public class ServicoActivity extends AppCompatActivity {
     private TextView classificacaoPrestador;
     private Button contratar;
     private int idServico;
-    private ArrayList<String> info;
+    private Servico servico;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +48,14 @@ public class ServicoActivity extends AppCompatActivity {
 
     private void getList(){
         ServicoNegocio negocio = new ServicoNegocio();
-        info = negocio.infoTelaServico(idServico);
+        servico = negocio.infoTelaServico(idServico);
     }
 
     private void setText(){
-        titulo.setText(info.get(0));
-        descricao.setText(info.get(1));
-        cateSubcate.setText(info.get(2) + "/" + info.get(3));
-        nomePrestador.setText(info.get(4));
+        titulo.setText(servico.getNome());
+        descricao.setText(servico.getTexto());
+        cateSubcate.setText(servico.getSubcategoria().getCategoria().getNome() + "/" + servico.getSubcategoria().getNome());
+        nomePrestador.setText(servico.getPessoa().getNome());
         classificacaoPrestador.setText("");
     }
 

@@ -16,7 +16,7 @@ public class UsuarioNegocio {
         UsuarioDao banco = new UsuarioDao();
         banco.inserirNoBanco(usuario);
         usuario = recuperarUsuario(usuario.getCpf());
-        pessoa.setIdUsuario(usuario.getId());
+        pessoa.setUsuario(usuario);
         PessoaNegocio negocio = new PessoaNegocio();
         negocio.inserirPessoaBanco(pessoa);
     }
