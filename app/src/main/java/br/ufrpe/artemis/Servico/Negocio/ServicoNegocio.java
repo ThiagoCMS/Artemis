@@ -1,9 +1,6 @@
 package br.ufrpe.artemis.Servico.Negocio;
 
-import android.content.Context;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
@@ -33,7 +30,7 @@ public class ServicoNegocio {
     public ArrayList<Servico> listarSevicosUs(int idUsuario){
         ServicoDao banco = new ServicoDao();
         PessoaNegocio negocio = new PessoaNegocio();
-        Pessoa pessoa = negocio.recuperarPessoa(idUsuario);
+        Pessoa pessoa = negocio.recuperarPessoaPorUsuario(idUsuario);
         ArrayList<Servico> list = banco.recuperarDoBancoUs(pessoa.getId());
         return list;
     }
@@ -68,6 +65,6 @@ public class ServicoNegocio {
 
     public Pessoa recuperarPessoa(int id){
         PessoaNegocio negocio = new PessoaNegocio();
-        return negocio.recuperarPessoa(id);
+        return negocio.recuperarPessoaPorUsuario(id);
     }
 }

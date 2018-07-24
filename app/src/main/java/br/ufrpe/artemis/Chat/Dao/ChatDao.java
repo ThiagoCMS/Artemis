@@ -35,8 +35,8 @@ public class ChatDao {
         banco.close();
     }
 
-    public Chat recuperarChat(Pessoa pessoa){
-        Cursor cursor = banco.query("chat", new String[]{"*"}, "idpessoa1 = ? OR idpessoa2 = ?", new String[]{String.valueOf(pessoa.getId()), String.valueOf(pessoa.getId())}, null, null, null);
+    public Chat recuperarChat(int id){
+        Cursor cursor = banco.query("chat", new String[]{"*"}, "id = ?", new String[]{String.valueOf(id)}, null, null, null);
         Chat chat = new Chat();
         if(cursor.moveToFirst()){
             chat.setId(cursor.getInt(0));
