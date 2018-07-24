@@ -32,7 +32,9 @@ public class ServicoNegocio {
 
     public ArrayList<Servico> listarSevicosUs(int idUsuario){
         ServicoDao banco = new ServicoDao();
-        ArrayList<Servico> list = banco.recuperarDoBancoUs(idUsuario);
+        PessoaNegocio negocio = new PessoaNegocio();
+        Pessoa pessoa = negocio.recuperarPessoa(idUsuario);
+        ArrayList<Servico> list = banco.recuperarDoBancoUs(pessoa.getId());
         return list;
     }
 
@@ -57,16 +59,6 @@ public class ServicoNegocio {
     public Servico pegarServico(int id){
         ServicoDao banco = new ServicoDao();
         return banco.recuperarServico(id);
-    }
-
-    public String pegarCategoria(int id){
-        ServicoDao banco = new ServicoDao();
-        return banco.recuperarCategoria(id);
-    }
-
-    public String pegarSubcategoria(int id){
-        ServicoDao banco = new ServicoDao();
-        return banco.recuperarSubCategoria(id);
     }
 
     public void editarServico(Servico servico){

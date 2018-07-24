@@ -57,22 +57,10 @@ public class MeusServicosActivity extends AppCompatActivity {
     }
 
     private void setTela(){
-        setView();
-        setListaServicos();
-        setListView();
-    }
-
-    private void setView(){
         button = findViewById(R.id.buttonId);
         list = findViewById(R.id.listId);
-    }
-
-    private void setListaServicos(){
         ServicoNegocio negocio = new ServicoNegocio();
         listaServicos = negocio.listarSevicosUs(Sessao.instance.getUsuario().getId());
-    }
-
-    private void setListView(){
         ArrayAdapter<String> teAdaptador = new ArrayAdapter<String>(
                 getApplicationContext(), android.R.layout.simple_list_item_1, android.R.id.text1, listarNomeServicos()
         ){

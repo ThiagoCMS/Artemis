@@ -45,29 +45,10 @@ public class ServicosListActivity extends AppCompatActivity {
     }
 
     private void setTela(){
-        setLists();
-        setListView();
-    }
-
-    private int getId(){
-        Bundle extras = getIntent().getExtras();
-        return Integer.parseInt(extras.getString("id"));
-    }
-
-    private void setLists(){
         ServicoNegocio negocio = new ServicoNegocio();
-        arrayListServico = negocio.listarSevicosSub(getId());
-    }
-
-    private ArrayList<String> listarNomeServicos(){
-        ArrayList<String> list = new ArrayList<>();
-        for(int i = 0; i < arrayListServico.size() ; i++){
-            list.add(arrayListServico.get(i).getNome());
-        }
-        return list;
-    }
-
-    private void setListView(){
+        Bundle extras = getIntent().getExtras();
+        int id = Integer.parseInt(extras.getString("id"));
+        arrayListServico = negocio.listarSevicosSub(id);
         listViewGeral = findViewById(R.id.reformaListaId);
         ArrayAdapter<String> teAdaptador = new ArrayAdapter<String>(
                 getApplicationContext(), android.R.layout.simple_list_item_1, android.R.id.text1, listarNomeServicos()
@@ -81,5 +62,13 @@ public class ServicosListActivity extends AppCompatActivity {
             }
         };
         listViewGeral.setAdapter(teAdaptador);
+    }
+
+    private ArrayList<String> listarNomeServicos(){
+        ArrayList<String> list = new ArrayList<>();
+        for(int i = 0; i < arrayListServico.size() ; i++){
+            list.add(arrayListServico.get(i).getNome());
+        }
+        return list;
     }
 }

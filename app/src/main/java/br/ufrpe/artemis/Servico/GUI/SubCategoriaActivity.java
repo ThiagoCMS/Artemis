@@ -43,11 +43,10 @@ public class SubCategoriaActivity extends AppCompatActivity {
     }
 
     private void setTela(){
-        setListaSubcategorias();
-        setListView();
-    }
-
-    private void setListView(){
+        ServicoNegocio negocio = new ServicoNegocio();
+        Bundle extras = getIntent().getExtras();
+        int id = Integer.parseInt(extras.getString("id"));
+        listaSubcategorias = negocio.listarSubcategoria(id);
         listViewSubcategorias = findViewById(R.id.listViewSubcategoriaId);
         ArrayAdapter<String> teAdaptador = new ArrayAdapter<String>(
                 getApplicationContext(), android.R.layout.simple_list_item_1, android.R.id.text1, listarNomeSubcategorias()
@@ -61,16 +60,6 @@ public class SubCategoriaActivity extends AppCompatActivity {
             }
         };
         listViewSubcategorias.setAdapter(teAdaptador);
-    }
-
-    private void setListaSubcategorias(){
-        ServicoNegocio negocio = new ServicoNegocio();
-        listaSubcategorias = negocio.listarSubcategoria(getId());
-    }
-
-    private int getId(){
-        Bundle extras = getIntent().getExtras();
-        return Integer.parseInt(extras.getString("id"));
     }
 
     private ArrayList<String> listarNomeSubcategorias(){

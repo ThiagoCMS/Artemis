@@ -11,11 +11,6 @@ public class PessoaNegocio {
         banco.inserirNoBanco(pessoa);
     }
 
-    public Pessoa recuperarPessoa(Usuario usuario){
-        PessoaDao banco = new PessoaDao();
-        return banco.recuperarDoBancoPorUsuario(usuario);
-    }
-
     public Pessoa recuperarPessoa(int id){
         PessoaDao banco = new PessoaDao();
         return banco.recuperarDoBancoPorUsuario(id);

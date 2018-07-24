@@ -19,7 +19,6 @@ public class ServicoActivity extends AppCompatActivity {
     private TextView nomePrestador;
     private TextView classificacaoPrestador;
     private Button contratar;
-    private int idServico;
     private Servico servico;
 
     @Override
@@ -31,36 +30,20 @@ public class ServicoActivity extends AppCompatActivity {
     }
 
     private void setTela(){
-        setView();
-        getId();
-        getList();
-        setText();
-    }
-
-    private void setView(){
         cateSubcate = findViewById(R.id.textViewCategoria);
         titulo = findViewById(R.id.textViewTitulo);
         descricao = findViewById(R.id.textViewDescricao);
         nomePrestador = findViewById(R.id.textViewNomePres);
         classificacaoPrestador = findViewById(R.id.textViewClassif);
         contratar = findViewById(R.id.botaoContratar);
-    }
-
-    private void getList(){
+        Bundle extras = getIntent().getExtras();
+        int id = Integer.parseInt(extras.getString("id"));
         ServicoNegocio negocio = new ServicoNegocio();
-        servico = negocio.infoTelaServico(idServico);
-    }
-
-    private void setText(){
+        servico = negocio.infoTelaServico(id);
         titulo.setText(servico.getNome());
         descricao.setText(servico.getTexto());
         cateSubcate.setText(servico.getSubcategoria().getCategoria().getNome() + "/" + servico.getSubcategoria().getNome());
         nomePrestador.setText(servico.getPessoa().getNome());
         classificacaoPrestador.setText("");
-    }
-
-    private void getId(){
-        Bundle extras = getIntent().getExtras();
-        idServico = Integer.parseInt(extras.getString("id"));
     }
 }

@@ -30,12 +30,6 @@ public class UsuarioDao {
         banco.close();
     }
 
-    public void deletarDoBanco(Usuario usuario){
-        String where = "id = '" + usuario.getId() + "'";
-        banco.delete("usuario", where, null);
-        banco.close();
-    }
-
     public boolean existeNoBanco(String cpf){
         Cursor cursor = banco.query("usuario", new String[]{"*"}, "cpf = ?", new String[]{cpf}, null, null, null);
         boolean resposta = false;
@@ -84,8 +78,7 @@ public class UsuarioDao {
 
     public Usuario recuperarDoBanco(int id){
         Usuario usuario;
-        String where = "SELECT * FROM usuario WHERE id = '" + id + "'";
-        Cursor cursor = banco.rawQuery(where, null);
+        Cursor cursor = banco.query("usuario", new String[]{"*"}, "id = ?", new String[]{String.valueOf(id)}, null, null, null);
         if(cursor.getCount()>0){
             usuario = montarUsuario(cursor);
         }else{

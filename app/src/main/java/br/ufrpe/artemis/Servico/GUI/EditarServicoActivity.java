@@ -44,35 +44,20 @@ public class EditarServicoActivity extends AppCompatActivity {
     }
 
     private void setTela(){
-        setView();
-        setServico();
-        setInfo();
-    }
-
-    private void setView(){
         titulo = findViewById(R.id.tituloEditarId);
         descricao = findViewById(R.id.textoEditarId);
         categoria = findViewById(R.id.categoriasEditarId);
         subcategoria = findViewById(R.id.subcategoriaEditarId);
         botaoEditar = findViewById(R.id.botaoEditarId);
         botaoDeletar = findViewById(R.id.botaoDeletarId);
-    }
-
-    private void setInfo(){
+        ServicoNegocio negocio = new ServicoNegocio();
+        Bundle extras = getIntent().getExtras();
+        int id = Integer.parseInt(extras.getString("id"));
+        servico = negocio.pegarServico(id);
         titulo.setText(servico.getNome().toString());
         descricao.setText(servico.getTexto().toString());
         categoria.setText(servico.getSubcategoria().getCategoria().getNome());
         subcategoria.setText(servico.getSubcategoria().getNome());
-    }
-
-    private int getId(){
-        Bundle extras = getIntent().getExtras();
-        return Integer.parseInt(extras.getString("id"));
-    }
-
-    private void setServico(){
-        ServicoNegocio negocio = new ServicoNegocio();
-        servico = negocio.pegarServico(getId());
     }
 
     private void editar(){

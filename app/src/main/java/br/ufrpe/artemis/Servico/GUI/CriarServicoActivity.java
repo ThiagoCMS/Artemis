@@ -47,8 +47,7 @@ public class CriarServicoActivity extends AppCompatActivity {
         categoriaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                setListaSubcategoria(i);
-                setSpinnerSubcategoria();
+                setSpinnerSubcategoria(i);
             }
 
             @Override
@@ -71,25 +70,16 @@ public class CriarServicoActivity extends AppCompatActivity {
     }
 
     private void setTela(){
-        setListaCategoria();
-        setView();
-        setSpinnerCategoria();
-    }
-
-    private void setView() {
         titulo = findViewById(R.id.tituloId);
         descricao = findViewById(R.id.textoId);
         subcategoriaSpinner = findViewById(R.id.subcategoriaId);
         categoriaSpinner = findViewById(R.id.categoriasId);
         cadastrar = findViewById(R.id.cadastrarId);
-    }
-
-    private void setSpinnerCategoria(){
+        ServicoNegocio negocio = new ServicoNegocio();
+        listaCategoria = negocio.listarCategoria();
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item , listarNomesCategoria());
         categoriaSpinner.setAdapter(adapter);
     }
-
-
 
     private ArrayList<String> listarNomesCategoria(){
         ArrayList<String> nomesCategoria = new ArrayList<>();
@@ -97,17 +87,6 @@ public class CriarServicoActivity extends AppCompatActivity {
             nomesCategoria.add(listaCategoria.get(i).getNome());
         }
         return nomesCategoria;
-    }
-
-    private void setListaCategoria(){
-        ServicoNegocio negocio = new ServicoNegocio();
-        listaCategoria = negocio.listarCategoria();
-    }
-
-    private void setListaSubcategoria(int position){
-        ServicoNegocio negocio = new ServicoNegocio();
-        int idcategoria = listaCategoria.get(position).getId();
-        listaSubcategoria = negocio.listarSubcategoria(idcategoria);
     }
 
     private ArrayList<String> listarNomesSubcategoria(){
@@ -118,7 +97,10 @@ public class CriarServicoActivity extends AppCompatActivity {
         return nomesSubcategoria;
     }
 
-    private void setSpinnerSubcategoria(){
+    private void setSpinnerSubcategoria(int position){
+        ServicoNegocio negocio = new ServicoNegocio();
+        int idcategoria = listaCategoria.get(position).getId();
+        listaSubcategoria = negocio.listarSubcategoria(idcategoria);
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item , listarNomesSubcategoria());
         subcategoriaSpinner.setAdapter(adapter);
     }
@@ -141,10 +123,10 @@ public class CriarServicoActivity extends AppCompatActivity {
             titulo.setError("Campo em branco");
         }else if (nome.length() > 20){
             erro = true;
-            titulo.setError("Título muito grande");
+            titulo.setError("Título deve ter no máximo 20 caracteres");
         }else if (nome.length() < 4){
             erro = true;
-            titulo.setError("Título muito pequeno");
+            titulo.setError("Título deve ter no mínimo 4 caracteres");
         }
         return erro;
     }
@@ -157,10 +139,10 @@ public class CriarServicoActivity extends AppCompatActivity {
             descricao.setError("Campo em branco");
         }else if (texto.length() > 450){
             erro = true;
-            descricao.setError("Texto muito grande");
+            descricao.setError("Texto deve ter no máximo 450 caracteres");
         }else if (texto.length() < 6){
             erro = true;
-            descricao.setError("Texto muito pequeno");
+            descricao.setError("Texto deve ter no mínimo 6 caracteres");
         }
         return erro;
     }

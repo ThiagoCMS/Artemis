@@ -32,23 +32,6 @@ public class PessoaDao {
         banco.close();
     }
 
-    public void deletarDoBanco(Pessoa pessoa){
-        banco.delete("pessoa", "id = ?", new String[]{String.valueOf(pessoa.getId())});
-        banco.close();
-    }
-
-    public Pessoa recuperarDoBancoPorUsuario(Usuario usuario){
-        Pessoa pessoa = new Pessoa();
-        Cursor cursor = banco.query("pessoa", new String[]{"*"}, "idusuario = ?", new String[]{String.valueOf(usuario.getId())},null, null, null);
-        if(cursor.getCount() > 0){
-            cursor.moveToFirst();
-            pessoa.setId(cursor.getInt(0));
-            pessoa.setNome(cursor.getString(1));
-            pessoa.setUsuario(usuario);
-        }
-        return pessoa;
-    }
-
     public Pessoa recuperarDoBancoPorUsuario(int id){
         Pessoa pessoa = new Pessoa();
         Cursor cursor = banco.query("pessoa", new String[]{"*"}, "idusuario = ?", new String[]{String.valueOf(id)}, null, null, null);

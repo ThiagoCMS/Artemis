@@ -47,8 +47,7 @@ public class ServicoDao {
 
     public ArrayList<Servico> recuperarDoBancoSub(int idSub){
         ArrayList<Servico> list = new ArrayList<Servico>();
-        String where = "SELECT * FROM servico WHERE idsubcategoria = '" + idSub + "'";
-        Cursor cursor = banco.rawQuery(where, null);
+        Cursor cursor = banco.query("servico", new String[]{"*"}, "idsubcategoria = ?", new String[]{String.valueOf(idSub)}, null, null, null);
         if(cursor.getCount()>0){cursor.moveToFirst();}
         for(int i = 0; i < cursor.getCount(); i++){
             Servico servico = new Servico();
@@ -66,31 +65,9 @@ public class ServicoDao {
         return list;
     }
 
-    /*public ArrayList<Servico> recuperarDoBancoUs(int idUsuario){
+    public ArrayList<Servico> recuperarDoBancoUs(int idPessoa){
         ArrayList<Servico> list = new ArrayList<Servico>();
-        String where = "SELECT * FROM servico WHERE idusuario = '" + idUsuario + "'";
-        Cursor cursor = banco.rawQuery(where, null);
-        if(cursor.getCount()>0){cursor.moveToFirst();}
-        for(int i = 0; i < cursor.getCount(); i++){
-            Servico servico = new Servico();
-            servico.setId(cursor.getInt(0));
-            servico.setNome(cursor.getString(1));
-            servico.setTexto(cursor.getString(2));
-            UsuarioDao bancoUsuario = new UsuarioDao();
-            Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(3));
-            servico.setUsuario(usuario);
-            Subcategoria subcategoria = retornarSubcategoria(cursor.getInt(4));
-            servico.setSubcategoria(subcategoria);
-            list.add(servico);
-            cursor.moveToNext();
-        }
-        return list;
-    }*/
-
-    public ArrayList<Servico> recuperarDoBancoUs(int idUsuario){
-        ArrayList<Servico> list = new ArrayList<Servico>();
-        String where = "SELECT * FROM servico WHERE idusuario = '" + idUsuario + "'";
-        Cursor cursor = banco.rawQuery(where, null);
+        Cursor cursor = banco.query("servico", new String[]{"*"}, "idpessoa = ?", new String[]{String.valueOf(idPessoa)}, null, null, null);
         if(cursor.getCount()>0){cursor.moveToFirst();}
         for(int i = 0; i < cursor.getCount(); i++){
             Servico servico = new Servico();
@@ -110,9 +87,7 @@ public class ServicoDao {
 
     public Servico recuperarServico(int id){
         Servico servico = new Servico();
-        String where = "SELECT * FROM servico WHERE id = '" + id + "'";
-        Cursor cursor = banco.rawQuery(where, null);
-        int i = cursor.getCount();
+        Cursor cursor = banco.query("servico", new String[]{"*"}, "id = ?", new String[]{String.valueOf(id)}, null, null, null);
         cursor.moveToFirst();
         servico.setId(cursor.getInt(0));
         servico.setNome(cursor.getString(1));
@@ -123,27 +98,6 @@ public class ServicoDao {
         Subcategoria subcategoria = retornarSubcategoria(cursor.getInt(4));
         servico.setSubcategoria(subcategoria);
         return servico;
-    }
-
-    public String recuperarCategoria(int id){
-        int idCategoria = recuperarIdCategoria(id);
-        String where = "SELECT nome FROM categoria WHERE id = '" + idCategoria + "'";
-        Cursor cursor = banco.rawQuery(where, null);
-        cursor.moveToFirst();
-        return cursor.getString(0);
-    }
-
-    private int recuperarIdCategoria(int id){
-        String where = "SELECT idcategoria FROM subcategoria WHERE id = '" + id + "'";
-        Cursor cursor = banco.rawQuery(where, null);
-        cursor.moveToFirst();
-        return cursor.getInt(0);
-    }
-
-    public String recuperarSubCategoria(int id){
-        Cursor cursor = banco.query("subcategoria", new String[]{"nome"}, "id = ?", new String[]{String.valueOf(id)}, null, null, null);
-        cursor.moveToFirst();
-        return cursor.getString(0);
     }
 
     public ArrayList<Categoria> recuperarListaCategoria(){

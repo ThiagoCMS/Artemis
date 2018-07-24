@@ -61,6 +61,4 @@ public class AlterarSenhaActivity extends AppCompatActivity {
         }
         return false;
     }
-
-
 }
