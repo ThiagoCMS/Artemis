@@ -1,5 +1,6 @@
 package br.ufrpe.artemis.Servico.GUI;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -67,6 +68,7 @@ public class EditarServicoActivity extends AppCompatActivity {
             ServicoNegocio negocio = new ServicoNegocio();
             negocio.editarServico(servico);
             Toast.makeText(this, "Serviço editado com sucesso", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(EditarServicoActivity.this, MeusServicosActivity.class));
             EditarServicoActivity.this.finish();
         }
     }
@@ -117,6 +119,12 @@ public class EditarServicoActivity extends AppCompatActivity {
         ServicoNegocio negocio = new ServicoNegocio();
         negocio.deletarServicoDoBanco(servico);
         Toast.makeText(this, "Serviço deletado com sucesso", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(EditarServicoActivity.this, MeusServicosActivity.class));
+        EditarServicoActivity.this.finish();
+    }
+
+    public void onBackPressed(){
+        startActivity(new Intent(EditarServicoActivity.this, MeusServicosActivity.class));
         EditarServicoActivity.this.finish();
     }
 }

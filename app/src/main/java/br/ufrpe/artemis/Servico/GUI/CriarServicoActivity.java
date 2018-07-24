@@ -1,5 +1,6 @@
 package br.ufrpe.artemis.Servico.GUI;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.AdapterView;
@@ -161,8 +162,14 @@ public class CriarServicoActivity extends AppCompatActivity {
             servico.setPessoa(pessoa);
             servicoNegocio.inserirServicoNoBanco(servico);
             Toast.makeText(ArtemisApp.getContext(), "Serviço cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(CriarServicoActivity.this, MeusServicosActivity.class));
             CriarServicoActivity.this.finish();
         }
+    }
+
+    public void onBackPressed(){
+        startActivity(new Intent(CriarServicoActivity.this, MeusServicosActivity.class));
+        CriarServicoActivity.this.finish();
     }
 }
 

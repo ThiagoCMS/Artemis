@@ -50,10 +50,12 @@ public class MeusServicosActivity extends AppCompatActivity {
         Intent intent = new Intent(MeusServicosActivity.this, EditarServicoActivity.class);
         intent.putExtra("id", String.valueOf(listaServicos.get(position).getId()));
         startActivity(intent);
+        MeusServicosActivity.this.finish();
     }
 
     private void irCriarServico(){
         startActivity(new Intent(MeusServicosActivity.this, CriarServicoActivity.class));
+        MeusServicosActivity.this.finish();
     }
 
     private void setTela(){
