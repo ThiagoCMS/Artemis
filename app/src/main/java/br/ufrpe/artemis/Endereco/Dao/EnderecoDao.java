@@ -23,7 +23,6 @@ public class EnderecoDao {
 
     public void inserirEndereço(Endereco endereco){
         ContentValues values = new ContentValues();
-        values.put("cep", endereco.getCep());
         values.put("rua", endereco.getRua());
         values.put("numero", endereco.getNumero());
         values.put("cidade", endereco.getCidade());
@@ -36,10 +35,9 @@ public class EnderecoDao {
         cursor.moveToFirst();
         Endereco endereco = new Endereco();
         endereco.setId(cursor.getInt(0));
-        endereco.setCep(cursor.getString(1));
-        endereco.setRua(cursor.getString(2));
-        endereco.setNumero(cursor.getString(3));
-        endereco.setCidade(cursor.getString(4));
+        endereco.setRua(cursor.getString(1));
+        endereco.setNumero(cursor.getString(2));
+        endereco.setCidade(cursor.getString(3));
         banco.close();
         cursor.close();
         return endereco;
@@ -50,7 +48,6 @@ public class EnderecoDao {
         values.put("rua", endereco.getRua());
         values.put("numero", endereco.getNumero());
         values.put("cidade", endereco.getCidade());
-        values.put("cep", endereco.getCep());
         banco.update("endereco", values, "id = ?", new String[]{String.valueOf(endereco.getId())});
         banco.close();
     }

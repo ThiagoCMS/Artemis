@@ -2,7 +2,6 @@ package br.ufrpe.artemis.Endereco.Dominio;
 
 public class Endereco {
     private int id;
-    private String cep;
     private String rua;
     private String numero;
     private String cidade;
@@ -13,14 +12,6 @@ public class Endereco {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
     }
 
     public String getRua() {
