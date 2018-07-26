@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import br.ufrpe.artemis.Infra.Sessao;
+import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
+import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.GUI.MeusServicosActivity;
 import br.ufrpe.artemis.Servico.GUI.Opinioes;
@@ -16,8 +19,12 @@ import br.ufrpe.artemis.Servico.GUI.Opinioes;
 public class PerfilActivity extends AppCompatActivity {
     private ImageView imagemUsuario;
     private TextView nomeUsuario;
+    private TextView pessoaEmail;
+    private TextView endereco;
+    private TextView telefone;
     private Button botaoAnuncios;
     private Button botaoOpinioes;
+    private Button botaoEditar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +50,16 @@ public class PerfilActivity extends AppCompatActivity {
         nomeUsuario = findViewById(R.id.nomeUsuarioId);
         botaoAnuncios = findViewById(R.id.botaoanuncioId);
         botaoOpinioes = findViewById(R.id.btopiniaoId);
+        botaoEditar = findViewById(R.id.botaoEditarId);
+        pessoaEmail = findViewById(R.id.pessoaEmailId);
+        endereco = findViewById(R.id.enderecoId);
+        telefone = findViewById(R.id.telefoneId);
+
+        PessoaNegocio pessoaNegocio = new PessoaNegocio();
+        int idUsuario = Sessao.instance.getUsuario().getId();
+        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
+        nomeUsuario.setText(pessoa.getNome());
+        pessoaEmail.setText(pessoa.getEmail());
 
     }
 
@@ -51,7 +68,9 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     public void opnioes(){
+
         startActivity(new Intent(PerfilActivity.this, Opinioes.class));
     }
+
 }
 

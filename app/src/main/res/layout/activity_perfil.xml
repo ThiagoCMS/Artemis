@@ -13,7 +13,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
             <!--Image perfil e nome-->
             <RelativeLayout
@@ -24,16 +28,48 @@
                     android:id="@+id/imagemPerfilId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@drawable/domiciliares"
+                    />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
                 <TextView
                     android:id="@+id/nomeUsuarioId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center" />
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
 
+            </LinearLayout>
 
-            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/botaoEditarId"
+                    style="@android:style/Widget.Holo.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Editar Perfil"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
             <!-- Avaliações-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,12 +88,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cliente" />
+                        android:text="Cliente"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Classificação"
+                        android:textSize="12sp"
                         tools:layout_editor_absoluteX="102dp"
                         tools:layout_editor_absoluteY="222dp" />
                 </LinearLayout>
@@ -67,17 +105,20 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginBottom="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Prestadora" />
+                        android:text="Prestadora"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Classificação" />
+                        android:text="Classificação"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -89,16 +130,25 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/telefoneId"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Telefone" />
 
                 <TextView
+                    android:id="@+id/pessoaEmailId"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Email" />
 
                 <TextView
+                    android:id="@+id/enderecoId"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Endereço" />
             </LinearLayout>
 
             <LinearLayout
@@ -106,7 +156,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                android:weightSum="2"
+                android:layout_marginTop="25dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -117,9 +168,12 @@
 
                     <Button
                         android:id="@+id/botaoanuncioId"
+                        style="@android:style/Widget.Holo.Button.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Anúncio" />
+                        android:text="Anúncio"
+                        android:textAllCaps="true"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -132,9 +186,12 @@
 
                     <Button
                         android:id="@+id/btopiniaoId"
+                        style="@android:style/Widget.Holo.Button.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Opiniões" />
+                        android:text="Opiniões"
+                        android:textAllCaps="true"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>
