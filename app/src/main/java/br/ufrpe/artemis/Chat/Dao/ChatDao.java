@@ -52,6 +52,25 @@ public class ChatDao {
         return chat;
     }
 
+    public ArrayList<Chat> recuperarChats(int id){
+        Cursor cursor = banco.query("chat", new String[]{"*"}, "idpessoa1 = ? OR idpessoa2 = ?", new String[]{String.valueOf(id), String.valueOf(id)}, null, null, null);
+        ArrayList<Chat> chatList = new ArrayList<>();
+        if(cursor.moveToFirst()){}
+        for(int i = 0; i < cursor.getCount(); i++){
+            Chat chat = new Chat();
+            chat.setId(cursor.getInt(0));
+            Pessoa pessoa1 = new Pessoa();
+            pessoa1.setId(cursor.getInt(1));
+            chat.setPessoa1(pessoa1);
+            Pessoa pessoa2 = new Pessoa();
+            pessoa2.setId(cursor.getInt(2));
+            chat.setPessoa2(pessoa2);
+            chatList.add(chat);
+        }
+        return chatList;
+    }
+
+
     public void inserirMensagem(Mensagem mensagem){
         ContentValues values = new ContentValues();
         values.put("idchat", mensagem.getChat().getId());
@@ -70,9 +89,15 @@ public class ChatDao {
             Mensagem mensagem = new Mensagem();
             mensagem.setId(cursor.getInt(0));
             mensagem.setChat(chat);
-            Pessoa pessoa = new Pessoa();
+            int idPessoa = cursor.getInt(2);
+            if(chat.getPessoa1().getId() == idPessoa){
+                mensagem.setPessoa(chat.getPessoa1());
+            }else{
+                mensagem.setPessoa(chat.getPessoa2());
+            }
+            /*Pessoa pessoa = new Pessoa();
             pessoa.setId(cursor.getInt(2));
-            mensagem.setPessoa(pessoa);
+            mensagem.setPessoa(pessoa);*/
             Date date = new Date();
             date.setTime(cursor.getInt(3));
             mensagem.setDate(date);
