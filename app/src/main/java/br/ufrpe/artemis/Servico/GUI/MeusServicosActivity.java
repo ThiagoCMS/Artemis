@@ -20,6 +20,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.Dominio.Servico;
@@ -29,11 +30,12 @@ public class MeusServicosActivity extends AppCompatActivity {
     private Button button;
     private ListView list;
     private ArrayList<Servico> listaServicos;
+    ServicoNegocio negocio;
+    ArrayAdapter adapterNew;
     List selections;
     int count;
-    ServicoNegocio negocio;
-    ArrayAdapter<String> teAdaptador;
-    ArrayList<String> arrayAdaptador;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class MeusServicosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_meus_servicos);
 
         //djair
+
         negocio = new ServicoNegocio();
         selections = new ArrayList();
         count = 0;
@@ -62,7 +65,6 @@ public class MeusServicosActivity extends AppCompatActivity {
             }
         });
 
-        //djair
 
         list.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
         list.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
@@ -106,11 +108,9 @@ public class MeusServicosActivity extends AppCompatActivity {
                     for(Object Item : selections){
                         listaServicos.remove(Item);
                         negocio.deletarServicoDoBanco((Servico) Item);
-                        String string = ((Servico) Item).getNome();
-                        arrayAdaptador.remove(string);
 
                     }
-                    teAdaptador.notifyDataSetChanged();
+                    adapterNew.notifyDataSetChanged();
                     mode.finish();
                     return true;
                 }
@@ -154,29 +154,17 @@ public class MeusServicosActivity extends AppCompatActivity {
         list = findViewById(R.id.listId);
 
         listaServicos = negocio.listarSevicosUs(Sessao.instance.getUsuario().getId());
-        arrayAdaptador = listarNomeServicos();
-        teAdaptador = new ArrayAdapter<String>(
-                getApplicationContext(), android.R.layout.simple_list_item_1, android.R.id.text1, arrayAdaptador
-        ){
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent){
-                View view = super.getView(position, convertView, parent);
-                TextView tv = (TextView) view.findViewById(android.R.id.text1);
-                tv.setTextColor(Color.parseColor("#ED0621"));
-                return view;
-            }
-        };
+        adapterNew = new MeusServicosAdapter(listaServicos);
 
-        list.setAdapter(teAdaptador);
+
+
+
+        list.setAdapter(adapterNew);
+
     }
 
-    private ArrayList<String> listarNomeServicos(){
-        ArrayList<String> list = new ArrayList<>();
-        for(int i = 0; i < listaServicos.size() ; i++){
-            list.add(listaServicos.get(i).getNome());
-        }
-        return list;
-    }
+
+
 
 
 

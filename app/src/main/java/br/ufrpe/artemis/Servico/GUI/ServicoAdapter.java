@@ -11,18 +11,19 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.Dominio.Servico;
 
 public class ServicoAdapter extends ArrayAdapter<Servico> {
 
-    private final Context context;
+
     private ArrayList<Servico> elementos;
 
-    public ServicoAdapter(@NonNull Context context, @NonNull ArrayList<Servico> elementos) {
-        super(context, R.layout.linha, elementos);
-        this.context = context;
+    public ServicoAdapter(@NonNull ArrayList<Servico> elementos) {
+        super(ArtemisApp.getContext(), R.layout.linha, elementos);
+
         this.elementos = elementos;
     }
 
@@ -32,7 +33,7 @@ public class ServicoAdapter extends ArrayAdapter<Servico> {
 
     @Override
     public View getView(int position, View convertView,  ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context
+        LayoutInflater inflater = (LayoutInflater) ArtemisApp.getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.linha, parent, false);
 

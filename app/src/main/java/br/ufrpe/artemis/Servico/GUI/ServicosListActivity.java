@@ -60,7 +60,7 @@ public class ServicosListActivity extends AppCompatActivity {
         listViewGeral = findViewById(R.id.reformaListaId);
         //change
         final ArrayList<Servico> servicos = listarServicos();
-        final ArrayAdapter servicoAdapter = new ServicoAdapter(this,servicos);
+        final ArrayAdapter servicoAdapter = new ServicoAdapter(servicos);
         listViewGeral.setAdapter(servicoAdapter);
 
 
