@@ -137,7 +137,9 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             logout();
         } else if (id == R.id.nav_config) {
-            startActivity( new Intent(HomeActivity.this, ConfiguracoesActivity.class));
+            startActivity(new Intent(HomeActivity.this, ConfiguracoesActivity.class));
+        }else if (id== R.id.nav_profile){
+            startActivity(new Intent(HomeActivity.this, PerfilActivity.class));
         } else if (id == R.id.nav_services) {
             startActivity(new Intent(HomeActivity.this, MeusServicosActivity.class));
         }
