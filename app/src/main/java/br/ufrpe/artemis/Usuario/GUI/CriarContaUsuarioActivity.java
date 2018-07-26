@@ -42,16 +42,16 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
     }
 
     private void setView(){
-        nomeRegistro = findViewById(R.id.nomeRegistroId);
-        cpfRegistro = findViewById(R.id.cpfRegistroId);
-        emailRegistro = findViewById(R.id.emailRegistroId);
+        nomeRegistro = findViewById(R.id.nomeUsuarioId);
+        cpfRegistro = findViewById(R.id.cpfId);
+        emailRegistro = findViewById(R.id.pessoaEmailId);
         senhaRegistro = findViewById(R.id.senhaRegistroId);
         confirmaSenhaRegistro = findViewById(R.id.confirmarSenhaRegistroId);
-        botaoRegistrar = findViewById(R.id.botaoRegistrarId);
-//        telefone = findViewById();
-//        rua = findViewById();
-//        numero= findViewById();
-//        cidade= findViewById();
+        botaoRegistrar = findViewById(R.id.btAlterarId);
+        telefone = findViewById(R.id.telefoneId);
+        rua = findViewById(R.id.ruaEnderecoId);
+        numero= findViewById(R.id.numEnderecoId);
+        cidade= findViewById(R.id.cidadeEnderecoId);
     }
 
     private void validarCadastro() {
