@@ -5,8 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DB extends SQLiteOpenHelper {
-    private static final String NOME_DO_BANCO = "Banco_Artemis";
-    private static final int VERSAO = 3;
+    private static final String NOME_DO_BANCO = "Banco";
+    private static final int VERSAO = 1;
 
     public DB(Context ctx) { super(ctx, NOME_DO_BANCO, null, VERSAO);}
 
