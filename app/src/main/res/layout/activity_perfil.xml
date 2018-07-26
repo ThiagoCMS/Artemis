@@ -19,7 +19,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp">
 
-            <!--Image perfil e nome-->
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -31,7 +30,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-                    app:srcCompat="@drawable/domiciliares"
+                    app:srcCompat="@drawable/ic_profile_round"
                     />
             </RelativeLayout>
             <LinearLayout
@@ -47,7 +46,8 @@
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:text="Nome"/>
 
             </LinearLayout>
 
@@ -70,7 +70,6 @@
                     android:textStyle="bold" />
 
             </LinearLayout>
-            <!-- Avaliações-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,6 +91,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/clasClienteMeuPerfilId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Classificação"
@@ -115,6 +115,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/classPrestadoraMeuPerfilId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Classificação"
@@ -123,7 +124,7 @@
                 </LinearLayout>
 
             </LinearLayout>
-            <!-- Dados-->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
