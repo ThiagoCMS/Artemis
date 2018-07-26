@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import br.ufrpe.artemis.R;
 
-public class Opinioes extends AppCompatActivity {
+public class Comentarios extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opinioes);
+        setContentView(R.layout.activity_comentarios);
     }
 }

@@ -19,6 +19,10 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
     private EditText emailRegistro;
     private EditText senhaRegistro;
     private EditText confirmaSenhaRegistro;
+    private EditText telefone;
+    private EditText rua;
+    private EditText numero;
+    private EditText cidade;
     private Button botaoRegistrar;
 
     @Override
@@ -44,6 +48,10 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         senhaRegistro = findViewById(R.id.senhaRegistroId);
         confirmaSenhaRegistro = findViewById(R.id.confirmarSenhaRegistroId);
         botaoRegistrar = findViewById(R.id.botaoRegistrarId);
+//        telefone = findViewById();
+//        rua = findViewById();
+//        numero= findViewById();
+//        cidade= findViewById();
     }
 
     private void validarCadastro() {
@@ -66,8 +74,61 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         if(validarSenha()){
             erro = false;
         }
+        if(validarTelefone()){
+            erro= false;
+        }
+        if(validarRua()){
+            erro = false;
+        }
+        if(validarNumero()){
+            erro = false;
+        }
+        if(validarCidade()){
+            erro= false;
+        }
         return erro;
     }
+
+    private boolean validarTelefone(){
+        boolean erro = false;
+        String Telefone = telefone.getText().toString();
+        if(Telefone.isEmpty()){
+            erro = true;
+            telefone.setError("Campo em branco");
+        }
+        return erro;
+    }
+
+    private boolean validarRua(){
+        boolean erro = false;
+        String Rua = rua.getText().toString();
+        if(Rua.isEmpty()){
+            erro = true;
+            telefone.setError("Campo em branco");
+        }
+        return erro;
+    }
+
+    private boolean validarNumero(){
+        boolean erro = false;
+        String Numero = numero.getText().toString();
+        if(Numero.isEmpty()){
+            erro = true;
+            telefone.setError("Campo em branco");
+        }
+        return erro;
+    }
+
+    private boolean validarCidade(){
+        boolean erro = false;
+        String Cidade = cidade.getText().toString();
+        if(Cidade.isEmpty()){
+            erro = true;
+            telefone.setError("Campo em branco");
+        }
+        return erro;
+    }
+
 
     private boolean validarCpf(){
         boolean erro = false;

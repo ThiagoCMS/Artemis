@@ -7,6 +7,7 @@ public class Pessoa {
     private String nome;
     private String email;
     private Usuario usuario;
+    private String telefone;
 
     public int getId() {
         return id;
@@ -39,4 +40,8 @@ public class Pessoa {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public String getTelefone(){ return telefone;}
+
+    public void setTelefone(String telefone) { this.telefone = telefone;}
 }

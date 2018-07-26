@@ -35,7 +35,9 @@
         <activity android:name=".Servico.GUI.ServicoActivity" />
         <activity android:name=".Servico.GUI.EditarServicoActivity" />
         <activity android:name=".Pessoa.GUI.PerfilActivity" />
-        <activity android:name=".Servico.GUI.Opinioes"></activity>
+        <activity android:name=".Servico.GUI.Comentarios" />
+        <activity android:name=".Pessoa.GUI.EditarPerfil" />
+        <activity android:name=".Pessoa.GUI.OutroPerfil"></activity>
     </application>
 
 </manifest>

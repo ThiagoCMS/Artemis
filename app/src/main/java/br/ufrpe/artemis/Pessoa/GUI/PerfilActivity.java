@@ -13,7 +13,7 @@ import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.GUI.MeusServicosActivity;
-import br.ufrpe.artemis.Servico.GUI.Opinioes;
+import br.ufrpe.artemis.Servico.GUI.Comentarios;
 
 
 public class PerfilActivity extends AppCompatActivity {
@@ -23,7 +23,7 @@ public class PerfilActivity extends AppCompatActivity {
     private TextView endereco;
     private TextView telefone;
     private Button botaoAnuncios;
-    private Button botaoOpinioes;
+    private Button botaoComentarios;
     private Button botaoEditar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +37,26 @@ public class PerfilActivity extends AppCompatActivity {
                 anuncios();
             }
         });
-        botaoOpinioes.setOnClickListener(new View.OnClickListener() {
+        botaoComentarios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 opnioes();
             }
         });
+        botaoEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editar();
+            }
+        });
+
 
     }
     private void setTela(){
         imagemUsuario = findViewById(R.id.imagemPerfilId);
         nomeUsuario = findViewById(R.id.nomeUsuarioId);
         botaoAnuncios = findViewById(R.id.botaoanuncioId);
-        botaoOpinioes = findViewById(R.id.btopiniaoId);
+        botaoComentarios = findViewById(R.id.botaoComentariosId);
         botaoEditar = findViewById(R.id.botaoEditarId);
         pessoaEmail = findViewById(R.id.pessoaEmailId);
         endereco = findViewById(R.id.enderecoId);
@@ -57,7 +64,7 @@ public class PerfilActivity extends AppCompatActivity {
 
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
         int idUsuario = Sessao.instance.getUsuario().getId();
-        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
+        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorId(idUsuario);
         nomeUsuario.setText(pessoa.getNome());
         pessoaEmail.setText(pessoa.getEmail());
 
@@ -69,7 +76,11 @@ public class PerfilActivity extends AppCompatActivity {
 
     public void opnioes(){
 
-        startActivity(new Intent(PerfilActivity.this, Opinioes.class));
+        startActivity(new Intent(PerfilActivity.this, Comentarios.class));
+    }
+
+    public void editar(){
+       startActivity(new Intent(PerfilActivity.this, EditarPerfil.class));
     }
 
 }

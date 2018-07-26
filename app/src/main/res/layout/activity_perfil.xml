@@ -185,11 +185,11 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/btopiniaoId"
+                        android:id="@+id/botaoComentariosId"
                         style="@android:style/Widget.Holo.Button.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Opiniões"
+                        android:text="Comentários"
                         android:textAllCaps="true"
                         android:textStyle="bold" />
                 </LinearLayout>
