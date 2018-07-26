@@ -28,6 +28,7 @@ public class PessoaDao {
         ContentValues valores = new ContentValues();
         valores.put("nome", pessoa.getNome());
         valores.put("idusuario", pessoa.getUsuario().getId());
+        valores.put("email", pessoa.getEmail());
         banco.insert("pessoa", null, valores);
         banco.close();
     }
@@ -39,6 +40,7 @@ public class PessoaDao {
             cursor.moveToFirst();
             pessoa.setId(cursor.getInt(0));
             pessoa.setNome(cursor.getString(1));
+            pessoa.setEmail(cursor.getString(3));
             UsuarioDao bancoUsuario = new UsuarioDao();
             Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(2));
             pessoa.setUsuario(usuario);
@@ -53,6 +55,7 @@ public class PessoaDao {
             cursor.moveToFirst();
             pessoa.setId(cursor.getInt(0));
             pessoa.setNome(cursor.getString(1));
+            pessoa.setEmail(cursor.getString(3));
             UsuarioDao bancoUsuario = new UsuarioDao();
             Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(2));
             pessoa.setUsuario(usuario);
