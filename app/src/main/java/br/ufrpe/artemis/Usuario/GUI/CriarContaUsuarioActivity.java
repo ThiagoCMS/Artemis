@@ -74,7 +74,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         if(validarSenha()){
             erro = false;
         }
-        if(validarTelefone()){
+        /*if(validarTelefone()){
             erro= false;
         }
         if(validarRua()){
@@ -85,7 +85,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         }
         if(validarCidade()){
             erro= false;
-        }
+        }*/
         return erro;
     }
 
