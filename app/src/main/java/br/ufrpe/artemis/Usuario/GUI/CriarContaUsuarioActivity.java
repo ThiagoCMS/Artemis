@@ -19,7 +19,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
     private EditText emailRegistro;
     private EditText senhaRegistro;
     private EditText confirmaSenhaRegistro;
-    private EditText telefone;
+    private EditText telefoneRegistro;
     private EditText rua;
     private EditText numero;
     private EditText cidade;
@@ -48,7 +48,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         senhaRegistro = findViewById(R.id.senhaRegistroId);
         confirmaSenhaRegistro = findViewById(R.id.confirmarSenhaRegistroId);
         botaoRegistrar = findViewById(R.id.btAlterarId);
-        telefone = findViewById(R.id.telefoneId);
+        telefoneRegistro = findViewById(R.id.telefoneId);
         rua = findViewById(R.id.ruaEnderecoId);
         numero= findViewById(R.id.numEnderecoId);
         cidade= findViewById(R.id.cidadeEnderecoId);
@@ -74,10 +74,10 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         if(validarSenha()){
             erro = false;
         }
-        /*if(validarTelefone()){
+        if(validarTelefone()){
             erro= false;
         }
-        if(validarRua()){
+        /*if(validarRua()){
             erro = false;
         }
         if(validarNumero()){
@@ -91,10 +91,10 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
 
     private boolean validarTelefone(){
         boolean erro = false;
-        String Telefone = telefone.getText().toString();
+        String Telefone = telefoneRegistro.getText().toString();
         if(Telefone.isEmpty()){
             erro = true;
-            telefone.setError("Campo em branco");
+            telefoneRegistro.setError("Campo em branco");
         }
         return erro;
     }
@@ -104,7 +104,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         String Rua = rua.getText().toString();
         if(Rua.isEmpty()){
             erro = true;
-            telefone.setError("Campo em branco");
+            rua.setError("Campo em branco");
         }
         return erro;
     }
@@ -114,7 +114,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         String Numero = numero.getText().toString();
         if(Numero.isEmpty()){
             erro = true;
-            telefone.setError("Campo em branco");
+            numero.setError("Campo em branco");
         }
         return erro;
     }
@@ -124,7 +124,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         String Cidade = cidade.getText().toString();
         if(Cidade.isEmpty()){
             erro = true;
-            telefone.setError("Campo em branco");
+            cidade.setError("Campo em branco");
         }
         return erro;
     }
@@ -202,6 +202,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
     private void inserirUsuario(String cpf, String  senha){
         String nome = nomeRegistro.getText().toString().trim();
         String email = emailRegistro.getText().toString().trim();
+        String telefone = telefoneRegistro.getText().toString().trim();
         Usuario usuario = new Usuario();
         usuario.setCpf(cpf);
         Criptografia criptografia = new Criptografia();
@@ -210,6 +211,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         Pessoa pessoa = new Pessoa();
         pessoa.setNome(nome);
         pessoa.setEmail(email);
+        pessoa.setTelefone(telefone);
         UsuarioNegocio negocio = new UsuarioNegocio();
         negocio.inserirUsuarioBanco(usuario, pessoa);
         Toast.makeText(CriarContaUsuarioActivity.this, "Usuario registrado", Toast.LENGTH_SHORT).show();

@@ -67,6 +67,7 @@ public class PerfilActivity extends AppCompatActivity {
         Pessoa pessoa = pessoaNegocio.recuperarPessoaPorId(idUsuario);
         nomeUsuario.setText(pessoa.getNome());
         pessoaEmail.setText(pessoa.getEmail());
+        telefone.setText(pessoa.getTelefone());
 
     }
 
