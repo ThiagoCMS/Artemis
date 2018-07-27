@@ -1,13 +1,13 @@
 package br.ufrpe.artemis.Servico.GUI;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
+import br.ufrpe.artemis.Pessoa.GUI.OutroPerfil;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.Dominio.Servico;
 import br.ufrpe.artemis.Servico.Negocio.ServicoNegocio;
@@ -18,7 +18,7 @@ public class ServicoActivity extends AppCompatActivity {
     private TextView descricao;
     private TextView nomePrestador;
     private TextView classificacaoPrestador;
-    private Button contratar;
+    private Button btContratar;
     private Servico servico;
 
     @Override
@@ -27,6 +27,13 @@ public class ServicoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_servico);
 
         setTela();
+
+        btContratar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                contratar();
+            }
+        });
     }
 
     private void setTela(){
@@ -35,7 +42,7 @@ public class ServicoActivity extends AppCompatActivity {
         descricao = findViewById(R.id.textViewDescricao);
         nomePrestador = findViewById(R.id.textViewNomePres);
         classificacaoPrestador = findViewById(R.id.textViewClassif);
-        contratar = findViewById(R.id.botaoContratar);
+        btContratar = findViewById(R.id.botaoContratar);
         Bundle extras = getIntent().getExtras();
         int id = Integer.parseInt(extras.getString("id"));
         ServicoNegocio negocio = new ServicoNegocio();
@@ -45,5 +52,11 @@ public class ServicoActivity extends AppCompatActivity {
         cateSubcate.setText(servico.getSubcategoria().getCategoria().getNome() + "/" + servico.getSubcategoria().getNome());
         nomePrestador.setText(servico.getPessoa().getNome());
         classificacaoPrestador.setText("");
+    }
+
+    private void contratar(){
+        Intent intent = new Intent(ServicoActivity.this, OutroPerfil.class);
+        intent.putExtra("id", servico.getPessoa().getId());
+        startActivity(intent);
     }
 }
