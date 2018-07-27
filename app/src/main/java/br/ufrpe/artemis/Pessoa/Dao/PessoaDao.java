@@ -65,4 +65,13 @@ public class PessoaDao {
         }
         return pessoa;
     }
+
+    public void alterarPerfil(Pessoa pessoa){
+        ContentValues values = new ContentValues();
+        values.put("nome", pessoa.getNome());
+        values.put("email", pessoa.getEmail());
+        values.put("telefone", pessoa.getTelefone());
+        banco.update("pessoa", values, "id = ?", new String[]{String.valueOf(pessoa.getId())});
+        banco.close();
+    }
 }

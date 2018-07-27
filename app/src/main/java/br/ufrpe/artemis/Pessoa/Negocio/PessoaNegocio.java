@@ -2,7 +2,7 @@ package br.ufrpe.artemis.Pessoa.Negocio;
 
 import br.ufrpe.artemis.Pessoa.Dao.PessoaDao;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
-import br.ufrpe.artemis.Usuario.Dominio.Usuario;
+//import br.ufrpe.artemis.Usuario.Dominio.Usuario;
 
 public class PessoaNegocio {
 
@@ -21,5 +21,9 @@ public class PessoaNegocio {
         return banco.recuperarDoBanco(id);
     }
 
+    public void alterarPessoa(Pessoa pessoa) {
+        PessoaDao banco = new PessoaDao();
+        banco.alterarPerfil(pessoa);
+    }
 
 }
