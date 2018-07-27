@@ -3,7 +3,6 @@ package br.ufrpe.artemis.Pessoa.Negocio;
 import br.ufrpe.artemis.Endereco.Negocio.EnderecoNegocio;
 import br.ufrpe.artemis.Pessoa.Dao.PessoaDao;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
-//import br.ufrpe.artemis.Usuario.Dominio.Usuario;
 
 public class PessoaNegocio {
 

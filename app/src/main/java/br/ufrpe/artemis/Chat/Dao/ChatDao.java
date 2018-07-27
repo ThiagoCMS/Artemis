@@ -95,9 +95,6 @@ public class ChatDao {
             }else{
                 mensagem.setPessoa(chat.getPessoa2());
             }
-            /*Pessoa pessoa = new Pessoa();
-            pessoa.setId(cursor.getInt(2));
-            mensagem.setPessoa(pessoa);*/
             Date date = new Date();
             date.setTime(cursor.getInt(3));
             mensagem.setDate(date);

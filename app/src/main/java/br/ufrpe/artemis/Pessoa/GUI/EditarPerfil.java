@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import br.ufrpe.artemis.Endereco.Dominio.Endereco;
 import br.ufrpe.artemis.Infra.Sessao;
@@ -15,12 +14,12 @@ import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
 
 public class EditarPerfil extends AppCompatActivity {
-    private EditText nome;
-    private EditText telefone;
-    private EditText email;
-    private EditText rua;
-    private EditText ruaNumero;
-    private EditText cidade;
+    private EditText nomeEditar;
+    private EditText telefoneEditar;
+    private EditText emailEditar;
+    private EditText ruaEditar;
+    private EditText numeroEditar;
+    private EditText cidadeEditar;
     private Button alterar;
 
     @Override
@@ -38,24 +37,24 @@ public class EditarPerfil extends AppCompatActivity {
     }
 
     private void setTela(){
-        nome = findViewById(R.id.nomeId);
-        telefone = findViewById(R.id.telefoneId);
-        email = findViewById(R.id.pessoaEmailId);
-        rua = findViewById(R.id.ruaEnderecoId);
-        ruaNumero = findViewById(R.id.numEnderecoId);
-        cidade = findViewById(R.id.cidadeEnderecoId);
+        nomeEditar = findViewById(R.id.nomeId);
+        telefoneEditar = findViewById(R.id.telefoneId);
+        emailEditar = findViewById(R.id.pessoaEmailId);
+        ruaEditar = findViewById(R.id.ruaEnderecoId);
+        numeroEditar = findViewById(R.id.numEnderecoId);
+        cidadeEditar = findViewById(R.id.cidadeEnderecoId);
         alterar = findViewById(R.id.btAlterarId);
 
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
         int idUsuario = Sessao.instance.getUsuario().getId();
         Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
-        nome.setText(pessoa.getNome());
-        email.setText(pessoa.getEmail());
-        telefone.setText(pessoa.getTelefone());
+        nomeEditar.setText(pessoa.getNome());
+        emailEditar.setText(pessoa.getEmail());
+        telefoneEditar.setText(pessoa.getTelefone());
         Endereco endereco = pessoa.getEndereco();
-        rua.setText(endereco.getRua());
-        ruaNumero.setText(endereco.getNumero());
-        cidade.setText(endereco.getCidade());
+        ruaEditar.setText(endereco.getRua());
+        numeroEditar.setText(endereco.getNumero());
+        cidadeEditar.setText(endereco.getCidade());
     }
 
     public void alterarPessoa(){
@@ -90,60 +89,60 @@ public class EditarPerfil extends AppCompatActivity {
 
     private boolean validarTelefone(){
         boolean erro = false;
-        String Telefone = telefone.getText().toString().trim();
-        if(Telefone.isEmpty()){
+        String telefoneS = telefoneEditar.getText().toString().trim();
+        if(telefoneS.isEmpty()){
             erro = true;
-            telefone.setError("Campo em branco");
+            telefoneEditar.setError("Campo em branco");
         }
         return erro;
     }
 
     private boolean validarRua(){
         boolean erro = false;
-        String Rua = rua.getText().toString().trim();
-        if(Rua.isEmpty()){
+        String rua = ruaEditar.getText().toString().trim();
+        if(rua.isEmpty()){
             erro = true;
-            rua.setError("Campo em branco");
+            ruaEditar.setError("Campo em branco");
         }
         return erro;
     }
 
     private boolean validarNumero(){
         boolean erro = false;
-        String Numero = ruaNumero.getText().toString().trim();
-        if(Numero.isEmpty()){
+        String numero = numeroEditar.getText().toString().trim();
+        if(numero.isEmpty()){
             erro = true;
-            ruaNumero.setError("Campo em branco");
+            numeroEditar.setError("Campo em branco");
         }
         return erro;
     }
 
     private boolean validarCidade(){
         boolean erro = false;
-        String Cidade = cidade.getText().toString().trim();
+        String Cidade = cidadeEditar.getText().toString().trim();
         if(Cidade.isEmpty()){
             erro = true;
-            cidade.setError("Campo em branco");
+            cidadeEditar.setError("Campo em branco");
         }
         return erro;
     }
 
     private boolean validarNome(){
         boolean erro = false;
-        String Nome = nome.getText().toString().trim();
-        if(Nome.isEmpty()){
+        String nome = nomeEditar.getText().toString().trim();
+        if(nome.isEmpty()){
             erro = true;
-            nome.setError("Campo em branco");
+            nomeEditar.setError("Campo em branco");
         }
         return erro;
     }
 
     private boolean validarEmail(){
         boolean erro = false;
-        String Email = email.getText().toString().trim();
+        String Email = emailEditar.getText().toString().trim();
         if(Email.isEmpty()){
             erro = true;
-            email.setError("Campo em branco");
+            emailEditar.setError("Campo em branco");
         }
         return erro;
     }
@@ -152,19 +151,19 @@ public class EditarPerfil extends AppCompatActivity {
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
         int idUsuario = Sessao.instance.getUsuario().getId();
         Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
-        String nomeS = nome.getText().toString().trim();
-        String telefoneS = telefone.getText().toString().trim();
-        String emailS = email.getText().toString().trim();
-        pessoa.setNome(nomeS);
-        pessoa.setTelefone(telefoneS);
-        pessoa.setEmail(emailS);
-        String ruaS = rua.getText().toString().trim();
-        String numeroS = ruaNumero.getText().toString().trim();
-        String cidadeS = cidade.getText().toString().trim();
+        String nome = nomeEditar.getText().toString().trim();
+        String telefone = telefoneEditar.getText().toString().trim();
+        String email = emailEditar.getText().toString().trim();
+        pessoa.setNome(nome);
+        pessoa.setTelefone(telefone);
+        pessoa.setEmail(email);
+        String rua = ruaEditar.getText().toString().trim();
+        String numero = numeroEditar.getText().toString().trim();
+        String cidade = cidadeEditar.getText().toString().trim();
         Endereco endereco = pessoa.getEndereco();
-        endereco.setNumero(numeroS);
-        endereco.setRua(ruaS);
-        endereco.setCidade(cidadeS);
+        endereco.setNumero(numero);
+        endereco.setRua(rua);
+        endereco.setCidade(cidade);
         pessoa.setEndereco(endereco);
         pessoaNegocio.alterarPessoa(pessoa);
         startActivity(new Intent(EditarPerfil.this, PerfilActivity.class));

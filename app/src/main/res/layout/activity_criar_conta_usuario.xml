@@ -97,12 +97,14 @@
                     android:id="@+id/senhaRegistroId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Senha"/>
+                    android:hint="Senha"
+                    android:inputType="textPassword"/>
                 <EditText
                     android:id="@+id/confirmarSenhaRegistroId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Confirmar Senha"/>
+                    android:hint="Confirmar Senha"
+                    android:inputType="textPassword"/>
 
             </LinearLayout>
             <LinearLayout
