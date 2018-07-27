@@ -22,11 +22,18 @@
                 android:text="Contato"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/nomeId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome" />
+
             <EditText
                 android:id="@+id/telefoneId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Telefone"/>
+                android:hint="Telefone" />
             <EditText
                 android:id="@+id/pessoaEmailId"
                 android:layout_width="match_parent"
