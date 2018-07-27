@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import br.ufrpe.artemis.Endereco.Dominio.Endereco;
 import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Infra.DataBase.Dao.DB;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
@@ -30,6 +31,7 @@ public class PessoaDao {
         valores.put("idusuario", pessoa.getUsuario().getId());
         valores.put("email", pessoa.getEmail());
         valores.put("telefone", pessoa.getTelefone());
+        valores.put("idendereco", pessoa.getEndereco().getId());
         banco.insert("pessoa", null, valores);
         banco.close();
     }
@@ -46,6 +48,9 @@ public class PessoaDao {
             UsuarioDao bancoUsuario = new UsuarioDao();
             Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(2));
             pessoa.setUsuario(usuario);
+            Endereco endereco = new Endereco();
+            endereco.setId(cursor.getInt(5));
+            pessoa.setEndereco(endereco);
         }
         return pessoa;
     }
@@ -62,6 +67,9 @@ public class PessoaDao {
             UsuarioDao bancoUsuario = new UsuarioDao();
             Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(2));
             pessoa.setUsuario(usuario);
+            Endereco endereco = new Endereco();
+            endereco.setId(cursor.getInt(5));
+            pessoa.setEndereco(endereco);
         }
         return pessoa;
     }
