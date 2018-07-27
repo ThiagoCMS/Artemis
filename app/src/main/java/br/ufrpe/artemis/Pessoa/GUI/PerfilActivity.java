@@ -64,10 +64,11 @@ public class PerfilActivity extends AppCompatActivity {
 
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
         int idUsuario = Sessao.instance.getUsuario().getId();
-        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorId(idUsuario);
+        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
         nomeUsuario.setText(pessoa.getNome());
         pessoaEmail.setText(pessoa.getEmail());
         telefone.setText(pessoa.getTelefone());
+        endereco.setText(pessoa.getEndereco().getCidade());
 
     }
 
