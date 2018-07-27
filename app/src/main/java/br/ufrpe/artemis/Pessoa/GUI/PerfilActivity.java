@@ -83,7 +83,8 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     public void editar(){
-       startActivity(new Intent(PerfilActivity.this, EditarPerfil.class));
+        startActivity(new Intent(PerfilActivity.this, EditarPerfil.class));
+        PerfilActivity.this.finish();
     }
 
 }

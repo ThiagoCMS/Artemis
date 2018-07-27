@@ -31,6 +31,8 @@ public class PessoaNegocio {
     public void alterarPessoa(Pessoa pessoa) {
         PessoaDao banco = new PessoaDao();
         banco.alterarPerfil(pessoa);
+        EnderecoNegocio enderecoNegocio = new EnderecoNegocio();
+        enderecoNegocio.alterarEndereco(pessoa.getEndereco());
     }
 
 }
