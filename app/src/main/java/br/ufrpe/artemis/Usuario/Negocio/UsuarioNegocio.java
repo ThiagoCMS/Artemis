@@ -2,6 +2,8 @@ package br.ufrpe.artemis.Usuario.Negocio;
 
 import android.content.Context;
 
+import br.ufrpe.artemis.Endereco.Dominio.Endereco;
+import br.ufrpe.artemis.Endereco.Negocio.EnderecoNegocio;
 import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Infra.Criptografia.Criptografia;
 import br.ufrpe.artemis.Infra.Sessao;
@@ -12,11 +14,15 @@ import br.ufrpe.artemis.Usuario.Dominio.Usuario;
 
 public class UsuarioNegocio {
 
-    public void inserirUsuarioBanco(Usuario usuario, Pessoa pessoa){
+    public void inserirUsuarioBanco(Usuario usuario, Pessoa pessoa, Endereco endereco){
         UsuarioDao banco = new UsuarioDao();
         banco.inserirNoBanco(usuario);
         usuario = recuperarUsuario(usuario.getCpf());
         pessoa.setUsuario(usuario);
+        EnderecoNegocio enderecoNegocio = new EnderecoNegocio();
+        enderecoNegocio.inserirEndereco(endereco);
+        endereco = enderecoNegocio.recuperarUltimoEndereco();
+        pessoa.setEndereco(endereco);
         PessoaNegocio negocio = new PessoaNegocio();
         negocio.inserirPessoaBanco(pessoa);
     }

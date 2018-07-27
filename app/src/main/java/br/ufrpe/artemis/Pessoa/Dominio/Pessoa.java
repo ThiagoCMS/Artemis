@@ -1,5 +1,6 @@
 package br.ufrpe.artemis.Pessoa.Dominio;
 
+import br.ufrpe.artemis.Endereco.Dominio.Endereco;
 import br.ufrpe.artemis.Usuario.Dominio.Usuario;
 
 public class Pessoa {
@@ -8,6 +9,7 @@ public class Pessoa {
     private String email;
     private Usuario usuario;
     private String telefone;
+    private Endereco endereco;
 
     public int getId() {
         return id;
@@ -44,4 +46,12 @@ public class Pessoa {
     public String getTelefone(){ return telefone;}
 
     public void setTelefone(String telefone) { this.telefone = telefone;}
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 }

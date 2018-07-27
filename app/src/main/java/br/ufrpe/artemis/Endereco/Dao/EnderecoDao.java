@@ -51,4 +51,11 @@ public class EnderecoDao {
         banco.update("endereco", values, "id = ?", new String[]{String.valueOf(endereco.getId())});
         banco.close();
     }
+
+    public Endereco recuperarUltimoEndereco(){
+        Cursor cursor = banco.rawQuery("select ROWID from endereco", null);
+        cursor.moveToLast();
+        int id = cursor.getInt(0);
+        return recuperarEndereco(id);
+    }
 }

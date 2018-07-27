@@ -19,4 +19,9 @@ public class EnderecoNegocio {
         EnderecoDao dao = new EnderecoDao();
         return dao.recuperarEndereco(id);
     }
+
+    public Endereco recuperarUltimoEndereco(){
+        EnderecoDao dao = new EnderecoDao();
+        return dao.recuperarUltimoEndereco();
+    }
 }

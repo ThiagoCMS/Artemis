@@ -30,6 +30,7 @@ public class PessoaDao {
         valores.put("idusuario", pessoa.getUsuario().getId());
         valores.put("email", pessoa.getEmail());
         valores.put("telefone", pessoa.getTelefone());
+        valores.put("idendereco", pessoa.getEndereco().getId());
         banco.insert("pessoa", null, valores);
         banco.close();
     }
