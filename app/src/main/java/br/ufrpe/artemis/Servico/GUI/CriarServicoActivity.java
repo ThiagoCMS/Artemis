@@ -10,9 +10,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.view.View;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-
 import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
@@ -30,27 +28,22 @@ public class CriarServicoActivity extends AppCompatActivity {
     private Button cadastrar;
     private ArrayList<Categoria> listaCategoria;
     private ArrayList<Subcategoria> listaSubcategoria;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criar_servico);
-
         setTela();
-
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cadastrarServico();
             }
         });
-
         categoriaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setSpinnerSubcategoria(i);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -147,7 +140,6 @@ public class CriarServicoActivity extends AppCompatActivity {
         }
         return erro;
     }
-
 
     private void cadastrarServico(){
         if(validarCampos()) {

@@ -4,9 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import java.util.ArrayList;
-
 import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Infra.DataBase.Dao.DB;
 import br.ufrpe.artemis.Pessoa.Dao.PessoaDao;
@@ -19,11 +17,9 @@ import br.ufrpe.artemis.Usuario.Dominio.Usuario;
 
 public class ServicoDao {
     private SQLiteDatabase banco;
-
     public ServicoDao(){
         escreverNoBanco(ArtemisApp.getContext());
     }
-
     private SQLiteDatabase escreverNoBanco(Context context){
         DB auxDB = new DB(context);
         banco = auxDB.getWritableDatabase();

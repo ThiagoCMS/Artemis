@@ -26,7 +26,6 @@ public class EditarPerfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_perfil);
-
         setTela();
         alterar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +43,10 @@ public class EditarPerfil extends AppCompatActivity {
         numeroEditar = findViewById(R.id.numEnderecoId);
         cidadeEditar = findViewById(R.id.cidadeEnderecoId);
         alterar = findViewById(R.id.btAlterarId);
+        setPessoa();
+    }
 
+    private void setPessoa(){
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
         int idUsuario = Sessao.instance.getUsuario().getId();
         Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);

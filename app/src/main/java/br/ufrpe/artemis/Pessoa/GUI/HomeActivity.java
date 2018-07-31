@@ -12,10 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-
 import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.R;
-
 import br.ufrpe.artemis.Servico.GUI.MeusServicosActivity;
 import br.ufrpe.artemis.Servico.GUI.SubCategoriaActivity;
 import br.ufrpe.artemis.Usuario.GUI.ConfiguracoesActivity;
@@ -30,25 +28,20 @@ public class HomeActivity extends AppCompatActivity
     private ImageView moda;
     private ImageView tecnologia;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         setView();
-
         saude.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

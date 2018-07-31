@@ -4,8 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-
-import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
@@ -23,7 +21,6 @@ public class OutroPerfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outro_perfil);
-
         setTela();
     }
 
@@ -34,7 +31,10 @@ public class OutroPerfil extends AppCompatActivity {
         email = findViewById(R.id.emailPrestadoraId);
         cidade = findViewById(R.id.enderecoPrestadoraId);
         telefone = findViewById(R.id.telefonePrestadoraId);
+        setPessoa();
+    }
 
+    private void setPessoa(){
         Bundle extras = getIntent().getExtras();
         int idUsuario = extras.getInt("id");
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
@@ -43,6 +43,5 @@ public class OutroPerfil extends AppCompatActivity {
         email.setText(pessoa.getEmail());
         telefone.setText(pessoa.getTelefone());
         cidade.setText(pessoa.getEndereco().getCidade());
-
     }
 }

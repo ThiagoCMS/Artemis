@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Usuario.Dominio.Usuario;
@@ -17,12 +16,10 @@ public class AlterarSenhaActivity extends AppCompatActivity {
     private EditText novaSenha;
     private EditText confirmarNovaSenha;
     private Button botaoAlterarSenha;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alterar_senha);
-
         senhaAtual = findViewById(R.id.senhaAtualId);
         novaSenha = findViewById(R.id.senhaNovaId);
         confirmarNovaSenha = findViewById(R.id.confirmarSenhaNovaId);

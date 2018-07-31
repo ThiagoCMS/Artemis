@@ -1,7 +1,6 @@
 package br.ufrpe.artemis.Servico.GUI;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ActionMode;
@@ -9,18 +8,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.Dominio.Servico;
@@ -34,30 +28,20 @@ public class MeusServicosActivity extends AppCompatActivity {
     ArrayAdapter adapterNew;
     List selections;
     int count;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meus_servicos);
-
-        //djair
-
         negocio = new ServicoNegocio();
         selections = new ArrayList();
         count = 0;
-
-
         setTela();
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 irCriarServico();
             }
         });
-
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -73,12 +57,8 @@ public class MeusServicosActivity extends AppCompatActivity {
             {
                 if(checked){
                     selections.add(listaServicos.get(position));
-
-
                     count ++;
                     mode.setTitle(count+" Selected");
-
-
                 }else{
                     selections.remove(listaServicos.get(position));
                     count--;
@@ -91,9 +71,6 @@ public class MeusServicosActivity extends AppCompatActivity {
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                 MenuInflater menuInflater = getMenuInflater();
                 menuInflater.inflate(R.menu.my_menu, menu);
-
-
-
                 return true;
             }
 
@@ -108,19 +85,11 @@ public class MeusServicosActivity extends AppCompatActivity {
                     for(Object Item : selections){
                         listaServicos.remove(Item);
                         negocio.deletarServicoDoBanco((Servico) Item);
-
                     }
                     adapterNew.notifyDataSetChanged();
                     mode.finish();
                     return true;
                 }
-
-
-
-
-
-
-
                 return false;
             }
 
@@ -128,10 +97,7 @@ public class MeusServicosActivity extends AppCompatActivity {
             public void onDestroyActionMode(ActionMode mode) {
                 count = 0;
                 selections.clear();
-
             }
-
-
         });
 
 
@@ -152,20 +118,8 @@ public class MeusServicosActivity extends AppCompatActivity {
     private void setTela(){
         button = findViewById(R.id.buttonId);
         list = findViewById(R.id.listId);
-
         listaServicos = negocio.listarSevicosUs(Sessao.instance.getUsuario().getId());
         adapterNew = new MeusServicosAdapter(listaServicos);
-
-
-
-
         list.setAdapter(adapterNew);
-
     }
-
-
-
-
-
-
 }

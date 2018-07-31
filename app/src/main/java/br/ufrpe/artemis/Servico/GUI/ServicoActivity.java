@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import br.ufrpe.artemis.Pessoa.GUI.OutroPerfil;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.Dominio.Servico;
@@ -20,14 +19,11 @@ public class ServicoActivity extends AppCompatActivity {
     private TextView classificacaoPrestador;
     private Button btContratar;
     private Servico servico;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servico);
-
         setTela();
-
         btContratar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +39,10 @@ public class ServicoActivity extends AppCompatActivity {
         nomePrestador = findViewById(R.id.textViewNomePres);
         classificacaoPrestador = findViewById(R.id.textViewClassif);
         btContratar = findViewById(R.id.botaoContratar);
+        setService();
+    }
+
+    private void setService(){
         Bundle extras = getIntent().getExtras();
         int id = Integer.parseInt(extras.getString("id"));
         ServicoNegocio negocio = new ServicoNegocio();

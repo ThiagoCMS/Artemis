@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import br.ufrpe.artemis.Endereco.Dominio.Endereco;
 import br.ufrpe.artemis.Infra.Criptografia.Criptografia;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
@@ -25,14 +24,11 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
     private EditText numero;
     private EditText cidade;
     private Button botaoRegistrar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criar_conta_usuario);
-
         setView();
-
         botaoRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.Dominio.Servico;
 import br.ufrpe.artemis.Servico.Negocio.ServicoNegocio;
@@ -21,21 +20,17 @@ public class EditarServicoActivity extends AppCompatActivity {
     private Button botaoEditar;
     private Button botaoDeletar;
     private Servico servico;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_servico);
-
         setTela();
-
         botaoEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 editar();
             }
         });
-
         botaoDeletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +46,10 @@ public class EditarServicoActivity extends AppCompatActivity {
         subcategoria = findViewById(R.id.subcategoriaEditarId);
         botaoEditar = findViewById(R.id.botaoEditarId);
         botaoDeletar = findViewById(R.id.botaoDeletarId);
+        setAnuncio();
+    }
+
+    private void setAnuncio(){
         ServicoNegocio negocio = new ServicoNegocio();
         Bundle extras = getIntent().getExtras();
         int id = Integer.parseInt(extras.getString("id"));

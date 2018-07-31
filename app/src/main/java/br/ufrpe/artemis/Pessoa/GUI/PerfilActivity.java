@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
@@ -25,12 +24,10 @@ public class PerfilActivity extends AppCompatActivity {
     private Button botaoAnuncios;
     private Button botaoComentarios;
     private Button botaoEditar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
-
         setTela();
         botaoAnuncios.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +59,10 @@ public class PerfilActivity extends AppCompatActivity {
         pessoaEmail = findViewById(R.id.pessoaEmailId);
         endereco = findViewById(R.id.enderecoId);
         telefone = findViewById(R.id.telefoneId);
+        setPessoa();
+    }
 
+    private void setPessoa(){
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
         int idUsuario = Sessao.instance.getUsuario().getId();
         Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
@@ -70,7 +70,6 @@ public class PerfilActivity extends AppCompatActivity {
         pessoaEmail.setText(pessoa.getEmail());
         telefone.setText(pessoa.getTelefone());
         endereco.setText(pessoa.getEndereco().getCidade());
-
     }
 
     public void anuncios(){

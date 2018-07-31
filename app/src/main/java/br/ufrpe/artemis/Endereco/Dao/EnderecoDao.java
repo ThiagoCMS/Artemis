@@ -3,18 +3,15 @@ package br.ufrpe.artemis.Endereco.Dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import br.ufrpe.artemis.Endereco.Dominio.Endereco;
 import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Infra.DataBase.Dao.DB;
 
 public class EnderecoDao {
     private SQLiteDatabase banco;
-
     public EnderecoDao(){
         habilitarBanco();
     }
-
     private SQLiteDatabase habilitarBanco(){
         DB auxDB = new DB(ArtemisApp.getContext());
         banco = auxDB.getWritableDatabase();

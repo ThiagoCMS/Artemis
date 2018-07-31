@@ -4,10 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import java.util.ArrayList;
 import java.util.Date;
-
 import br.ufrpe.artemis.Chat.Dominio.Chat;
 import br.ufrpe.artemis.Chat.Dominio.Mensagem;
 import br.ufrpe.artemis.Infra.ArtemisApp;
@@ -16,11 +14,9 @@ import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 
 public class ChatDao {
     private SQLiteDatabase banco;
-
     public ChatDao(){
         habilitarBanco(ArtemisApp.getContext());
     }
-
     private SQLiteDatabase habilitarBanco(Context ctx){
         DB auxDB = new DB(ctx);
         banco = auxDB.getWritableDatabase();

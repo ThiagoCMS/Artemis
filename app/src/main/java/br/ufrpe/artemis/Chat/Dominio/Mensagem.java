@@ -1,7 +1,6 @@
 package br.ufrpe.artemis.Chat.Dominio;
 
 import java.util.Date;
-
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 
 public class Mensagem {
@@ -10,7 +9,6 @@ public class Mensagem {
     private Pessoa pessoa;
     private Date date;
     private String mensagem;
-
     public int getId() {
         return id;
     }

@@ -7,12 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import br.ufrpe.artemis.Pessoa.GUI.HomeActivity;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Usuario.Dominio.Usuario;
 import br.ufrpe.artemis.Usuario.Negocio.UsuarioNegocio;
-
 import static br.ufrpe.artemis.R.*;
 
 public class LoginActicity extends AppCompatActivity {
@@ -20,21 +18,17 @@ public class LoginActicity extends AppCompatActivity {
     private EditText cpfLogin;
     private EditText senhaLogin;
     private Button botaoLogar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_login);
-
         setView();
-
         botaoLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
             }
         });
-
        botaoRegistro.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {

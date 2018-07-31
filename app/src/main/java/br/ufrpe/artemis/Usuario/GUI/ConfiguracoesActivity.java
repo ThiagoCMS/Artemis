@@ -10,25 +10,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
-
 import br.ufrpe.artemis.R;
-import br.ufrpe.artemis.Usuario.Dominio.Usuario;
-import br.ufrpe.artemis.Usuario.Negocio.UsuarioNegocio;
 
 public class ConfiguracoesActivity extends AppCompatActivity {
     private ListView lv;
     private ArrayList<String> listaConfig =  new ArrayList<String>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracoes);
-
         setTela();
-
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

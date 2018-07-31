@@ -10,9 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.Dominio.Subcategoria;
 import br.ufrpe.artemis.Servico.Negocio.ServicoNegocio;
@@ -20,14 +18,11 @@ import br.ufrpe.artemis.Servico.Negocio.ServicoNegocio;
 public class SubCategoriaActivity extends AppCompatActivity {
     private ListView listViewSubcategorias;
     private ArrayList<Subcategoria> listaSubcategorias;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_categoria);
-
         setTela();
-
         listViewSubcategorias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

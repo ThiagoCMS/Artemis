@@ -1,10 +1,8 @@
 package br.ufrpe.artemis.Usuario.Negocio;
 
-import android.content.Context;
 
 import br.ufrpe.artemis.Endereco.Dominio.Endereco;
 import br.ufrpe.artemis.Endereco.Negocio.EnderecoNegocio;
-import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Infra.Criptografia.Criptografia;
 import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;

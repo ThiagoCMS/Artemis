@@ -1,7 +1,6 @@
 package br.ufrpe.artemis.Servico.Negocio;
 
 import java.util.ArrayList;
-
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
 import br.ufrpe.artemis.Servico.Dao.ServicoDao;
