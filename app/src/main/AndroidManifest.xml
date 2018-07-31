@@ -37,7 +37,9 @@
         <activity android:name=".Pessoa.GUI.PerfilActivity" />
         <activity android:name=".Servico.GUI.Comentarios" />
         <activity android:name=".Pessoa.GUI.EditarPerfil" />
-        <activity android:name=".Pessoa.GUI.OutroPerfil"></activity>
+        <activity android:name=".Pessoa.GUI.OutroPerfil" />
+        <activity android:name=".Chat.GUI.ChatActivity" />
+        <activity android:name=".Chat.GUI.ListaConversasActivity"></activity>
     </application>
 
 </manifest>

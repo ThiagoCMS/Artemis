@@ -23,7 +23,7 @@ public class ChatDao {
         return banco;
     }
 
-    public void inesrirChat(Chat chat){
+    public void inserirChat(Chat chat){
         ContentValues valores = new ContentValues();
         valores.put("idpessoa1", chat.getPessoa1().getId());
         valores.put("idpessoa2", chat.getPessoa2().getId());
@@ -71,7 +71,6 @@ public class ChatDao {
         ContentValues values = new ContentValues();
         values.put("idchat", mensagem.getChat().getId());
         values.put("idpessoa", mensagem.getPessoa().getId());
-        values.put("data", mensagem.getDate().getTime());
         values.put("texto", mensagem.getMensagem());
         banco.insert("mensagem", null, values);
         banco.close();
@@ -93,10 +92,33 @@ public class ChatDao {
             }
             Date date = new Date();
             date.setTime(cursor.getInt(3));
-            mensagem.setDate(date);
             mensagem.setMensagem(cursor.getString(4));
             mensagemArrayList.add(mensagem);
+            cursor.moveToNext();
         }
         return mensagemArrayList;
+    }
+
+    public Chat recuperarChat(Pessoa pessoa, Pessoa pessoa1){
+        Chat chat;
+        Cursor cursor = banco.query("chat",new String[]{"*"},"idpessoa1 = ? and idpessoa2 = ?", new String[]{String.valueOf(pessoa.getId()),String.valueOf(pessoa1.getId())},null,null,null);
+        if (!(cursor.getCount()>0)){
+            cursor = banco.query("chat",new String[]{"*"},"idpessoa1 = ? and idpessoa2 = ?", new String[]{String.valueOf(pessoa1.getId()),String.valueOf(pessoa.getId())},null,null,null);
+        }if(cursor.getCount()>0){
+            cursor.moveToFirst();
+            chat = new Chat();
+            chat.setId(cursor.getInt(0));
+            if(cursor.getInt(1)==pessoa.getId()){
+                chat.setPessoa1(pessoa);
+                chat.setPessoa2(pessoa1);
+            }else{
+                chat.setPessoa2(pessoa);
+                chat.setPessoa1(pessoa1);
+            }
+        }else{
+            chat = null;
+
+        }
+        return chat;
     }
 }

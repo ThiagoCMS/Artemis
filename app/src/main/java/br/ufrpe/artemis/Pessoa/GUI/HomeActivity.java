@@ -12,6 +12,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+
+import br.ufrpe.artemis.Chat.GUI.ChatActivity;
+import br.ufrpe.artemis.Chat.GUI.ListaConversasActivity;
 import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.GUI.MeusServicosActivity;
@@ -135,6 +138,8 @@ public class HomeActivity extends AppCompatActivity
             startActivity(new Intent(HomeActivity.this, PerfilActivity.class));
         } else if (id == R.id.nav_services) {
             startActivity(new Intent(HomeActivity.this, MeusServicosActivity.class));
+        } else if(id == R.id.nav_chat){
+            startActivity(new Intent(HomeActivity.this, ListaConversasActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

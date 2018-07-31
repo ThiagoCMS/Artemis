@@ -18,7 +18,7 @@ public class ChatNegocio {
 
     public void criarChat(Chat chat){
         ChatDao dao = new ChatDao();
-        dao.inesrirChat(chat);
+        dao.inserirChat(chat);
     }
 
     public Chat retornarChat(int id){
@@ -47,5 +47,19 @@ public class ChatNegocio {
         Chat chat = retornarChat(idChat);
         ArrayList<Mensagem> mensagens = dao.recuperarMensagens(chat);
         return mensagens;
+    }
+
+    public Chat iniciarChat(Pessoa pessoa, Pessoa pessoa1){
+        ChatDao chatDao = new ChatDao();
+        Chat chat = chatDao.recuperarChat(pessoa, pessoa1);
+        if(chat == null){
+            chat = new Chat();
+            chat.setPessoa1(pessoa);
+            chat.setPessoa2(pessoa1);
+            chatDao.inserirChat(chat);
+            chat = chatDao.recuperarChat(pessoa,pessoa1);
+        }
+        return chat;
+
     }
 }

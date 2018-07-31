@@ -7,8 +7,18 @@ public class Mensagem {
     private int id;
     private Chat chat;
     private Pessoa pessoa;
-    private Date date;
     private String mensagem;
+
+    public Mensagem(){
+
+    }
+
+    public Mensagem(Chat chat, Pessoa pessoa, String mensagem) {
+        this.chat = chat;
+        this.pessoa = pessoa;
+        this.mensagem = mensagem;
+    }
+
     public int getId() {
         return id;
     }
@@ -31,14 +41,6 @@ public class Mensagem {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getMensagem() {
