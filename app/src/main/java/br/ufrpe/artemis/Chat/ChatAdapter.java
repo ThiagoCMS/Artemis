@@ -19,6 +19,7 @@ public class ChatAdapter extends ArrayAdapter<Chat> {
     public ChatAdapter(ArrayList<Chat> elementos){
         super(ArtemisApp.getContext(), R.layout.linha_chat, elementos);
         this.elementos = elementos;
+        //a
     }
 
     @NonNull
