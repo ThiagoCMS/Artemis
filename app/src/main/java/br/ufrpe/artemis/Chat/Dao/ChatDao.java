@@ -62,6 +62,7 @@ public class ChatDao {
             pessoa2.setId(cursor.getInt(2));
             chat.setPessoa2(pessoa2);
             chatList.add(chat);
+            cursor.moveToNext();
         }
         return chatList;
     }
