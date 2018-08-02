@@ -6,7 +6,7 @@
     android:id="@+id/Titulo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.ufrpe.artemis.Servico.GUI.CriarServicoActivity">
+    tools:context="br.ufrpe.artemis.servico.gui.CriarServicoActivity">
 
     <EditText
         android:id="@+id/tituloId"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.ufrpe.artemis.Usuario.GUI.AlterarSenhaActivity">
+    tools:context="br.ufrpe.artemis.usuario.gui.AlterarSenhaActivity">
     <LinearLayout
         android:layout_margin="10dp"
         android:layout_width="match_parent"

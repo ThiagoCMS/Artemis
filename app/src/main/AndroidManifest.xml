@@ -3,44 +3,44 @@
     package="br.ufrpe.artemis">
 
     <application
-        android:name=".Infra.ArtemisApp"
+        android:name=".infra.ArtemisApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_artemis"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_artemis_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Usuario.GUI.LoginActicity">
+        <activity android:name=".usuario.gui.LoginActicity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Usuario.GUI.CriarContaUsuarioActivity" />
+        <activity android:name=".usuario.gui.CriarContaUsuarioActivity" />
         <activity
-            android:name=".Pessoa.GUI.HomeActivity"
+            android:name=".pessoa.gui.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Servico.GUI.ServicosListActivity" />
-        <activity android:name=".Servico.GUI.MeusServicosActivity" />
-        <activity android:name=".Servico.GUI.CriarServicoActivity" />
-        <activity android:name=".Servico.GUI.SubCategoriaActivity" />
+        <activity android:name=".servico.gui.ServicosListActivity" />
+        <activity android:name=".servico.gui.MeusServicosActivity" />
+        <activity android:name=".servico.gui.CriarServicoActivity" />
+        <activity android:name=".servico.gui.SubCategoriaActivity" />
         <activity
-            android:name=".Usuario.GUI.ConfiguracoesActivity"
+            android:name=".usuario.gui.ConfiguracoesActivity"
             android:label="@string/title_activity_configuracoes" />
         <activity
-            android:name=".Usuario.GUI.AlterarSenhaActivity"
+            android:name=".usuario.gui.AlterarSenhaActivity"
             android:label="@string/title_activity_alterar_senha" />
-        <activity android:name=".Servico.GUI.ServicoActivity" />
-        <activity android:name=".Servico.GUI.EditarServicoActivity" />
-        <activity android:name=".Pessoa.GUI.PerfilActivity" />
-        <activity android:name=".Servico.GUI.ComentariosActivity" />
-        <activity android:name=".Pessoa.GUI.EditarPerfilActivity" />
-        <activity android:name=".Pessoa.GUI.OutroPerfilActivity" />
-        <activity android:name=".Chat.GUI.ChatActivity" />
-        <activity android:name=".Chat.GUI.ListaConversasActivity" />
-        <activity android:name=".Pessoa.GUI.FormularioActivity"></activity>
+        <activity android:name=".servico.gui.ServicoActivity" />
+        <activity android:name=".servico.gui.EditarServicoActivity" />
+        <activity android:name=".pessoa.gui.PerfilActivity" />
+        <activity android:name=".servico.gui.ComentariosActivity" />
+        <activity android:name=".pessoa.gui.EditarPerfilActivity" />
+        <activity android:name=".pessoa.gui.OutroPerfilActivity" />
+        <activity android:name=".chat.gui.ChatActivity" />
+        <activity android:name=".chat.gui.ListaConversasActivity" />
+        <activity android:name=".pessoa.gui.FormularioActivity"></activity>
     </application>
 
 </manifest>

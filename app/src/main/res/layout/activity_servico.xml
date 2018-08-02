@@ -6,7 +6,7 @@
     android:id="@+id/Titulo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.ufrpe.artemis.Servico.GUI.ServicoActivity">
+    tools:context="br.ufrpe.artemis.servico.gui.ServicoActivity">
 
     <TextView
         android:id="@+id/textViewTitulo"

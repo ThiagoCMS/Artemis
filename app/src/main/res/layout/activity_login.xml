@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context="br.ufrpe.artemis.Usuario.GUI.LoginActicity"
+    tools:context="br.ufrpe.artemis.usuario.gui.LoginActicity"
     tools:layout_editor_absoluteY="81dp">
 
     <Button
