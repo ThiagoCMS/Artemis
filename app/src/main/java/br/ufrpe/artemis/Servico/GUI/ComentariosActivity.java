@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import br.ufrpe.artemis.R;
 
-public class Comentarios extends AppCompatActivity {
+public class ComentariosActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

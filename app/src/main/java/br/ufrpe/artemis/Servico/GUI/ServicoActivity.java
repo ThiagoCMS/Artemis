@@ -8,15 +8,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.StringTokenizer;
-
 import br.ufrpe.artemis.Chat.Dominio.Chat;
 import br.ufrpe.artemis.Chat.GUI.ChatActivity;
 import br.ufrpe.artemis.Chat.Negocio.ChatNegocio;
 import br.ufrpe.artemis.Infra.ArtemisApp;
 import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
-import br.ufrpe.artemis.Pessoa.GUI.OutroPerfil;
+import br.ufrpe.artemis.Pessoa.GUI.OutroPerfilActivity;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.Dominio.Servico;
@@ -74,7 +72,7 @@ public class ServicoActivity extends AppCompatActivity {
     }
 
     private void contratar(){
-        Intent intent = new Intent(ServicoActivity.this, OutroPerfil.class);
+        Intent intent = new Intent(ServicoActivity.this, OutroPerfilActivity.class);
         intent.putExtra("id", servico.getPessoa().getId());
         startActivity(intent);
     }

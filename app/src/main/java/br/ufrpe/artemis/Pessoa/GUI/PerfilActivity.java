@@ -12,7 +12,7 @@ import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.Servico.GUI.MeusServicosActivity;
-import br.ufrpe.artemis.Servico.GUI.Comentarios;
+import br.ufrpe.artemis.Servico.GUI.ComentariosActivity;
 
 
 public class PerfilActivity extends AppCompatActivity {
@@ -78,11 +78,11 @@ public class PerfilActivity extends AppCompatActivity {
 
     public void opnioes(){
 
-        startActivity(new Intent(PerfilActivity.this, Comentarios.class));
+        startActivity(new Intent(PerfilActivity.this, ComentariosActivity.class));
     }
 
     public void editar(){
-        startActivity(new Intent(PerfilActivity.this, EditarPerfil.class));
+        startActivity(new Intent(PerfilActivity.this, EditarPerfilActivity.class));
         PerfilActivity.this.finish();
     }
 

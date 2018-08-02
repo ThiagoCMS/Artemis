@@ -8,7 +8,7 @@ import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
 
-public class OutroPerfil extends AppCompatActivity {
+public class OutroPerfilActivity extends AppCompatActivity {
     private TextView nome;
     private TextView telefone;
     private TextView email;

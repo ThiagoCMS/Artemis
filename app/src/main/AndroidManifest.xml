@@ -35,11 +35,12 @@
         <activity android:name=".Servico.GUI.ServicoActivity" />
         <activity android:name=".Servico.GUI.EditarServicoActivity" />
         <activity android:name=".Pessoa.GUI.PerfilActivity" />
-        <activity android:name=".Servico.GUI.Comentarios" />
-        <activity android:name=".Pessoa.GUI.EditarPerfil" />
-        <activity android:name=".Pessoa.GUI.OutroPerfil" />
+        <activity android:name=".Servico.GUI.ComentariosActivity" />
+        <activity android:name=".Pessoa.GUI.EditarPerfilActivity" />
+        <activity android:name=".Pessoa.GUI.OutroPerfilActivity" />
         <activity android:name=".Chat.GUI.ChatActivity" />
-        <activity android:name=".Chat.GUI.ListaConversasActivity"></activity>
+        <activity android:name=".Chat.GUI.ListaConversasActivity" />
+        <activity android:name=".Pessoa.GUI.FormularioActivity"></activity>
     </application>
 
 </manifest>

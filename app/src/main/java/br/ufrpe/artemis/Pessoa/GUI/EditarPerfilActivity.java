@@ -13,7 +13,7 @@ import br.ufrpe.artemis.Pessoa.Dominio.Pessoa;
 import br.ufrpe.artemis.Pessoa.Negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
 
-public class EditarPerfil extends AppCompatActivity {
+public class EditarPerfilActivity extends AppCompatActivity {
     private EditText nomeEditar;
     private EditText telefoneEditar;
     private EditText emailEditar;
@@ -168,12 +168,12 @@ public class EditarPerfil extends AppCompatActivity {
         endereco.setCidade(cidade);
         pessoa.setEndereco(endereco);
         pessoaNegocio.alterarPessoa(pessoa);
-        startActivity(new Intent(EditarPerfil.this, PerfilActivity.class));
-        EditarPerfil.this.finish();
+        startActivity(new Intent(EditarPerfilActivity.this, PerfilActivity.class));
+        EditarPerfilActivity.this.finish();
     }
 
     public void onBackPressed(){
-        startActivity(new Intent(EditarPerfil.this, PerfilActivity.class));
-        EditarPerfil.this.finish();
+        startActivity(new Intent(EditarPerfilActivity.this, PerfilActivity.class));
+        EditarPerfilActivity.this.finish();
     }
 }

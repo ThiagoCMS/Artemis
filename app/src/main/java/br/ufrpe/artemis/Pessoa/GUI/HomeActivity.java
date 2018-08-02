@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import br.ufrpe.artemis.Chat.GUI.ChatActivity;
 import br.ufrpe.artemis.Chat.GUI.ListaConversasActivity;
 import br.ufrpe.artemis.Infra.Sessao;
 import br.ufrpe.artemis.R;
