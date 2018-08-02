@@ -13,11 +13,12 @@ import br.ufrpe.artemis.usuario.dominio.Usuario;
 import br.ufrpe.artemis.usuario.negocio.UsuarioNegocio;
 import static br.ufrpe.artemis.R.*;
 
-public class LoginActicity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private Button botaoRegistro;
     private EditText cpfLogin;
     private EditText senhaLogin;
     private Button botaoLogar;
+    private Button botaoEsqueci;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,12 @@ public class LoginActicity extends AppCompatActivity {
                telaRegistro();
            }
        });
+       botaoEsqueci.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               telaEsqueci();
+           }
+       });
     }
 
     private void setView(){
@@ -42,15 +49,16 @@ public class LoginActicity extends AppCompatActivity {
         botaoLogar = findViewById(R.id.botaoLoginId);
         botaoRegistro = findViewById(R.id.botaoRegistroId);
         senhaLogin = findViewById(R.id.senhaId);
+        botaoEsqueci = findViewById(id.botaoEsqueciId);
     }
 
     private void login(){
         if(logar() != null){
-            Intent intent = new Intent(LoginActicity.this, HomeActivity.class);
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
-            LoginActicity.this.finish();
+            LoginActivity.this.finish();
         }else{
-            Toast.makeText(LoginActicity.this,"Cpf/Senha incorreto(s).",Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this,"Cpf/Senha incorreto(s).",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -62,6 +70,9 @@ public class LoginActicity extends AppCompatActivity {
     }
 
     public void telaRegistro(){
-        startActivity(new Intent(LoginActicity.this,CriarContaUsuarioActivity.class));
+        startActivity(new Intent(LoginActivity.this,CriarContaUsuarioActivity.class));
+    }
+    public void telaEsqueci(){
+        startActivity(new Intent(LoginActivity.this, EsqueciSenhaActivity.class));
     }
 }

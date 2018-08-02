@@ -3,6 +3,8 @@ package br.ufrpe.artemis.pessoa.negocio;
 import br.ufrpe.artemis.endereco.negocio.EnderecoNegocio;
 import br.ufrpe.artemis.pessoa.dao.PessoaDao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
+import br.ufrpe.artemis.usuario.dominio.Usuario;
+import br.ufrpe.artemis.usuario.negocio.UsuarioNegocio;
 
 public class PessoaNegocio {
 
@@ -34,4 +36,16 @@ public class PessoaNegocio {
         enderecoNegocio.alterarEndereco(pessoa.getEndereco());
     }
 
+    public Pessoa recuperarPessoaPorCpf(String cpf){
+        UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+        Usuario usuario = usuarioNegocio.recuperarUsuario(cpf);
+        Pessoa pessoa;
+        if (usuario != null) {
+            PessoaDao pessoaDao = new PessoaDao();
+            pessoa = pessoaDao.recuperarDoBancoPorUsuario(usuario.getId());
+        } else {
+            pessoa = null;
+        }
+        return pessoa;
+    }
 }

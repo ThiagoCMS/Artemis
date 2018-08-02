@@ -63,6 +63,13 @@ public class UsuarioNegocio {
         banco.alterarSenhaUsuario(usuario);
     }
 
+    public void alterarSenha(Usuario usuario){
+        UsuarioDao banco = new UsuarioDao();
+        Criptografia criptografia = new Criptografia();
+        usuario.setSenha(criptografia.criptografarString(usuario.getSenha()));
+        banco.alterarSenhaUsuario(usuario);
+    }
+
     public Usuario login(String cpf, String senha){
         Criptografia criptografia = new Criptografia();
         String senhaCriptografada = criptografia.criptografarString(senha);

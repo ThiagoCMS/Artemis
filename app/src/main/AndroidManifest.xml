@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_artemis_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".usuario.gui.LoginActicity">
+        <activity android:name=".usuario.gui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,7 +40,8 @@
         <activity android:name=".pessoa.gui.OutroPerfilActivity" />
         <activity android:name=".chat.gui.ChatActivity" />
         <activity android:name=".chat.gui.ListaConversasActivity" />
-        <activity android:name=".pessoa.gui.FormularioActivity"></activity>
+        <activity android:name=".pessoa.gui.FormularioActivity" />
+        <activity android:name=".usuario.gui.EsqueciSenhaActivity"></activity>
     </application>
 
 </manifest>

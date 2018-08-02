@@ -21,6 +21,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
     private EditText numeroEditar;
     private EditText cidadeEditar;
     private Button alterar;
+    private Button editarFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
         numeroEditar = findViewById(R.id.numEnderecoId);
         cidadeEditar = findViewById(R.id.cidadeEnderecoId);
         alterar = findViewById(R.id.btAlterarId);
+        editarFoto = findViewById(R.id.editarFotoId);
         setPessoa();
     }
 
