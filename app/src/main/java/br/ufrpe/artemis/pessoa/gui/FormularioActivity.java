@@ -38,8 +38,8 @@ public class FormularioActivity extends AppCompatActivity {
         precoServico = findViewById(R.id.precoRatingId);
         qualidadeServico = findViewById(R.id.qualidadeRatingId);
         atendimentoServico = findViewById(R.id.atendimentoRatingId);
-        comentarioServico = findViewById(R.id.comentariosId);
-        enviar = findViewById(R.id.enviarId);
+//        comentarioServico = findViewById(R.id.comentariosId);
+//        enviar = findViewById(R.id.enviarId);
 
     }
 
