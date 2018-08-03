@@ -19,7 +19,7 @@ import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.servico.gui.MeusServicosActivity;
 import br.ufrpe.artemis.servico.gui.SubCategoriaActivity;
 import br.ufrpe.artemis.usuario.gui.ConfiguracoesActivity;
-import br.ufrpe.artemis.usuario.gui.LoginActicity;
+import br.ufrpe.artemis.usuario.gui.LoginActivity;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -148,7 +148,7 @@ public class HomeActivity extends AppCompatActivity
 
     private void logout(){
         Sessao.instance.reset();
-        startActivity(new Intent(HomeActivity.this, LoginActicity.class));
+        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
         HomeActivity.this.finish();
     }
 }

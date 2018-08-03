@@ -20,6 +20,7 @@ public class DB extends SQLiteOpenHelper {
         db.execSQL("create table chat (id integer primary key autoincrement, idpessoa1 integer, idpessoa2 integer)");
         db.execSQL("create table mensagem (id integer primary key autoincrement, idchat integer, idpessoa integer, data integer, texto text)");
         db.execSQL("create table endereco (id integer primary key autoincrement, rua text, numero text, cidade text, idpessoa)");
+        db.execSQL("create table classificacao(id integer primary key autoincrement, preco real, qualidade real, atendimento real, comentario text, idpessoa integer, idpessoa2 integer )");
         criarCategoria(db);
         criarSubCategoria(db);
     }
