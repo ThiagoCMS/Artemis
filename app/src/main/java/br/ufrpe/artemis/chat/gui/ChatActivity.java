@@ -4,6 +4,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -19,9 +20,10 @@ import br.ufrpe.artemis.R;
 public class ChatActivity extends AppCompatActivity {
     private ListView listView;
     private EditText editText;
-    private FloatingActionButton btn_send_message;
+    private Button btn_send_message;
     private ArrayList<Mensagem> list_mensagem;
     private Chat chat;
+    private Button oculto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class ChatActivity extends AppCompatActivity {
         listView = findViewById(R.id.idChatList);
         editText = findViewById(R.id.idChatText);
         btn_send_message = findViewById(R.id.idChatButtom);
-
+        oculto = findViewById(R.id.botaoOculto);
 
         ChatNegocio chatNegocio = new ChatNegocio();
         Bundle extras = getIntent().getExtras();
@@ -44,24 +46,17 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String textoMensagem = editText.getText().toString();
-
-
                 if (textoMensagem.isEmpty()) {
                     return;
                 }
-
                 PessoaNegocio pessoaNegocio = new PessoaNegocio();
                 Mensagem mensagem = new Mensagem(chat, pessoaNegocio.recuperarPessoaPorUsuario(Sessao.instance.getUsuario().getId()), textoMensagem);
                 list_mensagem.add(mensagem);
                 ChatNegocio chatNegocio1 = new ChatNegocio();
                 chatNegocio1.inserirMensagem(mensagem);
                 chatCustomAdapter.notifyDataSetChanged();
-
                 editText.setText("");
-
             }
-
-
         });
 
     }

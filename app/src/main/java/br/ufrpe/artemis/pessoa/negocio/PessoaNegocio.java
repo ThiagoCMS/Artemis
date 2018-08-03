@@ -2,6 +2,7 @@ package br.ufrpe.artemis.pessoa.negocio;
 
 import br.ufrpe.artemis.endereco.negocio.EnderecoNegocio;
 import br.ufrpe.artemis.pessoa.dao.PessoaDao;
+import br.ufrpe.artemis.pessoa.dominio.Classificacao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 
 public class PessoaNegocio {
@@ -32,6 +33,10 @@ public class PessoaNegocio {
         banco.alterarPerfil(pessoa);
         EnderecoNegocio enderecoNegocio = new EnderecoNegocio();
         enderecoNegocio.alterarEndereco(pessoa.getEndereco());
+    }
+
+    public void inserirClassificacao(Classificacao classificacao){
+
     }
 
 }

@@ -40,7 +40,7 @@
         <activity android:name=".pessoa.gui.OutroPerfilActivity" />
         <activity android:name=".chat.gui.ChatActivity" />
         <activity android:name=".chat.gui.ListaConversasActivity" />
-        <activity android:name=".pessoa.gui.FormularioActivity"></activity>
+        <activity android:name=".pessoa.gui.FormularioActivity" />
     </application>
 
 </manifest>
