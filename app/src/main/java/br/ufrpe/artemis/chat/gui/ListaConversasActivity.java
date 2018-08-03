@@ -24,23 +24,29 @@ public class ListaConversasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_conversas);
+        setTela();
+        listViewChat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                clickListView(position);
+            }
+        });
 
+
+    }
+
+    private void setTela(){
         listViewChat = findViewById(R.id.listViewChats);
         ChatNegocio chatNegocio = new ChatNegocio();
         listaChat = chatNegocio.recuperarChats();
         ArrayAdapter adapterChat = new ChatListAdapter(listaChat);
         listViewChat.setAdapter(adapterChat);
+    }
 
-        listViewChat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ListaConversasActivity.this, ChatActivity.class);
-                intent.putExtra("id", String.valueOf(listaChat.get(position).getId()));
-                startActivity(intent);
-            }
-        });
-
-
+    private void clickListView(int position){
+        Intent intent = new Intent(ListaConversasActivity.this, ChatActivity.class);
+        intent.putExtra("id", String.valueOf(listaChat.get(position).getId()));
+        startActivity(intent);
     }
 
 }
