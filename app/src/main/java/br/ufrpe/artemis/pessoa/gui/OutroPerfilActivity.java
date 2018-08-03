@@ -3,6 +3,7 @@ package br.ufrpe.artemis.pessoa.gui;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
@@ -15,6 +16,7 @@ public class OutroPerfilActivity extends AppCompatActivity {
     private TextView cidade;
     private Button botaoAnuncios;
     private Button botaoComentarios;
+    private ImageView imagem;
 
 
     @Override
@@ -31,6 +33,7 @@ public class OutroPerfilActivity extends AppCompatActivity {
         email = findViewById(R.id.emailPrestadoraId);
         cidade = findViewById(R.id.enderecoPrestadoraId);
         telefone = findViewById(R.id.telefonePrestadoraId);
+        imagem = findViewById(R.id.imgView);
         setPessoa();
     }
 
@@ -43,5 +46,6 @@ public class OutroPerfilActivity extends AppCompatActivity {
         email.setText(pessoa.getEmail());
         telefone.setText(pessoa.getTelefone());
         cidade.setText(pessoa.getEndereco().getCidade());
+        imagem.setImageBitmap(pessoa.getFotoPerfil());
     }
 }

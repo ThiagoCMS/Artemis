@@ -51,7 +51,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     }
     private void setTela(){
-        imagemUsuario = findViewById(R.id.imagemPerfilId);
+        imagemUsuario = findViewById(R.id.imgView);
         nomeUsuario = findViewById(R.id.nomeUsuarioId);
         botaoAnuncios = findViewById(R.id.botaoanuncioId);
         botaoComentarios = findViewById(R.id.botaoComentariosId);
@@ -70,6 +70,8 @@ public class PerfilActivity extends AppCompatActivity {
         pessoaEmail.setText(pessoa.getEmail());
         telefone.setText(pessoa.getTelefone());
         endereco.setText(pessoa.getEndereco().getCidade());
+        imagemUsuario.setImageBitmap(pessoa.getFotoPerfil());
+
     }
 
     public void anuncios(){

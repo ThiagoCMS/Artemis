@@ -1,13 +1,19 @@
 package br.ufrpe.artemis.pessoa.gui;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.io.IOException;
+
 import br.ufrpe.artemis.endereco.dominio.Endereco;
+import br.ufrpe.artemis.infra.Aux;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
@@ -21,7 +27,8 @@ public class EditarPerfilActivity extends AppCompatActivity {
     private EditText numeroEditar;
     private EditText cidadeEditar;
     private Button alterar;
-
+    private Button alterarFoto;
+    public static final int RESULT_LOAD_IMAGE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +40,36 @@ public class EditarPerfilActivity extends AppCompatActivity {
                 alterarPessoa();
             }
         });
+        alterarFoto.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent i = new Intent(
+                        Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+                startActivityForResult(i, RESULT_LOAD_IMAGE);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            try {
+                Bitmap bitmaps = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                alterarFoto(bitmaps);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void setTela(){
@@ -43,6 +80,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
         numeroEditar = findViewById(R.id.numEnderecoId);
         cidadeEditar = findViewById(R.id.cidadeEnderecoId);
         alterar = findViewById(R.id.btAlterarId);
+        alterarFoto = findViewById(R.id.btAlterarFoto);
         setPessoa();
     }
 
@@ -175,5 +213,15 @@ public class EditarPerfilActivity extends AppCompatActivity {
     public void onBackPressed(){
         startActivity(new Intent(EditarPerfilActivity.this, PerfilActivity.class));
         EditarPerfilActivity.this.finish();
+    }
+
+    public void alterarFoto(Bitmap bitmap){
+        Bitmap bitmapComp = Aux.comprimirImagem(bitmap);
+        int idUsuario = Sessao.instance.getUsuario().getId();
+        PessoaNegocio pessoaNegocio = new PessoaNegocio();
+        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
+        pessoa.setFotoPerfil(bitmapComp);
+        pessoaNegocio.alterarFotoPerfil(pessoa);
+
     }
 }

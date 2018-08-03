@@ -1,5 +1,7 @@
 package br.ufrpe.artemis.pessoa.dominio;
 
+import android.graphics.Bitmap;
+
 import br.ufrpe.artemis.endereco.dominio.Endereco;
 import br.ufrpe.artemis.usuario.dominio.Usuario;
 
@@ -10,6 +12,15 @@ public class Pessoa {
     private Usuario usuario;
     private String telefone;
     private Endereco endereco;
+    private Bitmap fotoPerfil;
+
+    public Bitmap getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(Bitmap fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
+    }
 
     public int getId() {
         return id;
