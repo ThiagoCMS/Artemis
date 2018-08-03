@@ -36,7 +36,6 @@ public class ChatActivity extends AppCompatActivity {
         editText = findViewById(R.id.idChatText);
         btn_send_message = findViewById(R.id.idChatButtom);
         oculto = findViewById(R.id.botaoOculto);
-        textoBotao();
 
         ChatNegocio chatNegocio = new ChatNegocio();
         Bundle extras = getIntent().getExtras();
@@ -44,6 +43,7 @@ public class ChatActivity extends AppCompatActivity {
         list_mensagem = chatNegocio.recuperarMensagens(chat.getId());
         final ChatCustomAdapter chatCustomAdapter = new ChatCustomAdapter(list_mensagem);
         listView.setAdapter(chatCustomAdapter);
+        textoBotao();
 
         btn_send_message.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +86,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void clickBotaoOculto(){
-        if(chat.getPessoa1().getUsuario().getId() == Sessao.instance.getUsuario().getId()){
+        if(chat.getPessoa2().getUsuario().getId() == Sessao.instance.getUsuario().getId()){
             Toast.makeText(this, "Formulário liberado", Toast.LENGTH_SHORT).show();
         }else{
             abrirFormulario();

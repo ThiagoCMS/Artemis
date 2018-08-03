@@ -67,7 +67,6 @@ public class FormularioActivity extends AppCompatActivity {
         AvaliacaoNegocio negocio = new AvaliacaoNegocio();
         negocio.inserirAvaliacao(avaliacao);
         Toast.makeText(ArtemisApp.getContext(), "Obrigada pela Avaliação", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(FormularioActivity.this, HomeActivity.class));
         FormularioActivity.this.finish();
     }
 }
