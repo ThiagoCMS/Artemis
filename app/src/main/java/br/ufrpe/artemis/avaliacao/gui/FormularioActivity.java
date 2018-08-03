@@ -1,4 +1,4 @@
-package br.ufrpe.artemis.pessoa.gui;
+package br.ufrpe.artemis.avaliacao.gui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,16 +9,22 @@ import android.widget.TextView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 import br.ufrpe.artemis.R;
+import br.ufrpe.artemis.avaliacao.dominio.Avaliacao;
+import br.ufrpe.artemis.avaliacao.negocio.AvaliacaoNegocio;
 import br.ufrpe.artemis.infra.ArtemisApp;
-import br.ufrpe.artemis.pessoa.dominio.Classificacao;
+import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
+import br.ufrpe.artemis.pessoa.gui.HomeActivity;
+import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 
 public class FormularioActivity extends AppCompatActivity {
     private RatingBar precoServico;
     private RatingBar qualidadeServico;
     private RatingBar atendimentoServico;
     private TextView comentarioServico;
+    private TextView nomePrestadora;
     private Button enviar;
+    private Pessoa prestadora;
 
 
     @Override
@@ -40,16 +46,26 @@ public class FormularioActivity extends AppCompatActivity {
         atendimentoServico = findViewById(R.id.atendimentoRatingId);
         comentarioServico = findViewById(R.id.comentariosId);
         enviar = findViewById(R.id.enviarId);
-
+        nomePrestadora = findViewById(R.id.nomePrestadoraId);
+        Bundle extras = getIntent().getExtras();
+        int idPrestadora = Integer.parseInt(String.valueOf(extras.getString("id")));
+        PessoaNegocio negocio = new PessoaNegocio();
+        prestadora = negocio.recuperarPessoaPorId(idPrestadora);
+        nomePrestadora.setText(prestadora.getNome());
     }
 
     private void cadastro(){
-        Classificacao classificacao = new Classificacao();
-        classificacao.setNotaPreco(precoServico.getRating());
-        classificacao.setNotaQualidade(qualidadeServico.getRating());
-        classificacao.setNotaAtendimento(atendimentoServico.getRating());
-        classificacao.setComentario(comentarioServico.getText().toString().trim());
-        Pessoa pessoa = new Pessoa ();
+        Avaliacao avaliacao = new Avaliacao();
+        avaliacao.setNotaPreco(precoServico.getRating());
+        avaliacao.setNotaQualidade(qualidadeServico.getRating());
+        avaliacao.setNotaAtendimento(atendimentoServico.getRating());
+        avaliacao.setComentario(comentarioServico.getText().toString().trim());
+        avaliacao.setPessoaAvaliada(prestadora);
+        PessoaNegocio pessoaNegocio = new PessoaNegocio();
+        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(Sessao.instance.getUsuario().getId());
+        avaliacao.setPessoaAvaliadora(pessoa);
+        AvaliacaoNegocio negocio = new AvaliacaoNegocio();
+        negocio.inserirAvaliacao(avaliacao);
         Toast.makeText(ArtemisApp.getContext(), "Obrigada pela Avaliação", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(FormularioActivity.this, HomeActivity.class));
         FormularioActivity.this.finish();

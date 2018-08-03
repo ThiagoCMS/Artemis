@@ -1,17 +1,9 @@
 package br.ufrpe.artemis.pessoa.negocio;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
-import java.io.ByteArrayOutputStream;
-
-import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.endereco.negocio.EnderecoNegocio;
-import br.ufrpe.artemis.infra.ArtemisApp;
 import br.ufrpe.artemis.infra.Auxiliar;
-import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.dao.PessoaDao;
-import br.ufrpe.artemis.pessoa.dominio.Classificacao;
+import br.ufrpe.artemis.avaliacao.dominio.Avaliacao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.usuario.dominio.Usuario;
 import br.ufrpe.artemis.usuario.negocio.UsuarioNegocio;
@@ -50,10 +42,6 @@ public class PessoaNegocio {
         PessoaDao banco = new PessoaDao();
         byte[] bytes = Auxiliar.bitmapToByte(pessoa.getFotoPerfil());
         banco.alterarImagemPerfil(pessoa,bytes);
-    }
-
-    public void inserirClassificacao(Classificacao classificacao){
-
     }
 
     public Pessoa recuperarPessoaPorCpf(String cpf){

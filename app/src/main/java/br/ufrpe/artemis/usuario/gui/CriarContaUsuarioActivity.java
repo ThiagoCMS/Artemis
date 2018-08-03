@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import br.ufrpe.artemis.endereco.dominio.Endereco;
-import br.ufrpe.artemis.infra.Aux;
+import br.ufrpe.artemis.infra.Auxiliar;
 import br.ufrpe.artemis.infra.criptografia.Criptografia;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.R;
@@ -213,7 +213,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         pessoa.setNome(nome);
         pessoa.setEmail(email);
         pessoa.setTelefone(telefone);
-        pessoa.setFotoPerfil(Aux.comprimirImagem(Aux.gerarBitmapPadrao()));
+        pessoa.setFotoPerfil(Auxiliar.comprimirImagem(Auxiliar.gerarBitmapPadrao()));
         Endereco endereco = new Endereco();
         endereco.setCidade(cidadeS);
         endereco.setRua(ruaS);

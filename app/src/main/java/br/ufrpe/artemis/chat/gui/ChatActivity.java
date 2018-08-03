@@ -1,7 +1,6 @@
 package br.ufrpe.artemis.chat.gui;
 
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +15,7 @@ import br.ufrpe.artemis.chat.dominio.Chat;
 import br.ufrpe.artemis.chat.dominio.Mensagem;
 import br.ufrpe.artemis.chat.negocio.ChatNegocio;
 import br.ufrpe.artemis.infra.Sessao;
-import br.ufrpe.artemis.pessoa.gui.FormularioActivity;
+import br.ufrpe.artemis.avaliacao.gui.FormularioActivity;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
 

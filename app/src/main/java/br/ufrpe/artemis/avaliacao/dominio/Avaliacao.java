@@ -1,6 +1,8 @@
-package br.ufrpe.artemis.pessoa.dominio;
+package br.ufrpe.artemis.avaliacao.dominio;
 
-public class Classificacao {
+import br.ufrpe.artemis.pessoa.dominio.Pessoa;
+
+public class Avaliacao {
     private int id;
     private double notaPreco;
     private double notaQualidade;
