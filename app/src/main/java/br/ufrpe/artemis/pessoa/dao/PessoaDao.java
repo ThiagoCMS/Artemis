@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
 
 import br.ufrpe.artemis.endereco.dominio.Endereco;
 import br.ufrpe.artemis.infra.ArtemisApp;
-import br.ufrpe.artemis.infra.Aux;
+import br.ufrpe.artemis.infra.Auxiliar;
 import br.ufrpe.artemis.infra.database.dao.DB;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.usuario.dao.UsuarioDao;
@@ -34,7 +34,7 @@ public class PessoaDao {
         valores.put("email", pessoa.getEmail());
         valores.put("telefone", pessoa.getTelefone());
         valores.put("idendereco", pessoa.getEndereco().getId());
-        valores.put("fotoperfil", Aux.bitmapToByte(pessoa.getFotoPerfil()));
+        valores.put("fotoperfil", Auxiliar.bitmapToByte(pessoa.getFotoPerfil()));
         banco.insert("pessoa", null, valores);
         banco.close();
     }
@@ -48,7 +48,7 @@ public class PessoaDao {
             pessoa.setNome(cursor.getString(1));
             pessoa.setEmail(cursor.getString(3));
             pessoa.setTelefone(cursor.getString(4));
-            pessoa.setFotoPerfil(Aux.byteToBitmap(cursor.getBlob(6)));
+            pessoa.setFotoPerfil(Auxiliar.byteToBitmap(cursor.getBlob(6)));
             UsuarioDao bancoUsuario = new UsuarioDao();
             Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(2));
             pessoa.setUsuario(usuario);
@@ -68,7 +68,7 @@ public class PessoaDao {
             pessoa.setNome(cursor.getString(1));
             pessoa.setEmail(cursor.getString(3));
             pessoa.setTelefone(cursor.getString(4));
-            pessoa.setFotoPerfil(Aux.byteToBitmap(cursor.getBlob(6)));
+            pessoa.setFotoPerfil(Auxiliar.byteToBitmap(cursor.getBlob(6)));
             UsuarioDao bancoUsuario = new UsuarioDao();
             Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(2));
             pessoa.setUsuario(usuario);

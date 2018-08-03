@@ -13,7 +13,7 @@ import android.widget.EditText;
 import java.io.IOException;
 
 import br.ufrpe.artemis.endereco.dominio.Endereco;
-import br.ufrpe.artemis.infra.Aux;
+import br.ufrpe.artemis.infra.Auxiliar;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
@@ -80,7 +80,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
         numeroEditar = findViewById(R.id.numEnderecoId);
         cidadeEditar = findViewById(R.id.cidadeEnderecoId);
         alterar = findViewById(R.id.btAlterarId);
-        alterarFoto = findViewById(R.id.btAlterarFoto);
+        alterarFoto = findViewById(R.id.editarFotoId);
         setPessoa();
     }
 
@@ -216,7 +216,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
     }
 
     public void alterarFoto(Bitmap bitmap){
-        Bitmap bitmapComp = Aux.comprimirImagem(bitmap);
+        Bitmap bitmapComp = Auxiliar.comprimirImagem(bitmap);
         int idUsuario = Sessao.instance.getUsuario().getId();
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
         Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);

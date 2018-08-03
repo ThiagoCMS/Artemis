@@ -38,8 +38,8 @@ public class FormularioActivity extends AppCompatActivity {
         precoServico = findViewById(R.id.precoRatingId);
         qualidadeServico = findViewById(R.id.qualidadeRatingId);
         atendimentoServico = findViewById(R.id.atendimentoRatingId);
-//        comentarioServico = findViewById(R.id.comentariosId);
-//        enviar = findViewById(R.id.enviarId);
+        comentarioServico = findViewById(R.id.comentariosId);
+        enviar = findViewById(R.id.enviarId);
 
     }
 
@@ -53,7 +53,6 @@ public class FormularioActivity extends AppCompatActivity {
         Toast.makeText(ArtemisApp.getContext(), "Obrigada pela Avaliação", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(FormularioActivity.this, HomeActivity.class));
         FormularioActivity.this.finish();
-
-
     }
 }
+

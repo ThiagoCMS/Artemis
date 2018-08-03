@@ -8,10 +8,13 @@ import java.io.ByteArrayOutputStream;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.endereco.negocio.EnderecoNegocio;
 import br.ufrpe.artemis.infra.ArtemisApp;
-import br.ufrpe.artemis.infra.Aux;
+import br.ufrpe.artemis.infra.Auxiliar;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.dao.PessoaDao;
+import br.ufrpe.artemis.pessoa.dominio.Classificacao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
+import br.ufrpe.artemis.usuario.dominio.Usuario;
+import br.ufrpe.artemis.usuario.negocio.UsuarioNegocio;
 
 public class PessoaNegocio {
 
@@ -45,18 +48,24 @@ public class PessoaNegocio {
 
     public void alterarFotoPerfil(Pessoa pessoa){
         PessoaDao banco = new PessoaDao();
-        byte[] bytes = Aux.bitmapToByte(pessoa.getFotoPerfil());
+        byte[] bytes = Auxiliar.bitmapToByte(pessoa.getFotoPerfil());
         banco.alterarImagemPerfil(pessoa,bytes);
     }
 
+    public void inserirClassificacao(Classificacao classificacao){
 
+    }
 
-
-
-
-
-
-
-
-
+    public Pessoa recuperarPessoaPorCpf(String cpf){
+        UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+        Usuario usuario = usuarioNegocio.recuperarUsuario(cpf);
+        Pessoa pessoa;
+        if (usuario != null) {
+            PessoaDao pessoaDao = new PessoaDao();
+            pessoa = pessoaDao.recuperarDoBancoPorUsuario(usuario.getId());
+        } else {
+            pessoa = null;
+        }
+        return pessoa;
+    }
 }
