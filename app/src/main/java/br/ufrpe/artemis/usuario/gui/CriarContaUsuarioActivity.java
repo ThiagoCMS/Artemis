@@ -1,13 +1,24 @@
 package br.ufrpe.artemis.usuario.gui;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import br.ufrpe.artemis.endereco.dominio.Endereco;
+import br.ufrpe.artemis.infra.ArtemisApp;
 import br.ufrpe.artemis.infra.Auxiliar;
+import br.ufrpe.artemis.infra.HttpDataHandler;
 import br.ufrpe.artemis.infra.criptografia.Criptografia;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.R;
@@ -25,6 +36,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
     private EditText numero;
     private EditText cidade;
     private Button botaoRegistrar;
+    private boolean error = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -193,11 +205,21 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         if(negocio.existeUsuario(cpf)){
             Toast.makeText(this, "Cpf já registrado", Toast.LENGTH_SHORT).show();
         }else{
-            inserirUsuario(cpf, senha);
+            String ruaS = rua.getText().toString().trim();
+            String numeroS = numero.getText().toString().trim();
+            String cidadeS = cidade.getText().toString().trim();
+            String end = ruaS.replace(" ", "+") + "+" + numeroS + "+" + cidadeS.replace(" ", "+");
+            new GetCoordinates().execute(end);
         }
     }
 
-    private void inserirUsuario(String cpf, String  senha){
+    private void inserirUsuario(double lat, double lng){
+        if(error){
+            Toast.makeText(this, "endereço não localizado", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String cpf = cpfRegistro.getText().toString().trim();
+        String senha = senhaRegistro.getText().toString();
         String nome = nomeRegistro.getText().toString().trim();
         String email = emailRegistro.getText().toString().trim();
         String telefone = telefoneRegistro.getText().toString().trim();
@@ -218,9 +240,66 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         endereco.setCidade(cidadeS);
         endereco.setRua(ruaS);
         endereco.setNumero(numeroS);
+        endereco.setLat(lat);
+        endereco.setLng(lng);
         UsuarioNegocio negocio = new UsuarioNegocio();
         negocio.inserirUsuarioBanco(usuario, pessoa, endereco);
         Toast.makeText(CriarContaUsuarioActivity.this, "Usuario registrado", Toast.LENGTH_SHORT).show();
         CriarContaUsuarioActivity.this.finish();
+    }
+
+    private class GetCoordinates extends AsyncTask<String,Void,String> {
+        ProgressDialog dialog = new ProgressDialog(CriarContaUsuarioActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.setMessage("Please wait....");
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String response;
+            try{
+                String address = strings[0];
+                HttpDataHandler http = new HttpDataHandler();
+                String url = String.format("https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=AIzaSyCI1NeacBsowhHvQTPcCLV9bZ5aUgJBm8M",address);
+                response = http.getHTTPData(url);
+                return response;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try{
+                JSONObject jsonObject = new JSONObject(s);
+                String ok = (String) jsonObject.get("status");
+                if(ok.equals("OK")) {
+                    double lat = (double) ((JSONArray)jsonObject.get("results")).getJSONObject(0).getJSONObject("geometry")
+                            .getJSONObject("location").get("lat");
+                    double lng = (double) ((JSONArray) jsonObject.get("results")).getJSONObject(0).getJSONObject("geometry")
+                            .getJSONObject("location").get("lng");
+                    if(dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+                    inserirUsuario(lat, lng);
+                }else{
+                    error = true;
+                }
+
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
