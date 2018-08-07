@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 
 import br.ufrpe.artemis.avaliacao.dominio.Classificacao;
+import br.ufrpe.artemis.avaliacao.gui.AvaliacoesActivity;
 import br.ufrpe.artemis.avaliacao.negocio.AvaliacaoNegocio;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
@@ -39,6 +40,12 @@ public class OutroPerfilActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 anuncios();
+            }
+        });
+        botaoComentarios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                opnioes();
             }
         });
     }
@@ -77,5 +84,9 @@ public class OutroPerfilActivity extends AppCompatActivity {
 
     public void anuncios(){
         startActivity(new Intent(OutroPerfilActivity.this, ServicoOutraPessoaActivity.class).putExtra("id", pessoa.getId()));
+    }
+
+    private void opnioes(){
+        startActivity(new Intent(OutroPerfilActivity.this, AvaliacoesActivity.class).putExtra("id", pessoa.getId()));
     }
 }
