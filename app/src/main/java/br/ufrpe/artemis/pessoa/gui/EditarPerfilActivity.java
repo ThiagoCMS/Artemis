@@ -1,23 +1,32 @@
 package br.ufrpe.artemis.pessoa.gui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
 import br.ufrpe.artemis.endereco.dominio.Endereco;
 import br.ufrpe.artemis.infra.Auxiliar;
+import br.ufrpe.artemis.infra.HttpDataHandler;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
+import br.ufrpe.artemis.usuario.gui.CriarContaUsuarioActivity;
 
 public class EditarPerfilActivity extends AppCompatActivity {
     private EditText nomeEditar;
@@ -29,6 +38,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
     private Button alterar;
     private Button alterarFoto;
     public static final int RESULT_LOAD_IMAGE = 1;
+    private boolean error;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +109,11 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
     public void alterarPessoa(){
         if(validarCampos()) {
-            alterarInformacoes();
+            String rua = ruaEditar.getText().toString().trim();
+            String numero = numeroEditar.getText().toString().trim();
+            String cidade = cidadeEditar.getText().toString().trim();
+            String end = rua.replace(" ", "+") + "+" + numero + "+" + cidade.replace(" ", "+");
+            new GetCoordinates().execute(end);
         }
     }
 
@@ -187,7 +201,11 @@ public class EditarPerfilActivity extends AppCompatActivity {
         return erro;
     }
 
-    private void alterarInformacoes(){
+    private void alterarInformacoes(double lat, double lng){
+        if(error){
+            Toast.makeText(this, "endereço não localizado", Toast.LENGTH_SHORT).show();
+            return;
+        }
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
         int idUsuario = Sessao.instance.getUsuario().getId();
         Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
@@ -204,6 +222,8 @@ public class EditarPerfilActivity extends AppCompatActivity {
         endereco.setNumero(numero);
         endereco.setRua(rua);
         endereco.setCidade(cidade);
+        endereco.setLat(lat);
+        endereco.setLng(lng);
         pessoa.setEndereco(endereco);
         pessoaNegocio.alterarPessoa(pessoa);
         startActivity(new Intent(EditarPerfilActivity.this, PerfilActivity.class));
@@ -222,6 +242,60 @@ public class EditarPerfilActivity extends AppCompatActivity {
         Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
         pessoa.setFotoPerfil(bitmapComp);
         pessoaNegocio.alterarFotoPerfil(pessoa);
+    }
 
+    private class GetCoordinates extends AsyncTask<String,Void,String> {
+        ProgressDialog dialog = new ProgressDialog(EditarPerfilActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.setMessage("Please wait....");
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String response;
+            try{
+                String address = strings[0];
+                HttpDataHandler http = new HttpDataHandler();
+                String url = String.format("https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=AIzaSyCI1NeacBsowhHvQTPcCLV9bZ5aUgJBm8M",address);
+                response = http.getHTTPData(url);
+                return response;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try{
+                JSONObject jsonObject = new JSONObject(s);
+                String ok = (String) jsonObject.get("status");
+                if(ok.equals("OK")) {
+                    double lat = (double) ((JSONArray)jsonObject.get("results")).getJSONObject(0).getJSONObject("geometry")
+                            .getJSONObject("location").get("lat");
+                    double lng = (double) ((JSONArray) jsonObject.get("results")).getJSONObject(0).getJSONObject("geometry")
+                            .getJSONObject("location").get("lng");
+                    if(dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+                    alterarInformacoes(lat, lng);
+                }else{
+                    error = true;
+                }
+
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

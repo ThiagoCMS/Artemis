@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DB extends SQLiteOpenHelper {
-    private static final String NOME_DO_BANCO = "BancoA";
+    private static final String NOME_DO_BANCO = "BancoA2";
     private static final int VERSAO = 1;
 
     public DB(Context ctx) { super(ctx, NOME_DO_BANCO, null, VERSAO);}
@@ -19,7 +19,7 @@ public class DB extends SQLiteOpenHelper {
         db.execSQL("create table pessoa (id integer primary key autoincrement, nome text not null, idusuario integer, email text, telefone text, idendereco integer, fotoperfil BLOB);");
         db.execSQL("create table chat (id integer primary key autoincrement, idpessoa1 integer, idpessoa2 integer)");
         db.execSQL("create table mensagem (id integer primary key autoincrement, idchat integer, idpessoa integer, data integer, texto text)");
-        db.execSQL("create table endereco (id integer primary key autoincrement, rua text, numero text, cidade text, idpessoa)");
+        db.execSQL("create table endereco (id integer primary key autoincrement, rua text, numero text, cidade text, lat real, lng real)");
         db.execSQL("create table classificacao(id integer primary key autoincrement, preco real, qualidade real, atendimento real, comentario text, idpessoa integer, idpessoa2 integer )");
         criarCategoria(db);
         criarSubCategoria(db);

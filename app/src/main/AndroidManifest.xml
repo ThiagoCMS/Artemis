@@ -17,11 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".usuario.gui.CriarContaUsuarioActivity" />
         <activity
             android:name=".pessoa.gui.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".usuario.gui.CriarContaUsuarioActivity" />
         <activity android:name=".servico.gui.ServicosListActivity" />
         <activity android:name=".servico.gui.MeusServicosActivity" />
         <activity android:name=".servico.gui.CriarServicoActivity" />
@@ -41,7 +42,8 @@
         <activity android:name=".chat.gui.ChatActivity" />
         <activity android:name=".chat.gui.ListaConversasActivity" />
         <activity android:name=".avaliacao.gui.FormularioActivity" />
-        <activity android:name=".usuario.gui.EsqueciSenhaActivity"></activity>
-</application>
+        <activity android:name=".usuario.gui.EsqueciSenhaActivity" />
+        <activity android:name=".pessoa.gui.SearchResultsActivity"></activity>
+    </application>
 
 </manifest>

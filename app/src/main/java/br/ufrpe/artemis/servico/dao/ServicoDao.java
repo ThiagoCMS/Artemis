@@ -161,5 +161,26 @@ public class ServicoDao {
         }
         return categoria;
     }
+
+    public ArrayList<Servico> retornarServicos(){
+        ArrayList<Servico> list = new ArrayList<Servico>();
+        //Cursor cursor = banco.query("servico", new String[]{"*"}, "1=1", new String[]{String.valueOf(idSub)}, null, null, null);
+        Cursor cursor = banco.query("servico",new String[]{"*"},"1=1",null,null,null,null);
+        if(cursor.getCount()>0){cursor.moveToFirst();}
+        for(int i = 0; i < cursor.getCount(); i++){
+            Servico servico = new Servico();
+            servico.setId(cursor.getInt(0));
+            servico.setNome(cursor.getString(1));
+            servico.setTexto(cursor.getString(2));
+            PessoaDao bancoPessoa = new PessoaDao();
+            Pessoa pessoa = bancoPessoa.recuperarDoBanco(cursor.getInt(3));
+            servico.setPessoa(pessoa);
+            Subcategoria subcategoria = retornarSubcategoria(cursor.getInt(4));
+            servico.setSubcategoria(subcategoria);
+            list.add(servico);
+            cursor.moveToNext();
+        }
+        return list;
+    }
 }
 
