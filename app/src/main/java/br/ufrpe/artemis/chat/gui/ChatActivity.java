@@ -60,7 +60,7 @@ public class ChatActivity extends AppCompatActivity {
         listMensagem = chatNegocio.recuperarMensagens(chat.getId());
         chatCustomAdapter = new ChatCustomAdapter(listMensagem);
         listView.setAdapter(chatCustomAdapter);
-        if(chat.getPessoa1().getUsuario().getId() == Sessao.instance.getUsuario().getId()){
+        if(chat.getPessoa1().getId() == Sessao.instance.getPessoa().getId()){
             oculto.setText("Responder formulário");
         }else{
             oculto.setText("Liberar formulário");
@@ -68,7 +68,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void clickBotaoOculto(){
-        if(chat.getPessoa2().getUsuario().getId() == Sessao.instance.getUsuario().getId()){
+        if(chat.getPessoa2().getUsuario().getId() == Sessao.instance.getPessoa().getId()){
             Toast.makeText(this, "Formulário liberado", Toast.LENGTH_SHORT).show();
         }else{
             Intent intent = new Intent(ChatActivity.this, FormularioActivity.class);
@@ -83,7 +83,7 @@ public class ChatActivity extends AppCompatActivity {
             return;
         }
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
-        Mensagem mensagem = new Mensagem(chat, pessoaNegocio.recuperarPessoaPorUsuario(Sessao.instance.getUsuario().getId()), textoMensagem);
+        Mensagem mensagem = new Mensagem(chat, Sessao.instance.getPessoa(), textoMensagem);
         listMensagem.add(mensagem);
         ChatNegocio chatNegocio1 = new ChatNegocio();
         chatNegocio1.inserirMensagem(mensagem);

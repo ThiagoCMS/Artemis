@@ -118,7 +118,7 @@ public class MeusServicosActivity extends AppCompatActivity {
     private void setTela(){
         button = findViewById(R.id.buttonId);
         list = findViewById(R.id.listId);
-        listaServicos = negocio.listarSevicosUs(Sessao.instance.getUsuario().getId());
+        listaServicos = negocio.listarSevicosPessoa(Sessao.instance.getPessoa().getId());
         adapterNew = new MeusServicosAdapter(listaServicos);
         list.setAdapter(adapterNew);
     }

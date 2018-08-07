@@ -56,11 +56,10 @@ public class UsuarioNegocio {
 
     public void alterarSenha(String senha){
         UsuarioDao banco = new UsuarioDao();
-        Usuario usuario = Sessao.instance.getUsuario();
         Criptografia criptografia = new Criptografia();
         String senhaCriptografada = criptografia.criptografarString(senha);
-        usuario.setSenha(senhaCriptografada);
-        banco.alterarSenhaUsuario(usuario);
+        Sessao.instance.getPessoa().getUsuario().setSenha(senhaCriptografada);
+        banco.alterarSenhaUsuario(Sessao.instance.getPessoa().getUsuario());
     }
 
     public void alterarSenha(Usuario usuario){
@@ -75,7 +74,9 @@ public class UsuarioNegocio {
         String senhaCriptografada = criptografia.criptografarString(senha);
         Usuario usuario = verificarUsuario(cpf, senhaCriptografada);
         if(usuario != null){
-            Sessao.instance.setUsuario(usuario);
+            PessoaNegocio pessoaNegocio = new PessoaNegocio();
+            Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(usuario.getId());
+            Sessao.instance.setPessoa(pessoa);
         }
         return usuario;
     }

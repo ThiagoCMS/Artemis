@@ -66,11 +66,11 @@ public class OutroPerfilActivity extends AppCompatActivity {
 
     private void setPessoa(){
         Bundle extras = getIntent().getExtras();
-        int idUsuario = extras.getInt("id");
+        int idPessoa = extras.getInt("id");
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
-        pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
+        pessoa = pessoaNegocio.recuperarPessoaPorId(idPessoa);
         AvaliacaoNegocio avaliacaoNegocio = new AvaliacaoNegocio();
-        Classificacao classificacao = avaliacaoNegocio.notasPrestadora(idUsuario);
+        Classificacao classificacao = avaliacaoNegocio.notasPrestadora(idPessoa);
         nome.setText(pessoa.getNome());
         email.setText(pessoa.getEmail());
         telefone.setText(pessoa.getTelefone());

@@ -42,7 +42,7 @@ public class ServicoOutraPessoaActivity extends AppCompatActivity {
         final ServicoNegocio negocio = new ServicoNegocio();
         Bundle extras = getIntent().getExtras();
         int id = extras.getInt("id");
-        arrayListServico = negocio.listarSevicosUs(id);
+        arrayListServico = negocio.listarSevicosPessoa(id);
         listViewGeral = findViewById(R.id.anunciosOutraId);
         final ArrayAdapter servicoAdapter = new ServicoAdapter(arrayListServico);
         listViewGeral.setAdapter(servicoAdapter);

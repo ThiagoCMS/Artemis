@@ -59,8 +59,7 @@ public class FormularioActivity extends AppCompatActivity {
         avaliacao.setNotaAtendimento(atendimentoServico.getRating());
         avaliacao.setComentario(comentarioServico.getText().toString().trim());
         avaliacao.setPrestadora(prestadora);
-        PessoaNegocio pessoaNegocio = new PessoaNegocio();
-        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(Sessao.instance.getUsuario().getId());
+        Pessoa pessoa = Sessao.instance.getPessoa();
         avaliacao.setCliente(pessoa);
         AvaliacaoNegocio negocio = new AvaliacaoNegocio();
         negocio.inserirAvaliacao(avaliacao);

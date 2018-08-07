@@ -78,13 +78,12 @@ public class ServicoActivity extends AppCompatActivity {
     }
     private void comecarChat(){
 
-        if(servico.getPessoa().getUsuario().getId()== Sessao.instance.getUsuario().getId()){
+        if(servico.getPessoa().getId()== Sessao.instance.getPessoa().getId()){
             Toast.makeText(ArtemisApp.getContext(),"Você não pode iniciar um chat com si mesmo",Toast.LENGTH_SHORT).show();
 
         }else{
             ChatNegocio chatNegocio = new ChatNegocio();
-            PessoaNegocio pessoaNegocio = new PessoaNegocio();
-            Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(Sessao.instance.getUsuario().getId());
+            Pessoa pessoa = Sessao.instance.getPessoa();
             Chat chat = chatNegocio.iniciarChat(pessoa,servico.getPessoa());
             Intent intent = new Intent(ServicoActivity.this, ChatActivity.class);
             intent.putExtra("id", String.valueOf(chat.getId()));

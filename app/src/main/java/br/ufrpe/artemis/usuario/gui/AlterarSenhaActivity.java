@@ -42,7 +42,7 @@ public class AlterarSenhaActivity extends AppCompatActivity {
     }
 
     private boolean verificarSenha(){
-        Usuario usuario = Sessao.instance.getUsuario();
+        Usuario usuario = Sessao.instance.getPessoa().getUsuario();
         String senha = senhaAtual.getText().toString();
         if(usuario.getSenha().equals(senha)){
             return true;

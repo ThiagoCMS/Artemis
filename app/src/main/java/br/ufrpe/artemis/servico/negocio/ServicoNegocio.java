@@ -29,8 +29,7 @@ public class ServicoNegocio {
     public ArrayList<Servico> listarSevicosSub(int idSub){
         ServicoDao banco = new ServicoDao();
         ArrayList<Servico> list = banco.recuperarDoBancoSub(idSub);
-        PessoaNegocio pessoaNegocio = new PessoaNegocio();
-        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(Sessao.instance.getUsuario().getId());
+        Pessoa pessoa = Sessao.instance.getPessoa();
         EnderecoNegocio enderecoNegocio = new EnderecoNegocio();
         LatLng latLng = new LatLng(pessoa.getEndereco().getLat(), pessoa.getEndereco().getLng());
         ArrayList<Servico> list1 = new ArrayList<>();
@@ -46,11 +45,9 @@ public class ServicoNegocio {
         return list1;
     }
 
-    public ArrayList<Servico> listarSevicosUs(int idUsuario){
+    public ArrayList<Servico> listarSevicosPessoa(int idPessoa){
         ServicoDao banco = new ServicoDao();
-        PessoaNegocio negocio = new PessoaNegocio();
-        Pessoa pessoa = negocio.recuperarPessoaPorUsuario(idUsuario);
-        ArrayList<Servico> list = banco.recuperarDoBancoUs(pessoa.getId());
+        ArrayList<Servico> list = banco.recuperarDoBancoUs(idPessoa);
         return list;
     }
 

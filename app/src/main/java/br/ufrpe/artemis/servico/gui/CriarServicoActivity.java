@@ -149,9 +149,7 @@ public class CriarServicoActivity extends AppCompatActivity {
             Subcategoria subcategoria = listaSubcategoria.get(subcategoriaSpinner.getSelectedItemPosition());
             servico.setSubcategoria(subcategoria);
             ServicoNegocio servicoNegocio = new ServicoNegocio();
-            int idusuario = Sessao.instance.getUsuario().getId();
-            Pessoa pessoa = servicoNegocio.recuperarPessoa(idusuario);
-            servico.setPessoa(pessoa);
+            servico.setPessoa(Sessao.instance.getPessoa());
             servicoNegocio.inserirServicoNoBanco(servico);
             Toast.makeText(ArtemisApp.getContext(), "Serviço cadastrado com sucesso", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(CriarServicoActivity.this, MeusServicosActivity.class));

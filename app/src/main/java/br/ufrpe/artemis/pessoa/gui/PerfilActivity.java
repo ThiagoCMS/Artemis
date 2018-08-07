@@ -9,9 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
-import br.ufrpe.artemis.avaliacao.dominio.Avaliacao;
 import br.ufrpe.artemis.avaliacao.dominio.Classificacao;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
@@ -76,10 +74,8 @@ public class PerfilActivity extends AppCompatActivity {
 
     private void setPessoa(){
         AvaliacaoNegocio avaliacaoNegocio = new AvaliacaoNegocio();
-        Classificacao classificacao = avaliacaoNegocio.notasPrestadora(Sessao.instance.getUsuario().getId());
-        PessoaNegocio pessoaNegocio = new PessoaNegocio();
-        int idUsuario = Sessao.instance.getUsuario().getId();
-        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
+        Classificacao classificacao = avaliacaoNegocio.notasPrestadora(Sessao.instance.getPessoa().getId());
+        Pessoa pessoa = Sessao.instance.getPessoa();
         nomeUsuario.setText(pessoa.getNome());
         pessoaEmail.setText(pessoa.getEmail());
         telefone.setText(pessoa.getTelefone());

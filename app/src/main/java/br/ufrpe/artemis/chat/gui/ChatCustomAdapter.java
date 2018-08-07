@@ -36,7 +36,7 @@ public class ChatCustomAdapter extends ArrayAdapter<Mensagem> {
 
         View view = convertView;
 
-        if(mensagens.get(position).getPessoa().getUsuario().getId() == Sessao.instance.getUsuario().getId())
+        if(mensagens.get(position).getPessoa().getId() == Sessao.instance.getPessoa().getId())
             view = layoutInflater.inflate(R.layout.list_item_message_send, null);
         else
             view = layoutInflater.inflate(R.layout.list_item_message_recv,null);

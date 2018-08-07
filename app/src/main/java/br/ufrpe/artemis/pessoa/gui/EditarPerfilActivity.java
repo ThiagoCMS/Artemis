@@ -26,7 +26,6 @@ import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
-import br.ufrpe.artemis.usuario.gui.CriarContaUsuarioActivity;
 
 public class EditarPerfilActivity extends AppCompatActivity {
     private EditText nomeEditar;
@@ -95,9 +94,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
     }
 
     private void setPessoa(){
-        PessoaNegocio pessoaNegocio = new PessoaNegocio();
-        int idUsuario = Sessao.instance.getUsuario().getId();
-        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
+        Pessoa pessoa = Sessao.instance.getPessoa();
         nomeEditar.setText(pessoa.getNome());
         emailEditar.setText(pessoa.getEmail());
         telefoneEditar.setText(pessoa.getTelefone());
@@ -207,8 +204,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
             return;
         }
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
-        int idUsuario = Sessao.instance.getUsuario().getId();
-        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
+        Pessoa pessoa = Sessao.instance.getPessoa();
         String nome = nomeEditar.getText().toString().trim();
         String telefone = telefoneEditar.getText().toString().trim();
         String email = emailEditar.getText().toString().trim();
@@ -226,6 +222,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
         endereco.setLng(lng);
         pessoa.setEndereco(endereco);
         pessoaNegocio.alterarPessoa(pessoa);
+        Sessao.instance.setPessoa(pessoa);
         startActivity(new Intent(EditarPerfilActivity.this, PerfilActivity.class));
         EditarPerfilActivity.this.finish();
     }
@@ -237,11 +234,9 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
     public void alterarFoto(Bitmap bitmap){
         Bitmap bitmapComp = Auxiliar.comprimirImagem(bitmap);
-        int idUsuario = Sessao.instance.getUsuario().getId();
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
-        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
-        pessoa.setFotoPerfil(bitmapComp);
-        pessoaNegocio.alterarFotoPerfil(pessoa);
+        Sessao.instance.getPessoa().setFotoPerfil(bitmapComp);
+        pessoaNegocio.alterarFotoPerfil(Sessao.instance.getPessoa());
     }
 
     private class GetCoordinates extends AsyncTask<String,Void,String> {

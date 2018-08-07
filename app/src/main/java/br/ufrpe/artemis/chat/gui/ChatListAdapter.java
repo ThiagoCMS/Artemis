@@ -29,7 +29,7 @@ public class ChatListAdapter extends ArrayAdapter<Chat> {
         LayoutInflater inflater = (LayoutInflater) ArtemisApp.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.linha_chat, parent, false);
         TextView nomeOutraPessoaChat = rowView.findViewById(R.id.nomePrestadorChat);
-        if(elementos.get(position).getPessoa1().getUsuario().getId() == Sessao.instance.getUsuario().getId()){
+        if(elementos.get(position).getPessoa1().getId() == Sessao.instance.getPessoa().getId()){
             nomeOutraPessoaChat.setText(elementos.get(position).getPessoa2().getNome());
         }else{
             nomeOutraPessoaChat.setText(elementos.get(position).getPessoa1().getNome());

@@ -3,6 +3,7 @@ package br.ufrpe.artemis.pessoa.gui;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -23,6 +25,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import br.ufrpe.artemis.chat.gui.ListaConversasActivity;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.R;
+import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.servico.gui.MeusServicosActivity;
 import br.ufrpe.artemis.servico.gui.SubCategoriaActivity;
 import br.ufrpe.artemis.usuario.gui.ConfiguracoesActivity;
@@ -36,6 +39,9 @@ public class HomeActivity extends AppCompatActivity
     private ImageView domiciliares;
     private ImageView moda;
     private ImageView tecnologia;
+    private ImageView fotoPerfil;
+    private TextView nomePerfil;
+    private View hView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,7 @@ public class HomeActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        hView =  navigationView.getHeaderView(0);
         setView();
         saude.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +103,10 @@ public class HomeActivity extends AppCompatActivity
         domiciliares = findViewById(R.id.domiciliarId);
         moda = findViewById(R.id.modaId);
         tecnologia = findViewById(R.id.tecnologiaId);
+        fotoPerfil = hView.findViewById(R.id.fotoPerfilHomeId);
+        nomePerfil = hView.findViewById(R.id.nomePerfilHomeId);
+        fotoPerfil.setImageBitmap(Sessao.instance.getPessoa().getFotoPerfil());
+        nomePerfil.setText(Sessao.instance.getPessoa().getNome());
     }
 
     private void escolherCategoria(String id){

@@ -33,7 +33,7 @@ public class ChatNegocio {
     public ArrayList<Chat> recuperarChats(){
         ChatDao dao = new ChatDao();
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
-        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(Sessao.instance.getUsuario().getId());
+        Pessoa pessoa = Sessao.instance.getPessoa();
         ArrayList<Chat> chatList = dao.recuperarChats(pessoa.getId());
         for (Chat chat:chatList) {
             chat.setPessoa1(pessoaNegocio.recuperarPessoaPorId(chat.getPessoa1().getId()));
