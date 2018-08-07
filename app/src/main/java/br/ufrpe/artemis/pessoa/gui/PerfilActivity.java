@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import br.ufrpe.artemis.avaliacao.dominio.Avaliacao;
@@ -84,9 +85,10 @@ public class PerfilActivity extends AppCompatActivity {
         telefone.setText(pessoa.getTelefone());
         endereco.setText(pessoa.getEndereco().getCidade());
         imagemUsuario.setImageBitmap(pessoa.getFotoPerfil());
-        ntPreço.setText("Preço - " + classificacao.getMediaPreco());
-        ntQualidade.setText("Qualidade - " + classificacao.getMediaQualidade());
-        ntAtendimento.setText("Atendimento - " + classificacao.getMediaAtendimento());
+        DecimalFormat df2 = new DecimalFormat(".##");
+        ntPreço.setText("Preço - " +  df2.format(classificacao.getMediaPreco()));
+        ntQualidade.setText("Qualidade - " +  df2.format(classificacao.getMediaQualidade()));
+        ntAtendimento.setText("Atendimento - " +  df2.format(classificacao.getMediaAtendimento()));
     }
 
     public void anuncios(){
