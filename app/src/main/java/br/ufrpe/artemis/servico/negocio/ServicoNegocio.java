@@ -1,6 +1,12 @@
 package br.ufrpe.artemis.servico.negocio;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.SphericalUtil;
+
 import java.util.ArrayList;
+
+import br.ufrpe.artemis.endereco.negocio.EnderecoNegocio;
+import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 import br.ufrpe.artemis.servico.dao.ServicoDao;
@@ -23,7 +29,21 @@ public class ServicoNegocio {
     public ArrayList<Servico> listarSevicosSub(int idSub){
         ServicoDao banco = new ServicoDao();
         ArrayList<Servico> list = banco.recuperarDoBancoSub(idSub);
-        return list;
+        PessoaNegocio pessoaNegocio = new PessoaNegocio();
+        Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(Sessao.instance.getUsuario().getId());
+        EnderecoNegocio enderecoNegocio = new EnderecoNegocio();
+        LatLng latLng = new LatLng(pessoa.getEndereco().getLat(), pessoa.getEndereco().getLng());
+        ArrayList<Servico> list1 = new ArrayList<>();
+        for (Servico servico:list) {
+            servico.getPessoa().setEndereco(enderecoNegocio.recuperarEndereco(servico.getPessoa().getEndereco().getId()));
+            double lat = servico.getPessoa().getEndereco().getLat();
+            double lng = servico.getPessoa().getEndereco().getLng();
+            LatLng latLng1 = new LatLng(lat, lng);
+            if(SphericalUtil.computeDistanceBetween(latLng, latLng1) < 70000){
+                list1.add(servico);
+            }
+        }
+        return list1;
     }
 
     public ArrayList<Servico> listarSevicosUs(int idUsuario){

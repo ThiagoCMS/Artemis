@@ -5,6 +5,8 @@ public class Endereco {
     private String rua;
     private String numero;
     private String cidade;
+    private double lat;
+    private double lng;
 
     public int getId() {
         return id;
@@ -36,5 +38,21 @@ public class Endereco {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 }
