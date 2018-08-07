@@ -5,6 +5,7 @@ import br.ufrpe.artemis.avaliacao.dao.AvaliacaoDao;
 import br.ufrpe.artemis.avaliacao.dominio.Avaliacao;
 import br.ufrpe.artemis.avaliacao.dominio.Classificacao;
 import br.ufrpe.artemis.infra.Sessao;
+import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 
 public class AvaliacaoNegocio {
     public void inserirAvaliacao(Avaliacao avaliacao){
@@ -20,6 +21,11 @@ public class AvaliacaoNegocio {
     public Classificacao notasPrestadora(int id) {
         AvaliacaoDao banco = new AvaliacaoDao();
         ArrayList<Avaliacao> listaNotas = banco.recuperarNotas(id);
+        PessoaNegocio pessoaNegocio = new PessoaNegocio();
+        for (Avaliacao avaliacao: listaNotas) {
+            avaliacao.setCliente(pessoaNegocio.recuperarPessoaPorId(avaliacao.getCliente().getId()));
+            avaliacao.setPrestadora(pessoaNegocio.recuperarPessoaPorId(avaliacao.getPrestadora().getId()));
+        }
         Classificacao classificacao = new Classificacao();
         double mediaPreço = 0;
         double mediaAtendimento = 0;
