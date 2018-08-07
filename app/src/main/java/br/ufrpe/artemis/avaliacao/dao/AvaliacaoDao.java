@@ -11,6 +11,7 @@ import android.database.Cursor;
 import br.ufrpe.artemis.avaliacao.dominio.Avaliacao;
 import br.ufrpe.artemis.infra.ArtemisApp;
 import br.ufrpe.artemis.infra.database.dao.DB;
+import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 
 public class AvaliacaoDao {
     private SQLiteDatabase banco;
@@ -41,9 +42,17 @@ public class AvaliacaoDao {
         if(cursor.moveToFirst()){}
         for (int i = 0; i < cursor.getCount(); i++) {
             Avaliacao avaliacao = new Avaliacao();
-            avaliacao.setNotaPreco(cursor.getDouble(0));
-            avaliacao.setNotaQualidade(cursor.getDouble(1));
-            avaliacao.setNotaAtendimento(cursor.getDouble(2));
+            avaliacao.setId(cursor.getInt(0));
+            avaliacao.setNotaPreco(cursor.getDouble(1));
+            avaliacao.setNotaQualidade(cursor.getDouble(2));
+            avaliacao.setNotaAtendimento(cursor.getDouble(3));
+            avaliacao.setComentario(cursor.getString(4));
+            Pessoa pessoa = new Pessoa();
+            pessoa.setId(cursor.getInt(5));
+            avaliacao.setPrestadora(pessoa);
+            Pessoa pessoa1 = new Pessoa();
+            pessoa1.setId(cursor.getInt(6));
+            avaliacao.setCliente(pessoa1);
             list.add(avaliacao);
             cursor.moveToNext();
         }
