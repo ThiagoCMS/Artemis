@@ -66,4 +66,12 @@ public class ServicoNegocio {
         PessoaNegocio negocio = new PessoaNegocio();
         return negocio.recuperarPessoaPorUsuario(id);
     }
+
+    public ArrayList<Servico> listarServicos(){
+        ServicoDao banco = new ServicoDao();
+        ArrayList<Servico> listServico = banco.retornarServicos();
+        return listServico;
+    }
+
+
 }
