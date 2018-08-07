@@ -1,6 +1,5 @@
 package br.ufrpe.artemis.avaliacao.gui;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +13,6 @@ import br.ufrpe.artemis.avaliacao.negocio.AvaliacaoNegocio;
 import br.ufrpe.artemis.infra.ArtemisApp;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
-import br.ufrpe.artemis.pessoa.gui.HomeActivity;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 
 public class FormularioActivity extends AppCompatActivity {
@@ -60,10 +58,10 @@ public class FormularioActivity extends AppCompatActivity {
         avaliacao.setNotaQualidade(qualidadeServico.getRating());
         avaliacao.setNotaAtendimento(atendimentoServico.getRating());
         avaliacao.setComentario(comentarioServico.getText().toString().trim());
-        avaliacao.setPessoaAvaliada(prestadora);
+        avaliacao.setPrestadora(prestadora);
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
         Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(Sessao.instance.getUsuario().getId());
-        avaliacao.setPessoaAvaliadora(pessoa);
+        avaliacao.setCliente(pessoa);
         AvaliacaoNegocio negocio = new AvaliacaoNegocio();
         negocio.inserirAvaliacao(avaliacao);
         Toast.makeText(ArtemisApp.getContext(), "Obrigada pela Avaliação", Toast.LENGTH_SHORT).show();

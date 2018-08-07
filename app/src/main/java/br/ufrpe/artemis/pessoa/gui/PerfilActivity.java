@@ -7,13 +7,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import br.ufrpe.artemis.avaliacao.dominio.Avaliacao;
+import br.ufrpe.artemis.avaliacao.dominio.Classificacao;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.servico.gui.MeusServicosActivity;
 import br.ufrpe.artemis.servico.gui.ComentariosActivity;
-
+import br.ufrpe.artemis.avaliacao.negocio.AvaliacaoNegocio;
 
 public class PerfilActivity extends AppCompatActivity {
     private ImageView imagemUsuario;
@@ -24,6 +29,10 @@ public class PerfilActivity extends AppCompatActivity {
     private Button botaoAnuncios;
     private Button botaoComentarios;
     private Button botaoEditar;
+    private Classificacao classificacao;
+    private TextView ntPreço;
+    private TextView ntQualidade;
+    private TextView ntAtendimento;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +68,10 @@ public class PerfilActivity extends AppCompatActivity {
         pessoaEmail = findViewById(R.id.pessoaEmailId);
         endereco = findViewById(R.id.enderecoId);
         telefone = findViewById(R.id.telefoneId);
+        ntPreço = findViewById(R.id.notaPrecoId);
+        ntAtendimento = findViewById(R.id.notaAtendimentoId);
+        ntQualidade = findViewById(R.id.notaQualidadeId);
+        calcularNotas();
         setPessoa();
     }
 
@@ -71,7 +84,9 @@ public class PerfilActivity extends AppCompatActivity {
         telefone.setText(pessoa.getTelefone());
         endereco.setText(pessoa.getEndereco().getCidade());
         imagemUsuario.setImageBitmap(pessoa.getFotoPerfil());
-
+        ntPreço.setText("Preço - " + classificacao.getMediaPreco());
+        ntQualidade.setText("Qualidade - " + classificacao.getMediaQualidade());
+        ntAtendimento.setText("Atendimento - " + classificacao.getMediaAtendimento());
     }
 
     public void anuncios(){
@@ -88,5 +103,26 @@ public class PerfilActivity extends AppCompatActivity {
         PerfilActivity.this.finish();
     }
 
+    public void calcularNotas(){
+        AvaliacaoNegocio avaliacaoNegocio = new AvaliacaoNegocio();
+        classificacao = new Classificacao();
+        ArrayList<Avaliacao> listaNotas = avaliacaoNegocio.notasPrestadora(Sessao.instance.getUsuario().getId());
+        double mediaPreço = 0;
+        double mediaAtendimento = 0;
+        double mediaQualidade = 0;
+        for (Avaliacao obj: listaNotas) {
+            mediaPreço+=obj.getNotaPreco();
+            mediaAtendimento+=obj.getNotaAtendimento();
+            mediaQualidade+=obj.getNotaQualidade();
+        }
+        if(listaNotas.size()>0) {
+            mediaPreço = mediaPreço / listaNotas.size();
+            mediaAtendimento = mediaAtendimento / listaNotas.size();
+            mediaQualidade = mediaQualidade / listaNotas.size();
+        }
+        classificacao.setMediaPreco(mediaPreço);
+        classificacao.setMediaAtendimento(mediaAtendimento);
+        classificacao.setMediaQualidade(mediaQualidade);
+    }
 }
 

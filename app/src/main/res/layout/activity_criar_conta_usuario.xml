@@ -43,11 +43,13 @@
                     android:id="@+id/cpfId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:hint="CPF"/>
                 <EditText
                     android:id="@+id/telefoneId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:hint="Telefone"/>
                 <EditText
                     android:id="@+id/pessoaEmailId"
@@ -75,6 +77,7 @@
                     android:id="@+id/numEnderecoId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:hint= "Número"/>
                 <EditText
                     android:id="@+id/cidadeEnderecoId"

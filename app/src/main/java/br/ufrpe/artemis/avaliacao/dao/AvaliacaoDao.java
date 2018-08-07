@@ -4,6 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+import android.content.Context;
+import android.database.Cursor;
+
 import br.ufrpe.artemis.avaliacao.dominio.Avaliacao;
 import br.ufrpe.artemis.infra.ArtemisApp;
 import br.ufrpe.artemis.infra.database.dao.DB;
@@ -25,9 +29,24 @@ public class AvaliacaoDao {
         values.put("qualidade", avaliacao.getNotaQualidade());
         values.put("atendimento", avaliacao.getNotaAtendimento());
         values.put("comentario", avaliacao.getComentario());
-        values.put("idpessoa", avaliacao.getPessoaAvaliada().getId());
-        values.put("idpessoa2", avaliacao.getPessoaAvaliadora().getId());
+        values.put("idpessoa", avaliacao.getPrestadora().getId());
+        values.put("idpessoa2", avaliacao.getCliente().getId());
         banco.insert("classificacao", null, values);
         banco.close();
+    }
+
+    public ArrayList<Avaliacao> recuperarNotas(int idPrestadora){
+        ArrayList<Avaliacao> list = new ArrayList<>();
+        Cursor cursor = banco.query("classificacao", new String[]{"*"}, "idpessoa = ?", new String[]{String.valueOf(idPrestadora)}, null, null, null);
+        if(cursor.moveToFirst()){}
+        for (int i = 0; i < cursor.getCount(); i++) {
+            Avaliacao avaliacao = new Avaliacao();
+            avaliacao.setNotaPreco(cursor.getDouble(0));
+            avaliacao.setNotaQualidade(cursor.getDouble(1));
+            avaliacao.setNotaAtendimento(cursor.getDouble(2));
+            list.add(avaliacao);
+            cursor.moveToNext();
+        }
+        return list;
     }
 }

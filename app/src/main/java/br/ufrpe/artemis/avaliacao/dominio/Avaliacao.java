@@ -8,8 +8,8 @@ public class Avaliacao {
     private double notaQualidade;
     private double notaAtendimento;
     private String comentario;
-    private Pessoa PessoaAvaliada;
-    private Pessoa PessoaAvaliadora;
+    private Pessoa prestadora;
+    private Pessoa cliente;
 
     public double getNotaAtendimento() {
         return notaAtendimento;
@@ -27,20 +27,20 @@ public class Avaliacao {
         this.comentario = comentario;
     }
 
-    public Pessoa getPessoaAvaliada() {
-        return PessoaAvaliada;
+    public Pessoa getPrestadora() {
+        return prestadora;
     }
 
-    public void setPessoaAvaliada(Pessoa pessoaAvaliada) {
-        PessoaAvaliada = pessoaAvaliada;
+    public void setPrestadora(Pessoa prestadora) {
+        this.prestadora = prestadora;
     }
 
-    public Pessoa getPessoaAvaliadora() {
-        return PessoaAvaliadora;
+    public Pessoa getCliente() {
+        return cliente;
     }
 
-    public void setPessoaAvaliadora(Pessoa pessoaAvaliadora) {
-        PessoaAvaliadora = pessoaAvaliadora;
+    public void setCliente(Pessoa cliente) {
+        this.cliente = cliente;
     }
 
     public int getId() {
