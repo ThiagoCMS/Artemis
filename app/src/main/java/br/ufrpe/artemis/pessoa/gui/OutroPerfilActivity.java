@@ -5,6 +5,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.DecimalFormat;
+
+import br.ufrpe.artemis.avaliacao.dominio.Classificacao;
+import br.ufrpe.artemis.avaliacao.negocio.AvaliacaoNegocio;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
@@ -17,6 +22,9 @@ public class OutroPerfilActivity extends AppCompatActivity {
     private Button botaoAnuncios;
     private Button botaoComentarios;
     private ImageView imagem;
+    private TextView ntPreço;
+    private TextView ntQualidade;
+    private TextView ntAtendimento;
 
 
     @Override
@@ -34,6 +42,9 @@ public class OutroPerfilActivity extends AppCompatActivity {
         cidade = findViewById(R.id.enderecoPrestadoraId);
         telefone = findViewById(R.id.telefonePrestadoraId);
         imagem = findViewById(R.id.imgView);
+        ntPreço = findViewById(R.id.notaPrecosId);
+        ntAtendimento = findViewById(R.id.notaAtendimentosId);
+        ntQualidade = findViewById(R.id.notaQualidadesId);
         setPessoa();
     }
 
@@ -42,10 +53,16 @@ public class OutroPerfilActivity extends AppCompatActivity {
         int idUsuario = extras.getInt("id");
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
         Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
+        AvaliacaoNegocio avaliacaoNegocio = new AvaliacaoNegocio();
+        Classificacao classificacao = avaliacaoNegocio.notasPrestadora(idUsuario);
         nome.setText(pessoa.getNome());
         email.setText(pessoa.getEmail());
         telefone.setText(pessoa.getTelefone());
         cidade.setText(pessoa.getEndereco().getCidade());
         imagem.setImageBitmap(pessoa.getFotoPerfil());
+        DecimalFormat df2 = new DecimalFormat(".##");
+        ntPreço.setText("Preço - " +  df2.format(classificacao.getMediaPreco()));
+        ntQualidade.setText("Qualidade - " +  df2.format(classificacao.getMediaQualidade()));
+        ntAtendimento.setText("Atendimento - " +  df2.format(classificacao.getMediaAtendimento()));
     }
 }

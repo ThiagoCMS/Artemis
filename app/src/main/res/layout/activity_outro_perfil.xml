@@ -66,30 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cliente"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/classificacaoClienteId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Classificação"
-                        android:textSize="12sp"
-                        tools:layout_editor_absoluteX="102dp"
-                        tools:layout_editor_absoluteY="222dp" />
-                </LinearLayout>
+                android:weightSum="1">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -102,14 +79,28 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Prestadora"
+                        android:text="Classificação"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/classificacaoPrestadoraId"
+                        android:id="@+id/notaPrecosId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Classificação"
+                        android:text="Preço:"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/notaQualidadesId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Qualidade:"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/notaAtendimentosId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Atendimento:"
                         android:textSize="12sp" />
 
                 </LinearLayout>

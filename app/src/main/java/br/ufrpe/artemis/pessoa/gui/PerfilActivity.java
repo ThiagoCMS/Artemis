@@ -30,7 +30,6 @@ public class PerfilActivity extends AppCompatActivity {
     private Button botaoAnuncios;
     private Button botaoComentarios;
     private Button botaoEditar;
-    private Classificacao classificacao;
     private TextView ntPreço;
     private TextView ntQualidade;
     private TextView ntAtendimento;
@@ -72,11 +71,12 @@ public class PerfilActivity extends AppCompatActivity {
         ntPreço = findViewById(R.id.notaPrecoId);
         ntAtendimento = findViewById(R.id.notaAtendimentoId);
         ntQualidade = findViewById(R.id.notaQualidadeId);
-        calcularNotas();
         setPessoa();
     }
 
     private void setPessoa(){
+        AvaliacaoNegocio avaliacaoNegocio = new AvaliacaoNegocio();
+        Classificacao classificacao = avaliacaoNegocio.notasPrestadora(Sessao.instance.getUsuario().getId());
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
         int idUsuario = Sessao.instance.getUsuario().getId();
         Pessoa pessoa = pessoaNegocio.recuperarPessoaPorUsuario(idUsuario);
@@ -105,26 +105,6 @@ public class PerfilActivity extends AppCompatActivity {
         PerfilActivity.this.finish();
     }
 
-    public void calcularNotas(){
-        AvaliacaoNegocio avaliacaoNegocio = new AvaliacaoNegocio();
-        classificacao = new Classificacao();
-        ArrayList<Avaliacao> listaNotas = avaliacaoNegocio.notasPrestadora(Sessao.instance.getUsuario().getId());
-        double mediaPreço = 0;
-        double mediaAtendimento = 0;
-        double mediaQualidade = 0;
-        for (Avaliacao obj: listaNotas) {
-            mediaPreço+=obj.getNotaPreco();
-            mediaAtendimento+=obj.getNotaAtendimento();
-            mediaQualidade+=obj.getNotaQualidade();
-        }
-        if(listaNotas.size()>0) {
-            mediaPreço = mediaPreço / listaNotas.size();
-            mediaAtendimento = mediaAtendimento / listaNotas.size();
-            mediaQualidade = mediaQualidade / listaNotas.size();
-        }
-        classificacao.setMediaPreco(mediaPreço);
-        classificacao.setMediaAtendimento(mediaAtendimento);
-        classificacao.setMediaQualidade(mediaQualidade);
-    }
+
 }
 

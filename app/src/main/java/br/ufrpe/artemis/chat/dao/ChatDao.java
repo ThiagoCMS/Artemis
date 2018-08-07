@@ -28,7 +28,6 @@ public class ChatDao {
         valores.put("idpessoa1", chat.getPessoa1().getId());
         valores.put("idpessoa2", chat.getPessoa2().getId());
         banco.insert("chat", null, valores);
-        banco.close();
     }
 
     public Chat recuperarChat(int id){
