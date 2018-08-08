@@ -28,10 +28,11 @@ public class ChatCustomAdapter extends ArrayAdapter<Mensagem> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        View view = convertView;
         if(mensagens.get(position).getPessoa().getId() == Sessao.instance.getPessoa().getId())
-            convertView = layoutInflater.inflate(R.layout.list_item_message_send, null);
+            view = layoutInflater.inflate(R.layout.list_item_message_send, null);
         else
-            convertView = layoutInflater.inflate(R.layout.list_item_message_recv,null);
+            view = layoutInflater.inflate(R.layout.list_item_message_recv,null);
         BubbleTextView textMessage = (BubbleTextView)convertView.findViewById(R.id.text_message);
         textMessage.setText(mensagens.get(position).getTexto());
         return convertView;
