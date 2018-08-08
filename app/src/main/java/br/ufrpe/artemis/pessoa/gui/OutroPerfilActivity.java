@@ -26,7 +26,7 @@ public class OutroPerfilActivity extends AppCompatActivity {
     private Button botaoAnuncios;
     private Button botaoComentarios;
     private ImageView imagem;
-    private TextView ntPreço;
+    private TextView ntPreco;
     private TextView ntQualidade;
     private TextView ntAtendimento;
     private Pessoa pessoa;
@@ -58,7 +58,7 @@ public class OutroPerfilActivity extends AppCompatActivity {
         cidade = findViewById(R.id.enderecoPrestadoraId);
         telefone = findViewById(R.id.telefonePrestadoraId);
         imagem = findViewById(R.id.imgView);
-        ntPreço = findViewById(R.id.notaPrecosId);
+        ntPreco = findViewById(R.id.notaPrecosId);
         ntAtendimento = findViewById(R.id.notaAtendimentosId);
         ntQualidade = findViewById(R.id.notaQualidadesId);
         setPessoa();
@@ -77,7 +77,7 @@ public class OutroPerfilActivity extends AppCompatActivity {
         cidade.setText(pessoa.getEndereco().getCidade());
         imagem.setImageBitmap(pessoa.getFotoPerfil());
         DecimalFormat df2 = new DecimalFormat(".##");
-        ntPreço.setText("Preço - " +  df2.format(classificacao.getMediaPreco()));
+        ntPreco.setText("Preço - " +  df2.format(classificacao.getMediaPreco()));
         ntQualidade.setText("Qualidade - " +  df2.format(classificacao.getMediaQualidade()));
         ntAtendimento.setText("Atendimento - " +  df2.format(classificacao.getMediaAtendimento()));
     }

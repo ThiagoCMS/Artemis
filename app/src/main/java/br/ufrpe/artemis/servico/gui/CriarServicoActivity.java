@@ -13,7 +13,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import br.ufrpe.artemis.infra.ArtemisApp;
 import br.ufrpe.artemis.infra.Sessao;
-import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.servico.dominio.Categoria;
 import br.ufrpe.artemis.servico.dominio.Servico;
@@ -46,18 +45,15 @@ public class CriarServicoActivity extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
         subcategoriaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 

@@ -20,7 +20,6 @@ public class FormularioActivity extends AppCompatActivity {
     private RatingBar qualidadeServico;
     private RatingBar atendimentoServico;
     private TextView comentarioServico;
-    private TextView nomePrestadora;
     private Button enviar;
     private Pessoa prestadora;
 
@@ -44,7 +43,7 @@ public class FormularioActivity extends AppCompatActivity {
         atendimentoServico = findViewById(R.id.atendimentoRatingId);
         comentarioServico = findViewById(R.id.comentariosId);
         enviar = findViewById(R.id.enviarId);
-        nomePrestadora = findViewById(R.id.nomePrestadoraId);
+        TextView nomePrestadora = findViewById(R.id.nomePrestadoraId);
         Bundle extras = getIntent().getExtras();
         int idPrestadora = Integer.parseInt(String.valueOf(extras.getString("id")));
         PessoaNegocio negocio = new PessoaNegocio();

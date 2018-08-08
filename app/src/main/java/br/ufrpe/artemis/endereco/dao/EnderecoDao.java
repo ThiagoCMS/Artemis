@@ -18,7 +18,7 @@ public class EnderecoDao {
         return banco;
     }
 
-    public void inserirEndereço(Endereco endereco){
+    public void inserirEndereco(Endereco endereco){
         ContentValues values = new ContentValues();
         values.put("rua", endereco.getRua());
         values.put("numero", endereco.getNumero());

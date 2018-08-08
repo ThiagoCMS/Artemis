@@ -11,12 +11,11 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 
 import br.ufrpe.artemis.avaliacao.dominio.Classificacao;
+import br.ufrpe.artemis.avaliacao.gui.AvaliacoesActivity;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
-import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.servico.gui.MeusServicosActivity;
-import br.ufrpe.artemis.servico.gui.ComentariosActivity;
 import br.ufrpe.artemis.avaliacao.negocio.AvaliacaoNegocio;
 
 public class PerfilActivity extends AppCompatActivity {
@@ -28,7 +27,7 @@ public class PerfilActivity extends AppCompatActivity {
     private Button botaoAnuncios;
     private Button botaoComentarios;
     private Button botaoEditar;
-    private TextView ntPreço;
+    private TextView ntPreco;
     private TextView ntQualidade;
     private TextView ntAtendimento;
     @Override
@@ -66,7 +65,7 @@ public class PerfilActivity extends AppCompatActivity {
         pessoaEmail = findViewById(R.id.pessoaEmailId);
         endereco = findViewById(R.id.enderecoId);
         telefone = findViewById(R.id.telefoneId);
-        ntPreço = findViewById(R.id.notaPrecoId);
+        ntPreco = findViewById(R.id.notaPrecoId);
         ntAtendimento = findViewById(R.id.notaAtendimentoId);
         ntQualidade = findViewById(R.id.notaQualidadeId);
         setPessoa();
@@ -82,7 +81,7 @@ public class PerfilActivity extends AppCompatActivity {
         endereco.setText(pessoa.getEndereco().getCidade());
         imagemUsuario.setImageBitmap(pessoa.getFotoPerfil());
         DecimalFormat df2 = new DecimalFormat(".##");
-        ntPreço.setText("Preço - " +  df2.format(classificacao.getMediaPreco()));
+        ntPreco.setText("Preço - " +  df2.format(classificacao.getMediaPreco()));
         ntQualidade.setText("Qualidade - " +  df2.format(classificacao.getMediaQualidade()));
         ntAtendimento.setText("Atendimento - " +  df2.format(classificacao.getMediaAtendimento()));
     }
@@ -93,7 +92,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     public void opnioes(){
 
-        startActivity(new Intent(PerfilActivity.this, ComentariosActivity.class));
+        startActivity(new Intent(PerfilActivity.this, AvaliacoesActivity.class).putExtra("id", Sessao.instance.getPessoa().getId()));
     }
 
     public void editar(){

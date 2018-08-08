@@ -9,17 +9,16 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
+import java.util.List;
 
-import br.ufrpe.artemis.avaliacao.dominio.Classificacao;
 import br.ufrpe.artemis.avaliacao.negocio.AvaliacaoNegocio;
 import br.ufrpe.artemis.infra.ArtemisApp;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.servico.dominio.Servico;
 
 public class ServicoAdapter extends ArrayAdapter<Servico> {
-    private ArrayList<Servico> elementos;
-    public ServicoAdapter(@NonNull ArrayList<Servico> elementos) {
+    private List<Servico> elementos;
+    public ServicoAdapter(@NonNull List<Servico> elementos) {
         super(ArtemisApp.getContext(), R.layout.linha, elementos);
         this.elementos = elementos;
     }
@@ -30,12 +29,12 @@ public class ServicoAdapter extends ArrayAdapter<Servico> {
         View rowView = inflater.inflate(R.layout.linha, parent, false);
         TextView nomeServico = rowView.findViewById(R.id.nomeServico);
         TextView nomePrestador = rowView.findViewById(R.id.nomePrestador);
-        TextView classificação = rowView.findViewById(R.id.classificacao);
+        TextView classificacao = rowView.findViewById(R.id.classificacao);
         nomeServico.setText((CharSequence) elementos.get(position).getNome());
         nomePrestador.setText(elementos.get(position).getPessoa().getNome());
         AvaliacaoNegocio avaliacaoNegocio = new AvaliacaoNegocio();
         DecimalFormat df2 = new DecimalFormat(".##");
-        classificação.setText("Classificação: " + df2.format(avaliacaoNegocio.mediaGeral(elementos.get(position).getPessoa().getId())));
+        classificacao.setText("Classificação: " + df2.format(avaliacaoNegocio.mediaGeral(elementos.get(position).getPessoa().getId())));
         return rowView;
     }
 }

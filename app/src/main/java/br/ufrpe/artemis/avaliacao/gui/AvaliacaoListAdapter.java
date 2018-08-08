@@ -1,23 +1,21 @@
 package br.ufrpe.artemis.avaliacao.gui;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.avaliacao.dominio.Avaliacao;
 import br.ufrpe.artemis.infra.ArtemisApp;
 
 public class AvaliacaoListAdapter extends ArrayAdapter<Avaliacao> {
-    private ArrayList<Avaliacao> elementos;
-    public AvaliacaoListAdapter(ArrayList<Avaliacao> elementos) {
+    private List<Avaliacao> elementos;
+    public AvaliacaoListAdapter(List<Avaliacao> elementos) {
         super(ArtemisApp.getContext(), R.layout.linha_avaliacao, elementos);
         this.elementos = elementos;
     }

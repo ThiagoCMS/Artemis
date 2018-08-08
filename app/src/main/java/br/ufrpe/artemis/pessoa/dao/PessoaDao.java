@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
 
 import br.ufrpe.artemis.endereco.dominio.Endereco;
 import br.ufrpe.artemis.infra.ArtemisApp;
@@ -43,39 +42,16 @@ public class PessoaDao {
         Pessoa pessoa = null;
         Cursor cursor = banco.query("pessoa", new String[]{"*"}, "idusuario = ?", new String[]{String.valueOf(id)}, null, null, null);
         if(cursor.getCount()>0){
-            cursor.moveToFirst();
-            pessoa = new Pessoa();
-            pessoa.setId(cursor.getInt(0));
-            pessoa.setNome(cursor.getString(1));
-            pessoa.setEmail(cursor.getString(3));
-            pessoa.setTelefone(cursor.getString(4));
-            pessoa.setFotoPerfil(Auxiliar.byteToBitmap(cursor.getBlob(6)));
-            UsuarioDao bancoUsuario = new UsuarioDao();
-            Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(2));
-            pessoa.setUsuario(usuario);
-            Endereco endereco = new Endereco();
-            endereco.setId(cursor.getInt(5));
-            pessoa.setEndereco(endereco);
+            pessoa = montarPessoa(cursor);
         }
         return pessoa;
     }
 
     public Pessoa recuperarDoBanco(int id){
-        Pessoa pessoa = new Pessoa();
+        Pessoa pessoa = null;
         Cursor cursor = banco.query("pessoa", new String[]{"*"}, "id = ?", new String[]{String.valueOf(id)}, null, null, null);
         if(cursor.getCount()>0){
-            cursor.moveToFirst();
-            pessoa.setId(cursor.getInt(0));
-            pessoa.setNome(cursor.getString(1));
-            pessoa.setEmail(cursor.getString(3));
-            pessoa.setTelefone(cursor.getString(4));
-            pessoa.setFotoPerfil(Auxiliar.byteToBitmap(cursor.getBlob(6)));
-            UsuarioDao bancoUsuario = new UsuarioDao();
-            Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(2));
-            pessoa.setUsuario(usuario);
-            Endereco endereco = new Endereco();
-            endereco.setId(cursor.getInt(5));
-            pessoa.setEndereco(endereco);
+            pessoa = montarPessoa(cursor);
         }
         return pessoa;
     }
@@ -94,5 +70,22 @@ public class PessoaDao {
         values.put("fotoperfil",bytes);
         banco.update("pessoa",values,"id = ?", new String[]{String.valueOf(pessoa.getId())});
         banco.close();
+    }
+
+    private Pessoa montarPessoa(Cursor cursor){
+        cursor.moveToFirst();
+        Pessoa pessoa = new Pessoa();
+        pessoa.setId(cursor.getInt(0));
+        pessoa.setNome(cursor.getString(1));
+        pessoa.setEmail(cursor.getString(3));
+        pessoa.setTelefone(cursor.getString(4));
+        pessoa.setFotoPerfil(Auxiliar.byteToBitmap(cursor.getBlob(6)));
+        UsuarioDao bancoUsuario = new UsuarioDao();
+        Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(2));
+        pessoa.setUsuario(usuario);
+        Endereco endereco = new Endereco();
+        endereco.setId(cursor.getInt(5));
+        pessoa.setEndereco(endereco);
+        return pessoa;
     }
 }

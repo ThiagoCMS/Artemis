@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import br.ufrpe.artemis.chat.dominio.Chat;
 import br.ufrpe.artemis.infra.ArtemisApp;
@@ -17,9 +17,9 @@ import br.ufrpe.artemis.R;
 
 
 public class ChatListAdapter extends ArrayAdapter<Chat> {
-    private ArrayList<Chat> elementos;
+    private List<Chat> elementos;
 
-    public ChatListAdapter(@NonNull ArrayList<Chat> elementos) {
+    public ChatListAdapter(@NonNull List<Chat> elementos) {
         super(ArtemisApp.getContext(), R.layout.linha_chat, elementos);
         this.elementos = elementos;
     }
@@ -34,9 +34,6 @@ public class ChatListAdapter extends ArrayAdapter<Chat> {
         }else{
             nomeOutraPessoaChat.setText(elementos.get(position).getPessoa1().getNome());
         }
-
         return rowView;
-
     }
-
 }

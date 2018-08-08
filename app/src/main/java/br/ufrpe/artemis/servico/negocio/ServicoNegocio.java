@@ -4,6 +4,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.SphericalUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.ufrpe.artemis.endereco.negocio.EnderecoNegocio;
 import br.ufrpe.artemis.infra.Sessao;
@@ -26,9 +27,9 @@ public class ServicoNegocio {
         banco.deletarDoBanco(servico);
     }
 
-    public ArrayList<Servico> listarSevicosSub(int idSub){
+    public List<Servico> listarSevicosSub(int idSub){
         ServicoDao banco = new ServicoDao();
-        ArrayList<Servico> list = banco.recuperarDoBancoSub(idSub);
+        List<Servico> list = banco.recuperarDoBancoSub(idSub);
         Pessoa pessoa = Sessao.instance.getPessoa();
         EnderecoNegocio enderecoNegocio = new EnderecoNegocio();
         LatLng latLng = new LatLng(pessoa.getEndereco().getLat(), pessoa.getEndereco().getLng());
@@ -45,28 +46,24 @@ public class ServicoNegocio {
         return list1;
     }
 
-    public ArrayList<Servico> listarSevicosPessoa(int idPessoa){
+    public List<Servico> listarSevicosPessoa(int idPessoa){
         ServicoDao banco = new ServicoDao();
-        ArrayList<Servico> list = banco.recuperarDoBancoUs(idPessoa);
-        return list;
+        return banco.recuperarDoBancoUs(idPessoa);
     }
 
     public Servico infoTelaServico(int id){
         ServicoDao banco = new ServicoDao();
-        Servico servico = banco.recuperarServico(id);
-        return servico;
+        return banco.recuperarServico(id);
     }
 
-    public ArrayList<Categoria> listarCategoria(){
+    public List<Categoria> listarCategoria(){
         ServicoDao banco = new ServicoDao();
-        ArrayList<Categoria> listaCategoria = banco.recuperarListaCategoria();
-        return listaCategoria;
+        return banco.recuperarListaCategoria();
     }
 
-    public ArrayList<Subcategoria> listarSubcategoria(int idcategoria){
+    public List<Subcategoria> listarSubcategoria(int idcategoria){
         ServicoDao banco = new ServicoDao();
-        ArrayList<Subcategoria> listaSubcategoria = banco.recuperarListaSubcategoria(idcategoria);
-        return listaSubcategoria;
+        return banco.recuperarListaSubcategoria(idcategoria);
     }
 
     public Servico pegarServico(int id){
@@ -79,16 +76,8 @@ public class ServicoNegocio {
         banco.atualizarServico(servico);
     }
 
-    public Pessoa recuperarPessoa(int id){
-        PessoaNegocio negocio = new PessoaNegocio();
-        return negocio.recuperarPessoaPorUsuario(id);
-    }
-
-    public ArrayList<Servico> listarServicos(){
+    public List<Servico> listarServicos(){
         ServicoDao banco = new ServicoDao();
-        ArrayList<Servico> listServico = banco.retornarServicos();
-        return listServico;
+        return banco.retornarServicos();
     }
-
-
 }

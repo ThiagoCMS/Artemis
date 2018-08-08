@@ -1,6 +1,6 @@
 package br.ufrpe.artemis.chat.negocio;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import br.ufrpe.artemis.chat.dao.ChatDao;
 import br.ufrpe.artemis.chat.dominio.Chat;
@@ -16,11 +16,6 @@ public class ChatNegocio {
         dao.inserirMensagem(mensagem);
     }
 
-    public void criarChat(Chat chat){
-        ChatDao dao = new ChatDao();
-        dao.inserirChat(chat);
-    }
-
     public Chat retornarChat(int id){
         ChatDao dao = new ChatDao();
         Chat chat = dao.recuperarChat(id);
@@ -30,11 +25,11 @@ public class ChatNegocio {
         return chat;
     }
 
-    public ArrayList<Chat> recuperarChats(){
+    public List<Chat> recuperarChats(){
         ChatDao dao = new ChatDao();
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
         Pessoa pessoa = Sessao.instance.getPessoa();
-        ArrayList<Chat> chatList = dao.recuperarChats(pessoa.getId());
+        List<Chat> chatList = dao.recuperarChats(pessoa.getId());
         for (Chat chat:chatList) {
             chat.setPessoa1(pessoaNegocio.recuperarPessoaPorId(chat.getPessoa1().getId()));
             chat.setPessoa2(pessoaNegocio.recuperarPessoaPorId(chat.getPessoa2().getId()));
@@ -42,11 +37,10 @@ public class ChatNegocio {
         return chatList;
     }
 
-    public ArrayList<Mensagem> recuperarMensagens(int idChat){
+    public List<Mensagem> recuperarMensagens(int idChat){
         ChatDao dao = new ChatDao();
         Chat chat = retornarChat(idChat);
-        ArrayList<Mensagem> mensagens = dao.recuperarMensagens(chat);
-        return mensagens;
+        return dao.recuperarMensagens(chat);
     }
 
     public Chat iniciarChat(Pessoa pessoa, Pessoa pessoa1){

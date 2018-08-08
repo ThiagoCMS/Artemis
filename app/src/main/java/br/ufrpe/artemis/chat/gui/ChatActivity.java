@@ -9,21 +9,19 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import br.ufrpe.artemis.chat.dominio.Chat;
 import br.ufrpe.artemis.chat.dominio.Mensagem;
 import br.ufrpe.artemis.chat.negocio.ChatNegocio;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.avaliacao.gui.FormularioActivity;
-import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
 
 public class ChatActivity extends AppCompatActivity {
-    private ListView listView;
     private EditText editText;
     private Button btEnviar;
-    private ArrayList<Mensagem> listMensagem;
+    private List<Mensagem> listMensagem;
     private Chat chat;
     private Button oculto;
     private ChatCustomAdapter chatCustomAdapter;
@@ -39,18 +37,16 @@ public class ChatActivity extends AppCompatActivity {
                 clickEnviar();
             }
         });
-
         oculto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clickBotaoOculto();
             }
         });
-
     }
 
     private void setTela(){
-        listView = findViewById(R.id.idChatList);
+        ListView listView = findViewById(R.id.idChatList);
         editText = findViewById(R.id.idChatText);
         btEnviar = findViewById(R.id.idChatButtom);
         oculto = findViewById(R.id.botaoOculto);
@@ -82,7 +78,6 @@ public class ChatActivity extends AppCompatActivity {
         if (textoMensagem.isEmpty()) {
             return;
         }
-        PessoaNegocio pessoaNegocio = new PessoaNegocio();
         Mensagem mensagem = new Mensagem(chat, Sessao.instance.getPessoa(), textoMensagem);
         listMensagem.add(mensagem);
         ChatNegocio chatNegocio1 = new ChatNegocio();

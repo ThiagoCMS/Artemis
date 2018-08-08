@@ -10,22 +10,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.ufrpe.artemis.R;
-import br.ufrpe.artemis.servico.dao.ServicoDao;
 import br.ufrpe.artemis.servico.dominio.Servico;
 import br.ufrpe.artemis.servico.gui.ServicoActivity;
 import br.ufrpe.artemis.servico.gui.ServicoAdapter;
-import br.ufrpe.artemis.servico.gui.ServicosListActivity;
 import br.ufrpe.artemis.servico.negocio.ServicoNegocio;
 
 public class SearchResultsActivity extends AppCompatActivity {
-    private ArrayList<Servico> arrayListServico;
+    private List<Servico> arrayListServico;
     private ListView listView;
-    private ServicoNegocio servicoNegocio;
-    private ArrayAdapter servicoAdapter;
     private Bundle extra;
-    private TextView textView;
 
 
     @Override
@@ -33,9 +29,6 @@ public class SearchResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
         seteTela();
-        String texto = extra.getString("pesquisa");
-        textView.setText("Resultados da busca para '"+texto+"' :");
-        listView.setAdapter(servicoAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -48,15 +41,17 @@ public class SearchResultsActivity extends AppCompatActivity {
     private void seteTela(){
         extra = getIntent().getExtras();
         listView = findViewById(R.id.listaResultados);
-        textView = findViewById(R.id.textId);
-        servicoNegocio = new ServicoNegocio();
-        ArrayList<Servico> servico = servicoNegocio.listarServicos();
+        TextView textView = findViewById(R.id.textId);
+        ServicoNegocio servicoNegocio = new ServicoNegocio();
+        List<Servico> servico = servicoNegocio.listarServicos();
         arrayListServico = listarServicosNomes(servico);
-        servicoAdapter = new ServicoAdapter(arrayListServico);
-
+        ArrayAdapter servicoAdapter = new ServicoAdapter(arrayListServico);
+        String texto = extra.getString("pesquisa");
+        textView.setText("Resultados da busca para '"+texto+"' :");
+        listView.setAdapter(servicoAdapter);
     }
-    private ArrayList<Servico> listarServicosNomes(ArrayList<Servico> servicos){
-        ArrayList<Servico> listServico = new ArrayList<>();
+    private List<Servico> listarServicosNomes(List<Servico> servicos){
+        List<Servico> listServico = new ArrayList<>();
         String texto = extra.getString("pesquisa");
         for(int i = 0; i < servicos.size() ; i++){
             String servicoTitulo = servicos.get(i).getNome();

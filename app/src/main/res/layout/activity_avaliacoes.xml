@@ -6,18 +6,26 @@
     android:layout_height="match_parent"
     tools:context="br.ufrpe.artemis.avaliacao.gui.AvaliacoesActivity">
 
-    <ListView
-        android:id="@+id/listViewAvaliacoes"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Comentários"
+                android:textStyle="bold"
+                android:textSize="15dp"/>
+            <ListView
+                android:id="@+id/listViewAvaliacoes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </ListView>
+        </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

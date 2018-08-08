@@ -1,16 +1,16 @@
 package br.ufrpe.artemis.usuario.dominio;
 
 public class Usuario {
-    private int Id;
+    private int id;
     private String senha;
     private String cpf;
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getSenha() {

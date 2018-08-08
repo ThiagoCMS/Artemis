@@ -35,7 +35,6 @@
         <activity android:name=".servico.gui.ServicoActivity" />
         <activity android:name=".servico.gui.EditarServicoActivity" />
         <activity android:name=".pessoa.gui.PerfilActivity" />
-        <activity android:name=".servico.gui.ComentariosActivity" />
         <activity android:name=".pessoa.gui.EditarPerfilActivity" />
         <activity android:name=".pessoa.gui.OutroPerfilActivity" />
         <activity android:name=".chat.gui.ChatActivity" />

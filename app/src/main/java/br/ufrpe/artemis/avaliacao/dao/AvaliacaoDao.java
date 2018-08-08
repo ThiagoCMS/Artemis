@@ -5,7 +5,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
-import android.content.Context;
+import java.util.List;
+
 import android.database.Cursor;
 
 import br.ufrpe.artemis.avaliacao.dominio.Avaliacao;
@@ -36,10 +37,10 @@ public class AvaliacaoDao {
         banco.close();
     }
 
-    public ArrayList<Avaliacao> recuperarNotas(int idPrestadora){
-        ArrayList<Avaliacao> list = new ArrayList<>();
+    public List<Avaliacao> recuperarNotas(int idPrestadora){
+        List<Avaliacao> list = new ArrayList<>();
         Cursor cursor = banco.query("classificacao", new String[]{"*"}, "idpessoa = ?", new String[]{String.valueOf(idPrestadora)}, null, null, null);
-        if(cursor.moveToFirst()){}
+        cursor.moveToFirst();
         for (int i = 0; i < cursor.getCount(); i++) {
             Avaliacao avaliacao = new Avaliacao();
             avaliacao.setId(cursor.getInt(0));

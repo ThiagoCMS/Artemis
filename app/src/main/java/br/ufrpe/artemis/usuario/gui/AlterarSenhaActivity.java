@@ -44,18 +44,20 @@ public class AlterarSenhaActivity extends AppCompatActivity {
     private boolean verificarSenha(){
         Usuario usuario = Sessao.instance.getPessoa().getUsuario();
         String senha = senhaAtual.getText().toString();
+        boolean retorno = false;
         if(usuario.getSenha().equals(senha)){
-            return true;
+            retorno = true;
         }
-        return false;
+        return retorno;
     }
 
     private boolean compararSenhas(){
         String senha = novaSenha.getText().toString();
         String senha1 = confirmarNovaSenha.getText().toString();
+        boolean retorno = false;
         if(senha.equals(senha1)){
-            return true;
+            retorno = true;
         }
-        return false;
+        return retorno;
     }
 }

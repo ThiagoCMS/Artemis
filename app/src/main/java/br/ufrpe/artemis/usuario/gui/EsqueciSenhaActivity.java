@@ -1,6 +1,5 @@
 package br.ufrpe.artemis.usuario.gui;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
-import br.ufrpe.artemis.usuario.dominio.Usuario;
 import br.ufrpe.artemis.usuario.negocio.UsuarioNegocio;
 
 public class EsqueciSenhaActivity extends AppCompatActivity {

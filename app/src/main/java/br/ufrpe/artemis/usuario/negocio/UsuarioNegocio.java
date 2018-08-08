@@ -45,15 +45,6 @@ public class UsuarioNegocio {
         return banco.recuperarDoBanco(id);
     }
 
-    public Boolean verificarSenha(int id, String senha){
-        Usuario usuario = recuperarUsuario(id);
-        Criptografia criptografia = new Criptografia();
-        String senhaCriptografada = criptografia.criptografarString(senha);
-        if(usuario.getSenha().equals(senhaCriptografada)){
-            return true;
-        } return false;
-    }
-
     public void alterarSenha(String senha){
         UsuarioDao banco = new UsuarioDao();
         Criptografia criptografia = new Criptografia();

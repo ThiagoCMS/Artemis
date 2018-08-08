@@ -9,6 +9,8 @@ public class Sessao {
     public static final Sessao instance = new Sessao();
     private final Map<String, Object> values = new HashMap<>();
 
+    private Sessao(){}
+
     public void setPessoa(Pessoa pessoa){
         setValue("sessao.pessoa", pessoa);
     }

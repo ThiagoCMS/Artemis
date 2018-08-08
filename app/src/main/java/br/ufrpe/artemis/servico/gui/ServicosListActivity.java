@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
+import java.util.List;
+
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.servico.dominio.Servico;
 import br.ufrpe.artemis.servico.negocio.ServicoNegocio;
@@ -42,21 +44,13 @@ public class ServicosListActivity extends AppCompatActivity {
         int id = Integer.parseInt(extras.getString("id"));
         arrayListServico = negocio.listarSevicosSub(id);
         listViewGeral = findViewById(R.id.reformaListaId);
-        final ArrayList<Servico> servicos = listarServicos();
+        final List<Servico> servicos = listarServicos();
         final ArrayAdapter servicoAdapter = new ServicoAdapter(servicos);
         listViewGeral.setAdapter(servicoAdapter);
     }
 
-    private ArrayList<String> listarNomeServicos(){
-        ArrayList<String> list = new ArrayList<>();
-        for(int i = 0; i < arrayListServico.size() ; i++){
-            list.add(arrayListServico.get(i).getNome());
-        }
-        return list;
-    }
-
-    private ArrayList<Servico> listarServicos(){
-        ArrayList<Servico> list = new ArrayList<>();
+    private List<Servico> listarServicos(){
+        List<Servico> list = new ArrayList<>();
         for(int i = 0; i < arrayListServico.size() ; i++){
             list.add(arrayListServico.get(i));
         }

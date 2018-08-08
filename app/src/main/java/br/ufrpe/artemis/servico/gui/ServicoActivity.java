@@ -15,7 +15,6 @@ import br.ufrpe.artemis.infra.ArtemisApp;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.pessoa.gui.OutroPerfilActivity;
-import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.servico.dominio.Servico;
 import br.ufrpe.artemis.servico.negocio.ServicoNegocio;
@@ -76,11 +75,10 @@ public class ServicoActivity extends AppCompatActivity {
         intent.putExtra("id", servico.getPessoa().getId());
         startActivity(intent);
     }
-    private void comecarChat(){
 
+    private void comecarChat(){
         if(servico.getPessoa().getId()== Sessao.instance.getPessoa().getId()){
             Toast.makeText(ArtemisApp.getContext(),"Você não pode iniciar um chat com si mesmo",Toast.LENGTH_SHORT).show();
-
         }else{
             ChatNegocio chatNegocio = new ChatNegocio();
             Pessoa pessoa = Sessao.instance.getPessoa();
@@ -88,9 +86,6 @@ public class ServicoActivity extends AppCompatActivity {
             Intent intent = new Intent(ServicoActivity.this, ChatActivity.class);
             intent.putExtra("id", String.valueOf(chat.getId()));
             startActivity(intent);
-
-
         }
-
     }
 }

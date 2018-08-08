@@ -1,0 +1,6 @@
+projectKey=Artemis
+serverUrl=http://localhost:9000
+serverVersion=7.2.1.14109
+dashboardUrl=http://localhost:9000/dashboard?id=Artemis
+ceTaskId=AWUVtKl71sztn0KjLm3B
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWUVtKl71sztn0KjLm3B

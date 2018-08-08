@@ -140,8 +140,8 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
     private boolean validarTelefone(){
         boolean erro = false;
-        String telefoneS = telefoneEditar.getText().toString().trim();
-        if(telefoneS.isEmpty()){
+        String telefone = telefoneEditar.getText().toString().trim();
+        if(telefone.isEmpty()){
             erro = true;
             telefoneEditar.setError("Campo em branco");
         }
@@ -170,8 +170,8 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
     private boolean validarCidade(){
         boolean erro = false;
-        String Cidade = cidadeEditar.getText().toString().trim();
-        if(Cidade.isEmpty()){
+        String cidade = cidadeEditar.getText().toString().trim();
+        if(cidade.isEmpty()){
             erro = true;
             cidadeEditar.setError("Campo em branco");
         }
@@ -190,8 +190,8 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
     private boolean validarEmail(){
         boolean erro = false;
-        String Email = emailEditar.getText().toString().trim();
-        if(Email.isEmpty()){
+        String email = emailEditar.getText().toString().trim();
+        if(email.isEmpty()){
             erro = true;
             emailEditar.setError("Campo em branco");
         }
@@ -260,10 +260,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
                 response = http.getHTTPData(url);
                 return response;
             }
-            catch (Exception ex)
-            {
-
-            }
+            catch (Exception ex) {}
             return null;
         }
 

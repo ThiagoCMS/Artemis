@@ -23,18 +23,14 @@ import br.ufrpe.artemis.servico.negocio.ServicoNegocio;
 public class MeusServicosActivity extends AppCompatActivity {
     private Button button;
     private ListView list;
-    private ArrayList<Servico> listaServicos;
-    ServicoNegocio negocio;
-    ArrayAdapter adapterNew;
-    List selections;
-    int count;
+    private List<Servico> listaServicos;
+    private ArrayAdapter adapterNew;
+    private List selections;
+    private int count;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meus_servicos);
-        negocio = new ServicoNegocio();
-        selections = new ArrayList();
-        count = 0;
         setTela();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,8 +44,6 @@ public class MeusServicosActivity extends AppCompatActivity {
                 editarServico(position);
             }
         });
-
-
         list.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
         list.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
             @Override
@@ -84,6 +78,7 @@ public class MeusServicosActivity extends AppCompatActivity {
                 if(item.getItemId()==R.id.id_delete){
                     for(Object Item : selections){
                         listaServicos.remove(Item);
+                        ServicoNegocio negocio = new ServicoNegocio();
                         negocio.deletarServicoDoBanco((Servico) Item);
                     }
                     adapterNew.notifyDataSetChanged();
@@ -99,8 +94,6 @@ public class MeusServicosActivity extends AppCompatActivity {
                 selections.clear();
             }
         });
-
-
     }
 
     private void editarServico(int position){
@@ -118,6 +111,9 @@ public class MeusServicosActivity extends AppCompatActivity {
     private void setTela(){
         button = findViewById(R.id.buttonId);
         list = findViewById(R.id.listId);
+        ServicoNegocio negocio = new ServicoNegocio();
+        selections = new ArrayList();
+        count = 0;
         listaServicos = negocio.listarSevicosPessoa(Sessao.instance.getPessoa().getId());
         adapterNew = new MeusServicosAdapter(listaServicos);
         list.setAdapter(adapterNew);

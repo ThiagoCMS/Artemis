@@ -11,11 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.List;
+
 import br.ufrpe.artemis.R;
 
 public class ConfiguracoesActivity extends AppCompatActivity {
     private ListView lv;
-    private ArrayList<String> listaConfig =  new ArrayList<String>();
+    private List<String> listaConfig =  new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

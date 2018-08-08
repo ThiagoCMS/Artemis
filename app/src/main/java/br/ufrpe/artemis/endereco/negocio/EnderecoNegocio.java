@@ -7,7 +7,7 @@ public class EnderecoNegocio {
 
     public void inserirEndereco(Endereco endereco){
         EnderecoDao dao = new EnderecoDao();
-        dao.inserirEndereço(endereco);
+        dao.inserirEndereco(endereco);
     }
 
     public void alterarEndereco(Endereco endereco){

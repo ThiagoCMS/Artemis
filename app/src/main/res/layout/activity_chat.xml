@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/fab"
                     android:layout_toStartOf="@+id/fab"
-                    android:hint="Insira sua mensagem"
+                    android:hint="Insira sua texto"
                     tools:ignore="RtlCompat,UnknownId" />
             </LinearLayout>
 

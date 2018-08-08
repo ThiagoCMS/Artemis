@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import br.ufrpe.artemis.chat.dominio.Chat;
 import br.ufrpe.artemis.chat.dominio.Mensagem;
 import br.ufrpe.artemis.infra.ArtemisApp;
@@ -47,10 +49,10 @@ public class ChatDao {
         return chat;
     }
 
-    public ArrayList<Chat> recuperarChats(int id){
+    public List<Chat> recuperarChats(int id){
         Cursor cursor = banco.query("chat", new String[]{"*"}, "idpessoa1 = ? OR idpessoa2 = ?", new String[]{String.valueOf(id), String.valueOf(id)}, null, null, null);
-        ArrayList<Chat> chatList = new ArrayList<>();
-        if(cursor.moveToFirst()){}
+        List<Chat> chatList = new ArrayList<>();
+        cursor.moveToFirst();
         for(int i = 0; i < cursor.getCount(); i++){
             Chat chat = new Chat();
             chat.setId(cursor.getInt(0));
@@ -71,15 +73,15 @@ public class ChatDao {
         ContentValues values = new ContentValues();
         values.put("idchat", mensagem.getChat().getId());
         values.put("idpessoa", mensagem.getPessoa().getId());
-        values.put("texto", mensagem.getMensagem());
+        values.put("texto", mensagem.getTexto());
         banco.insert("mensagem", null, values);
         banco.close();
     }
 
-    public ArrayList<Mensagem> recuperarMensagens(Chat chat){
+    public List<Mensagem> recuperarMensagens(Chat chat){
         Cursor cursor = banco.query("mensagem", new String[]{"*"}, "idchat = ?", new String[]{String.valueOf(chat.getId())}, null, null, null);
-        ArrayList<Mensagem> mensagemArrayList = new ArrayList<>();
-        if(cursor.moveToFirst()){}
+        List<Mensagem> mensagemArrayList = new ArrayList<>();
+        cursor.moveToFirst();
         for(int i = 0; i < cursor.getCount(); i++){
             Mensagem mensagem = new Mensagem();
             mensagem.setId(cursor.getInt(0));
@@ -92,7 +94,7 @@ public class ChatDao {
             }
             Date date = new Date();
             date.setTime(cursor.getInt(3));
-            mensagem.setMensagem(cursor.getString(4));
+            mensagem.setTexto(cursor.getString(4));
             mensagemArrayList.add(mensagem);
             cursor.moveToNext();
         }
@@ -102,7 +104,7 @@ public class ChatDao {
     public Chat recuperarChat(Pessoa pessoa, Pessoa pessoa1){
         Chat chat;
         Cursor cursor = banco.query("chat",new String[]{"*"},"idpessoa1 = ? and idpessoa2 = ?", new String[]{String.valueOf(pessoa.getId()),String.valueOf(pessoa1.getId())},null,null,null);
-        if (!(cursor.getCount()>0)){
+        if (cursor.getCount()<=0){
             cursor = banco.query("chat",new String[]{"*"},"idpessoa1 = ? and idpessoa2 = ?", new String[]{String.valueOf(pessoa1.getId()),String.valueOf(pessoa.getId())},null,null,null);
         }if(cursor.getCount()>0){
             cursor.moveToFirst();

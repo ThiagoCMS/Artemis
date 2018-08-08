@@ -3,7 +3,6 @@ package br.ufrpe.artemis.pessoa.negocio;
 import br.ufrpe.artemis.endereco.negocio.EnderecoNegocio;
 import br.ufrpe.artemis.infra.Auxiliar;
 import br.ufrpe.artemis.pessoa.dao.PessoaDao;
-import br.ufrpe.artemis.avaliacao.dominio.Avaliacao;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.usuario.dominio.Usuario;
 import br.ufrpe.artemis.usuario.negocio.UsuarioNegocio;

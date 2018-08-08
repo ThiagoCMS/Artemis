@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 
 import com.github.library.bubbleview.BubbleTextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import br.ufrpe.artemis.chat.dominio.Mensagem;
 import br.ufrpe.artemis.infra.ArtemisApp;
@@ -17,34 +17,23 @@ import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.R;
 
 public class ChatCustomAdapter extends ArrayAdapter<Mensagem> {
-
-    private ArrayList<Mensagem> mensagens;
+    private List<Mensagem> mensagens;
     private LayoutInflater layoutInflater;
 
-
-    public ChatCustomAdapter(ArrayList<Mensagem> mensagens) {
+    public ChatCustomAdapter(List<Mensagem> mensagens) {
         super(ArtemisApp.getContext(),R.layout.list_item_message_send,mensagens);
-
-
         this.mensagens = mensagens;
         layoutInflater = (LayoutInflater)ArtemisApp.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        View view = convertView;
-
         if(mensagens.get(position).getPessoa().getId() == Sessao.instance.getPessoa().getId())
-            view = layoutInflater.inflate(R.layout.list_item_message_send, null);
+            convertView = layoutInflater.inflate(R.layout.list_item_message_send, null);
         else
-            view = layoutInflater.inflate(R.layout.list_item_message_recv,null);
-
-        BubbleTextView text_message = (BubbleTextView)view.findViewById(R.id.text_message);
-        text_message.setText(mensagens.get(position).getMensagem());
-
-        return view;
-
+            convertView = layoutInflater.inflate(R.layout.list_item_message_recv,null);
+        BubbleTextView textMessage = (BubbleTextView)convertView.findViewById(R.id.text_message);
+        textMessage.setText(mensagens.get(position).getTexto());
+        return convertView;
     }
 }

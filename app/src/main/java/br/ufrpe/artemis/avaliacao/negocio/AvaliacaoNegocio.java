@@ -1,10 +1,10 @@
 package br.ufrpe.artemis.avaliacao.negocio;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import br.ufrpe.artemis.avaliacao.dao.AvaliacaoDao;
 import br.ufrpe.artemis.avaliacao.dominio.Avaliacao;
 import br.ufrpe.artemis.avaliacao.dominio.Classificacao;
-import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 
 public class AvaliacaoNegocio {
@@ -13,34 +13,34 @@ public class AvaliacaoNegocio {
         dao.inserirAvaliacao(avaliacao);
     }
 
-    public ArrayList<Avaliacao> retornarAvaliacoes(int id){
+    public List<Avaliacao> retornarAvaliacoes(int id){
         AvaliacaoDao banco = new AvaliacaoDao();
         return banco.recuperarNotas(id);
     }
 
     public Classificacao notasPrestadora(int id) {
         AvaliacaoDao banco = new AvaliacaoDao();
-        ArrayList<Avaliacao> listaNotas = banco.recuperarNotas(id);
+        List<Avaliacao> listaNotas = banco.recuperarNotas(id);
         PessoaNegocio pessoaNegocio = new PessoaNegocio();
         for (Avaliacao avaliacao: listaNotas) {
             avaliacao.setCliente(pessoaNegocio.recuperarPessoaPorId(avaliacao.getCliente().getId()));
             avaliacao.setPrestadora(pessoaNegocio.recuperarPessoaPorId(avaliacao.getPrestadora().getId()));
         }
         Classificacao classificacao = new Classificacao();
-        double mediaPreço = 0;
+        double mediaPreco = 0;
         double mediaAtendimento = 0;
         double mediaQualidade = 0;
         for (Avaliacao obj : listaNotas) {
-            mediaPreço += obj.getNotaPreco();
+            mediaPreco += obj.getNotaPreco();
             mediaAtendimento += obj.getNotaAtendimento();
             mediaQualidade += obj.getNotaQualidade();
         }
-        if (listaNotas.size() > 0) {
-            mediaPreço = mediaPreço / listaNotas.size();
+        if (listaNotas.isEmpty()) {
+            mediaPreco = mediaPreco / listaNotas.size();
             mediaAtendimento = mediaAtendimento / listaNotas.size();
             mediaQualidade = mediaQualidade / listaNotas.size();
         }
-        classificacao.setMediaPreco(mediaPreço);
+        classificacao.setMediaPreco(mediaPreco);
         classificacao.setMediaAtendimento(mediaAtendimento);
         classificacao.setMediaQualidade(mediaQualidade);
     return classificacao;
@@ -49,7 +49,6 @@ public class AvaliacaoNegocio {
     public double mediaGeral(int id){
         Classificacao classificacao = notasPrestadora(id);
         double total = classificacao.getMediaPreco() + classificacao.getMediaAtendimento() + classificacao.getMediaQualidade();
-        double media = total/3;
-        return media;
+        return total/3;
     }
 }

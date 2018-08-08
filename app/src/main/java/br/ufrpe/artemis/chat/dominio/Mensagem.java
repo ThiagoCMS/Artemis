@@ -6,16 +6,16 @@ public class Mensagem {
     private int id;
     private Chat chat;
     private Pessoa pessoa;
-    private String mensagem;
+    private String texto;
 
     public Mensagem(){
 
     }
 
-    public Mensagem(Chat chat, Pessoa pessoa, String mensagem) {
+    public Mensagem(Chat chat, Pessoa pessoa, String texto) {
         this.chat = chat;
         this.pessoa = pessoa;
-        this.mensagem = mensagem;
+        this.texto = texto;
     }
 
     public int getId() {
@@ -42,11 +42,11 @@ public class Mensagem {
         this.pessoa = pessoa;
     }
 
-    public String getMensagem() {
-        return mensagem;
+    public String getTexto() {
+        return texto;
     }
 
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 }

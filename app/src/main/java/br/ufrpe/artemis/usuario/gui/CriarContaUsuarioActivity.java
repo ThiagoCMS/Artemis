@@ -9,14 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import br.ufrpe.artemis.endereco.dominio.Endereco;
-import br.ufrpe.artemis.infra.ArtemisApp;
 import br.ufrpe.artemis.infra.Auxiliar;
 import br.ufrpe.artemis.infra.HttpDataHandler;
 import br.ufrpe.artemis.infra.criptografia.Criptografia;
@@ -32,9 +29,9 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
     private EditText senhaRegistro;
     private EditText confirmaSenhaRegistro;
     private EditText telefoneRegistro;
-    private EditText rua;
-    private EditText numero;
-    private EditText cidade;
+    private EditText ruaRegistro;
+    private EditText numeroRegistro;
+    private EditText cidadeRegistro;
     private Button botaoRegistrar;
     private boolean error = false;
     @Override
@@ -59,9 +56,9 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         confirmaSenhaRegistro = findViewById(R.id.confirmarSenhaRegistroId);
         botaoRegistrar = findViewById(R.id.btAlterarId);
         telefoneRegistro = findViewById(R.id.telefoneId);
-        rua = findViewById(R.id.ruaEnderecoId);
-        numero= findViewById(R.id.numEnderecoId);
-        cidade= findViewById(R.id.cidadeEnderecoId);
+        ruaRegistro = findViewById(R.id.ruaEnderecoId);
+        numeroRegistro = findViewById(R.id.numEnderecoId);
+        cidadeRegistro = findViewById(R.id.cidadeEnderecoId);
     }
 
     private void validarCadastro() {
@@ -101,8 +98,8 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
 
     private boolean validarTelefone(){
         boolean erro = false;
-        String Telefone = telefoneRegistro.getText().toString().trim();
-        if(Telefone.isEmpty()){
+        String telefone = telefoneRegistro.getText().toString().trim();
+        if(telefone.isEmpty()){
             erro = true;
             telefoneRegistro.setError("Campo em branco");
         }
@@ -111,30 +108,30 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
 
     private boolean validarRua(){
         boolean erro = false;
-        String Rua = rua.getText().toString().trim();
-        if(Rua.isEmpty()){
+        String rua = ruaRegistro.getText().toString().trim();
+        if(rua.isEmpty()){
             erro = true;
-            rua.setError("Campo em branco");
+            ruaRegistro.setError("Campo em branco");
         }
         return erro;
     }
 
     private boolean validarNumero(){
         boolean erro = false;
-        String Numero = numero.getText().toString().trim();
-        if(Numero.isEmpty()){
+        String numero = numeroRegistro.getText().toString().trim();
+        if(numero.isEmpty()){
             erro = true;
-            numero.setError("Campo em branco");
+            numeroRegistro.setError("Campo em branco");
         }
         return erro;
     }
 
     private boolean validarCidade(){
         boolean erro = false;
-        String Cidade = cidade.getText().toString().trim();
-        if(Cidade.isEmpty()){
+        String cidade = cidadeRegistro.getText().toString().trim();
+        if(cidade.isEmpty()){
             erro = true;
-            cidade.setError("Campo em branco");
+            cidadeRegistro.setError("Campo em branco");
         }
         return erro;
     }
@@ -205,9 +202,9 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         if(negocio.existeUsuario(cpf)){
             Toast.makeText(this, "Cpf já registrado", Toast.LENGTH_SHORT).show();
         }else{
-            String ruaS = rua.getText().toString().trim();
-            String numeroS = numero.getText().toString().trim();
-            String cidadeS = cidade.getText().toString().trim();
+            String ruaS = ruaRegistro.getText().toString().trim();
+            String numeroS = numeroRegistro.getText().toString().trim();
+            String cidadeS = cidadeRegistro.getText().toString().trim();
             String end = ruaS.replace(" ", "+") + "+" + numeroS + "+" + cidadeS.replace(" ", "+");
             new GetCoordinates().execute(end);
         }
@@ -223,9 +220,9 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         String nome = nomeRegistro.getText().toString().trim();
         String email = emailRegistro.getText().toString().trim();
         String telefone = telefoneRegistro.getText().toString().trim();
-        String ruaS = rua.getText().toString().trim();
-        String numeroS = numero.getText().toString().trim();
-        String cidadeS = cidade.getText().toString().trim();
+        String ruaS = ruaRegistro.getText().toString().trim();
+        String numeroS = numeroRegistro.getText().toString().trim();
+        String cidadeS = cidadeRegistro.getText().toString().trim();
         Usuario usuario = new Usuario();
         usuario.setCpf(cpf);
         Criptografia criptografia = new Criptografia();
@@ -269,10 +266,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
                 response = http.getHTTPData(url);
                 return response;
             }
-            catch (Exception ex)
-            {
-
-            }
+            catch (Exception ex) {}
             return null;
         }
 

@@ -1,10 +1,6 @@
 package br.ufrpe.artemis.pessoa.gui;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -18,14 +14,10 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import br.ufrpe.artemis.chat.gui.ListaConversasActivity;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.R;
-import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.servico.gui.MeusServicosActivity;
 import br.ufrpe.artemis.servico.gui.SubCategoriaActivity;
 import br.ufrpe.artemis.usuario.gui.ConfiguracoesActivity;
@@ -136,13 +128,11 @@ public class HomeActivity extends AppCompatActivity
                 Intent intent = new Intent(HomeActivity.this,SearchResultsActivity.class);
                 intent.putExtra("pesquisa",query);
                 startActivity(intent);
-
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 return false;
             }
         });
@@ -153,23 +143,22 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        boolean answer = false;
         if (id == R.id.action_settings) {
-            return true;
+            answer = true;
         }else if(id == R.id.action_search){
-            return true;
-
+            answer = true;
+        }else {
+            answer = super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+        return answer;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-
-        } else if (id == R.id.nav_logout) {
+        if (id == R.id.nav_logout) {
             logout();
         } else if (id == R.id.nav_config) {
             startActivity(new Intent(HomeActivity.this, ConfiguracoesActivity.class));
@@ -180,7 +169,6 @@ public class HomeActivity extends AppCompatActivity
         } else if(id == R.id.nav_chat){
             startActivity(new Intent(HomeActivity.this, ListaConversasActivity.class));
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

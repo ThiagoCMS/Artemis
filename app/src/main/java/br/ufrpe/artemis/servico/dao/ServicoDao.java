@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
+import java.util.List;
+
 import br.ufrpe.artemis.infra.ArtemisApp;
 import br.ufrpe.artemis.infra.database.dao.DB;
 import br.ufrpe.artemis.pessoa.dao.PessoaDao;
@@ -39,44 +41,14 @@ public class ServicoDao {
         banco.close();
     }
 
-    public ArrayList<Servico> recuperarDoBancoSub(int idSub){
-        ArrayList<Servico> list = new ArrayList<Servico>();
+    public List<Servico> recuperarDoBancoSub(int idSub){
         Cursor cursor = banco.query("servico", new String[]{"*"}, "idsubcategoria = ?", new String[]{String.valueOf(idSub)}, null, null, null);
-        if(cursor.getCount()>0){cursor.moveToFirst();}
-        for(int i = 0; i < cursor.getCount(); i++){
-            Servico servico = new Servico();
-            servico.setId(cursor.getInt(0));
-            servico.setNome(cursor.getString(1));
-            servico.setTexto(cursor.getString(2));
-            PessoaDao bancoPessoa = new PessoaDao();
-            Pessoa pessoa = bancoPessoa.recuperarDoBanco(cursor.getInt(3));
-            servico.setPessoa(pessoa);
-            Subcategoria subcategoria = retornarSubcategoria(cursor.getInt(4));
-            servico.setSubcategoria(subcategoria);
-            list.add(servico);
-            cursor.moveToNext();
-        }
-        return list;
+        return montarServicos(cursor);
     }
 
-    public ArrayList<Servico> recuperarDoBancoUs(int idPessoa){
-        ArrayList<Servico> list = new ArrayList<Servico>();
+    public List<Servico> recuperarDoBancoUs(int idPessoa){
         Cursor cursor = banco.query("servico", new String[]{"*"}, "idpessoa = ?", new String[]{String.valueOf(idPessoa)}, null, null, null);
-        if(cursor.getCount()>0){cursor.moveToFirst();}
-        for(int i = 0; i < cursor.getCount(); i++){
-            Servico servico = new Servico();
-            servico.setId(cursor.getInt(0));
-            servico.setNome(cursor.getString(1));
-            servico.setTexto(cursor.getString(2));
-            PessoaDao bancoPessoa = new PessoaDao();
-            Pessoa pessoa = bancoPessoa.recuperarDoBanco(cursor.getInt(3));
-            servico.setPessoa(pessoa);
-            Subcategoria subcategoria = retornarSubcategoria(cursor.getInt(4));
-            servico.setSubcategoria(subcategoria);
-            list.add(servico);
-            cursor.moveToNext();
-        }
-        return list;
+        return montarServicos(cursor);
     }
 
     public Servico recuperarServico(int id){
@@ -94,8 +66,8 @@ public class ServicoDao {
         return servico;
     }
 
-    public ArrayList<Categoria> recuperarListaCategoria(){
-        ArrayList<Categoria> lista = new ArrayList<>();
+    public List<Categoria> recuperarListaCategoria(){
+        List<Categoria> lista = new ArrayList<>();
         Cursor cursor = banco.query("categoria", new String[]{"*"}, null, null, null, null,null);
         cursor.moveToFirst();
         for (int i = 0; i < cursor.getCount(); i++){
@@ -107,8 +79,8 @@ public class ServicoDao {
         }
         return lista;
     }
-    public ArrayList<Subcategoria> recuperarListaSubcategoria(int idcategoria) {
-        ArrayList<Subcategoria> lista = new ArrayList<>();
+    public List<Subcategoria> recuperarListaSubcategoria(int idcategoria) {
+        List<Subcategoria> lista = new ArrayList<>();
         String numCategoria = String.valueOf(idcategoria);
         Cursor cursor = banco.query("subcategoria", new String[]{"*"}, "idcategoria = ?", new String[]{numCategoria}, null, null, null);
         cursor.moveToFirst();
@@ -116,8 +88,7 @@ public class ServicoDao {
             Subcategoria subcategoria = new Subcategoria();
             subcategoria.setId(cursor.getInt(0));
             subcategoria.setNome(cursor.getString(1));
-            Categoria categoria = new Categoria();
-            categoria = retornarCategoria(cursor.getInt(2));
+            Categoria categoria = retornarCategoria(cursor.getInt(2));
             subcategoria.setCategoria(categoria);
             lista.add(subcategoria);
             cursor.moveToNext();
@@ -162,12 +133,16 @@ public class ServicoDao {
         return categoria;
     }
 
-    public ArrayList<Servico> retornarServicos(){
-        ArrayList<Servico> list = new ArrayList<Servico>();
-        //Cursor cursor = banco.query("servico", new String[]{"*"}, "1=1", new String[]{String.valueOf(idSub)}, null, null, null);
+    public List<Servico> retornarServicos(){
         Cursor cursor = banco.query("servico",new String[]{"*"},"1=1",null,null,null,null);
-        if(cursor.getCount()>0){cursor.moveToFirst();}
-        for(int i = 0; i < cursor.getCount(); i++){
+        List<Servico> list = montarServicos(cursor);
+        return list;
+    }
+
+    private List<Servico> montarServicos(Cursor cursor) {
+        List<Servico> list = new ArrayList<>();
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++) {
             Servico servico = new Servico();
             servico.setId(cursor.getInt(0));
             servico.setNome(cursor.getString(1));
