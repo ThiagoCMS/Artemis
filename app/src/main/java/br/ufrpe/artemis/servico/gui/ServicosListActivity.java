@@ -15,7 +15,7 @@ import br.ufrpe.artemis.servico.dominio.Servico;
 import br.ufrpe.artemis.servico.negocio.ServicoNegocio;
 
 public class ServicosListActivity extends AppCompatActivity {
-    private ArrayList<Servico> arrayListServico;
+    private List<Servico> arrayListServico;
     private ListView listViewGeral;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

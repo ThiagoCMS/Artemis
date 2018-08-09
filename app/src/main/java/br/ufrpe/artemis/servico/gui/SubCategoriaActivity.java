@@ -11,13 +11,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.List;
+
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.servico.dominio.Subcategoria;
 import br.ufrpe.artemis.servico.negocio.ServicoNegocio;
 
 public class SubCategoriaActivity extends AppCompatActivity {
     private ListView listViewSubcategorias;
-    private ArrayList<Subcategoria> listaSubcategorias;
+    private List<Subcategoria> listaSubcategorias;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

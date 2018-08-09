@@ -9,13 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.servico.dominio.Servico;
 import br.ufrpe.artemis.servico.negocio.ServicoNegocio;
 
 public class ServicoOutraPessoaActivity extends AppCompatActivity {
-    private ArrayList<Servico> arrayListServico;
+    private List<Servico> arrayListServico;
     private ListView listViewGeral;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

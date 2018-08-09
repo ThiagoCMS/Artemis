@@ -11,6 +11,8 @@ import android.widget.Spinner;
 import android.view.View;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.List;
+
 import br.ufrpe.artemis.infra.ArtemisApp;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.R;
@@ -25,8 +27,8 @@ public class CriarServicoActivity extends AppCompatActivity {
     private Spinner subcategoriaSpinner;
     private Spinner categoriaSpinner;
     private Button cadastrar;
-    private ArrayList<Categoria> listaCategoria;
-    private ArrayList<Subcategoria> listaSubcategoria;
+    private List<Categoria> listaCategoria;
+    private List<Subcategoria> listaSubcategoria;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

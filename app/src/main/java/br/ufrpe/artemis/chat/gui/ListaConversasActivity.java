@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.ufrpe.artemis.chat.dominio.Chat;
 import br.ufrpe.artemis.chat.negocio.ChatNegocio;
@@ -16,7 +17,7 @@ import br.ufrpe.artemis.R;
 
 public class ListaConversasActivity extends AppCompatActivity {
     private ListView listViewChat;
-    private ArrayList<Chat> listaChat;
+    private List<Chat> listaChat;
 
 
 

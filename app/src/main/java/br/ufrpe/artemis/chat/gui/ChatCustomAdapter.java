@@ -33,7 +33,7 @@ public class ChatCustomAdapter extends ArrayAdapter<Mensagem> {
             view = layoutInflater.inflate(R.layout.list_item_message_send, null);
         else
             view = layoutInflater.inflate(R.layout.list_item_message_recv,null);
-        BubbleTextView textMessage = (BubbleTextView)convertView.findViewById(R.id.text_message);
+        BubbleTextView textMessage = (BubbleTextView)view.findViewById(R.id.text_message);
         textMessage.setText(mensagens.get(position).getTexto());
         return view;
     }
