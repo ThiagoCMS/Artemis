@@ -1,7 +1,5 @@
 package br.ufrpe.artemis.infra;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +9,9 @@ import br.ufrpe.artemis.avaliacao.negocio.AvaliacaoNegocio;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 
 /**
- * Slope One algorithm implementation
+ * Crédito por este algoritmo:
+ *      Site: http://www.baeldung.com/java-collaborative-filtering-recommendations
+ *      GitHub: https://github.com/eugenp/tutorials/tree/master/algorithms/src/main/java/com/baeldung/algorithms/slope_one
  */
 public class SlopeOne {
 
@@ -27,15 +27,8 @@ public class SlopeOne {
         predict(inputData, avaliacaoNegocio.retornarPrestadorasAvaliadas());
     }
 
-    /**
-     * Based on the available data, calculate the relationships between the
-     *items and number of
-     *
-     * @param data
-     *            existing user data and their items' ratings
-     */
     private static void buildDifferencesMatrix(Map<Pessoa, HashMap<Pessoa, Double>> data) {
-        for (HashMap<Pessoa, Double> user : data.values()) {//cada valor de cada chave
+        for (HashMap<Pessoa, Double> user : data.values()) {
             for (Entry<Pessoa, Double> e : user.entrySet()) {
                 if (!diff.containsKey(e.getKey())) {
                     diff.put(e.getKey(), new HashMap<Pessoa, Double>());
@@ -65,13 +58,6 @@ public class SlopeOne {
         }
     }
 
-    /**
-     * Based on existing data predict all missing ratings. If prediction is not
-     * possible, the value will be equal to -1
-     *
-     * @param data
-     *            existing user data and their items' ratings
-     */
     private static void predict(Map<Pessoa, HashMap<Pessoa, Double>> data, List<Pessoa> listPrestadoras) {
         HashMap<Pessoa, Double> uPred = new HashMap<Pessoa, Double>();
         HashMap<Pessoa, Integer> uFreq = new HashMap<Pessoa, Integer>();
