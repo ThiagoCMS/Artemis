@@ -110,19 +110,4 @@ public class SlopeOne {
     public static Map<Pessoa, HashMap<Pessoa, Double>> getOutputData() {
         return outputData;
     }
-
-    private static void printData(Map<Pessoa, HashMap<Pessoa, Double>> data) {
-        for (Pessoa user : data.keySet()) {
-            System.out.println(user.getNome() + ":");
-            print(data.get(user));
-        }
-    }
-
-    private static void print(HashMap<Pessoa, Double> hashMap) {
-        NumberFormat formatter = new DecimalFormat("#0.000");
-        for (Pessoa j : hashMap.keySet()) {
-            System.out.println(" " + j.getNome() + " --> " + formatter.format(hashMap.get(j).doubleValue()));
-        }
-    }
-
 }
