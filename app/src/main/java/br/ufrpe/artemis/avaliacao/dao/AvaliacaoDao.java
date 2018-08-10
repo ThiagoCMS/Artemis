@@ -59,4 +59,52 @@ public class AvaliacaoDao {
         }
         return list;
     }
+
+    public List<Avaliacao> retornarTudo() {
+        List<Avaliacao> list = new ArrayList<>();
+        Cursor cursor = banco.query("classificacao", new String[]{"*"}, null, null, null, null, null);
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++) {
+            Avaliacao avaliacao = new Avaliacao();
+            avaliacao.setId(cursor.getInt(0));
+            avaliacao.setNotaPreco(cursor.getDouble(1));
+            avaliacao.setNotaQualidade(cursor.getDouble(2));
+            avaliacao.setNotaAtendimento(cursor.getDouble(3));
+            avaliacao.setComentario(cursor.getString(4));
+            Pessoa pessoa = new Pessoa();
+            pessoa.setId(cursor.getInt(5));
+            avaliacao.setPrestadora(pessoa);
+            Pessoa pessoa1 = new Pessoa();
+            pessoa1.setId(cursor.getInt(6));
+            avaliacao.setCliente(pessoa1);
+            list.add(avaliacao);
+            cursor.moveToNext();
+        }
+        return list;
+    }
+
+    public List<Pessoa> retornarPrestadorasAvaliadas(){
+        List<Pessoa> list = new ArrayList<>();
+        list.add(new Pessoa());
+        Cursor cursor = banco.query("classificacao", new String[]{"idpessoa"}, null, null, null, null, null);
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++) {
+            boolean v = true;
+            Pessoa pessoa = new Pessoa();
+            pessoa.setId(cursor.getInt(cursor.getColumnIndex("idpessoa")));
+            for (Pessoa p: list) {
+                if(p.getId() == pessoa.getId()){
+                    v = false;
+                    break;
+                }
+            }
+            if(v){
+                list.add(pessoa);
+            }
+        }
+        list.remove(0);
+        return list;
+    }
+
+
 }

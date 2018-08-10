@@ -1,190 +1,127 @@
 package br.ufrpe.artemis.infra;
 
-/* Renata Ghisloti Duarte de Souza */
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
-import java.util.*;
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.FileOutputStream;
+import br.ufrpe.artemis.avaliacao.negocio.AvaliacaoNegocio;
+import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 
-
-/* Slope One version
- * ****Simple slope one*****
- * Here is presented only the calculation of the diffs matrix (the most expensive part)
- * the predction part is in another file
+/**
+ * Slope One algorithm implementation
  */
-
 public class SlopeOne {
 
-    int maxItemsId = 0;
-    float mteste[][];
-    int mFreq[][];
-    Map<Integer,Map<Integer,Float>> usersMatrix;
+    private static Map<Pessoa, Map<Pessoa, Double>> diff = new HashMap<>();
+    private static Map<Pessoa, Map<Pessoa, Integer>> freq = new HashMap<>();
+    private static Map<Pessoa, HashMap<Pessoa, Double>> inputData;
+    private static Map<Pessoa, HashMap<Pessoa, Double>> outputData = new HashMap<>();
 
-    public static void main(String args[]){
-
-        long start = System.currentTimeMillis();
-        SlopeOne so = new SlopeOne();
-
-        /* Estimates time */
-        long end = System.currentTimeMillis();
-        System.out.println("\nExecution time was "+(end-start)+" ms.");
+    public static void slopeOne() {
+        AvaliacaoNegocio avaliacaoNegocio = new AvaliacaoNegocio();
+        inputData = avaliacaoNegocio.retornarMapAvaliacoes();
+        buildDifferencesMatrix(inputData);
+        predict(inputData, avaliacaoNegocio.retornarPrestadorasAvaliadas());
     }
 
+    /**
+     * Based on the available data, calculate the relationships between the
+     *items and number of
+     *
+     * @param data
+     *            existing user data and their items' ratings
+     */
+    private static void buildDifferencesMatrix(Map<Pessoa, HashMap<Pessoa, Double>> data) {
+        for (HashMap<Pessoa, Double> user : data.values()) {//cada valor de cada chave
+            for (Entry<Pessoa, Double> e : user.entrySet()) {
+                if (!diff.containsKey(e.getKey())) {
+                    diff.put(e.getKey(), new HashMap<Pessoa, Double>());
+                    freq.put(e.getKey(), new HashMap<Pessoa, Integer>());
+                }
+                for (Entry<Pessoa, Double> e2 : user.entrySet()) {
+                    int oldCount = 0;
+                    if (freq.get(e.getKey()).containsKey(e2.getKey())) {
+                        oldCount = freq.get(e.getKey()).get(e2.getKey()).intValue();
+                    }
+                    double oldDiff = 0.0;
+                    if (diff.get(e.getKey()).containsKey(e2.getKey())) {
+                        oldDiff = diff.get(e.getKey()).get(e2.getKey()).doubleValue();
+                    }
+                    double observedDiff = e.getValue() - e2.getValue();
+                    freq.get(e.getKey()).put(e2.getKey(), oldCount + 1);
+                    diff.get(e.getKey()).put(e2.getKey(), oldDiff + observedDiff);
+                }
+            }
+        }
+        for (Pessoa j : diff.keySet()) {
+            for (Pessoa i : diff.get(j).keySet()) {
+                double oldValue = diff.get(j).get(i).doubleValue();
+                int count = freq.get(j).get(i).intValue();
+                diff.get(j).put(i, oldValue / count);
+            }
+        }
+    }
 
-    public SlopeOne(){
-
-        readInput();
-        buildDiffMatrix();
-
-
-        /* Print the output */
-        try{
-            FileOutputStream output = new FileOutputStream("slope-intermidiary-output.txt");
-            /* Print the maximum number of items */
-            output.write(String.valueOf(maxItemsId).getBytes());
-            output.write( String.valueOf("\n").getBytes()  );
-
-            for(int i = 1; i <= maxItemsId; i++){
-                for(int j = i; j <= maxItemsId; j++){
-
-                    if(!Float.isNaN (mteste[i][j])){
-                        /* Print the rates */
-                        output.write( String.valueOf(i).getBytes()  );
-                        output.write( String.valueOf("\t").getBytes()  );
-                        output.write( String.valueOf(j).getBytes()  );
-                        output.write( String.valueOf("\t").getBytes()  );
-                        output.write( String.valueOf( mteste[i][j] ).getBytes());
-                        output.write( String.valueOf("\n").getBytes()  );
-
-                        /* Print the frequencies */
-                        output.write( String.valueOf(i).getBytes()  );
-                        output.write( String.valueOf("\t").getBytes()  );
-                        output.write( String.valueOf(j).getBytes()  );
-                        output.write( String.valueOf("\t").getBytes()  );
-                        output.write( String.valueOf( mFreq[i][j] ).getBytes());
-                        output.write( String.valueOf("\n").getBytes()  );
+    /**
+     * Based on existing data predict all missing ratings. If prediction is not
+     * possible, the value will be equal to -1
+     *
+     * @param data
+     *            existing user data and their items' ratings
+     */
+    private static void predict(Map<Pessoa, HashMap<Pessoa, Double>> data, List<Pessoa> listPrestadoras) {
+        HashMap<Pessoa, Double> uPred = new HashMap<Pessoa, Double>();
+        HashMap<Pessoa, Integer> uFreq = new HashMap<Pessoa, Integer>();
+        for (Pessoa j : diff.keySet()) {
+            uFreq.put(j, 0);
+            uPred.put(j, 0.0);
+        }
+        for (Entry<Pessoa, HashMap<Pessoa, Double>> e : data.entrySet()) {
+            for (Pessoa j : e.getValue().keySet()) {
+                for (Pessoa k : diff.keySet()) {
+                    try {
+                        double predictedValue = diff.get(k).get(j).doubleValue() + e.getValue().get(j).doubleValue();
+                        double finalValue = predictedValue * freq.get(k).get(j).intValue();
+                        uPred.put(k, uPred.get(k) + finalValue);
+                        uFreq.put(k, uFreq.get(k) + freq.get(k).get(j).intValue());
+                    } catch (NullPointerException e1) {
                     }
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            HashMap<Pessoa, Double> clean = new HashMap<Pessoa, Double>();
+            for (Pessoa j : uPred.keySet()) {
+                Boolean v = clean.containsKey(j);
+                if (uFreq.get(j) > 0 && !v) {
+                    clean.put(j, uPred.get(j).doubleValue() / uFreq.get(j).intValue());
+                }
+            }
+            for (Pessoa j : listPrestadoras) {
+                if (e.getValue().containsKey(j)) {
+                    clean.put(j, e.getValue().get(j));
+                }
+            }
+            outputData.put(e.getKey(), clean);
         }
     }
 
-    /*
-     * Function readInput()
-     * Read the input and saves it in the usersMatrix
-     *
-     */
-    public void readInput(){
-        File file = new File("ratings_set1.dat");
+    public static Map<Pessoa, HashMap<Pessoa, Double>> getOutputData() {
+        return outputData;
+    }
 
-        FileInputStream fis = null;
-        BufferedInputStream bis = null;
-        DataInputStream dis = null;
-        int i;
-        int j;
-
-        usersMatrix = new HashMap<Integer,Map<Integer,Float>>();
-        String line;
-
-        try {
-            fis = new FileInputStream(file);
-            bis = new BufferedInputStream(fis);
-            dis = new DataInputStream(bis);
-
-            line = dis.readLine();
-
-            /*
-             * First get all ratings from one user,
-             * calculate the diffs for this user and save them
-             * in the mDiffMatrix
-             */
-
-            while (dis.available() != 0) {
-
-                StringTokenizer t = new StringTokenizer(line, ",");
-                int user =  Integer.parseInt(t.nextToken());
-                int tempUser = user;
-
-                usersMatrix.put(user, new HashMap<Integer,Float>());
-
-                // Read all lines for one user
-                while(user == tempUser){
-
-                    /* Get item */
-                    i = Integer.parseInt(t.nextToken());
-
-                    /* Get the quantity of items by finding the maximun value
-                     * of itemId */
-                    maxItemsId = maxItemsId < i ? i : maxItemsId;
-
-                    /* Save rating */
-                    usersMatrix.get(user).put(i, Float.parseFloat(t.nextToken()) );
-
-                    if(dis.available()!=0){
-                        line = dis.readLine();
-                        t = new StringTokenizer(line, ",");
-                        tempUser = Integer.parseInt(t.nextToken());
-                    }
-                    else
-                        tempUser = -1;
-
-                }
-            }
-
-            fis.close();
-            bis.close();
-            dis.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private static void printData(Map<Pessoa, HashMap<Pessoa, Double>> data) {
+        for (Pessoa user : data.keySet()) {
+            System.out.println(user.getNome() + ":");
+            print(data.get(user));
         }
     }
 
-
-
-    /*
-     * Function buildDiffMatrix()
-     * Calculates the DiffMatrix for all items
-     *
-     */
-    public  void buildDiffMatrix() {
-
-        mteste = new float[maxItemsId+1][maxItemsId+1];
-        mFreq = new int[maxItemsId+1][maxItemsId+1];
-
-        for(int i = 1; i <= maxItemsId; i++)
-            for(int j = 1; j <= maxItemsId; j++){
-                mteste[i][j] = 0;
-                mFreq[i][j] = 0;
-            }
-
-        /* Iterate through all users, and then, through all items do calculate the diffs */
-        for(int cUser : usersMatrix.keySet()){
-            for(int i: usersMatrix.get(cUser).keySet()){
-                for(int j : usersMatrix.get(cUser).keySet() ){
-                    mteste[i][j] = mteste[i][j]  +
-                            ( usersMatrix.get(cUser).get(i).floatValue() - (usersMatrix.get(cUser).get(j).floatValue()));
-                    mFreq[i][j] = mFreq[i][j] + 1;
-                }
-            }
-        }
-
-        /*  Calculate the averages (diff/freqs) */
-        for(int i = 1; i<= maxItemsId; i++){
-            for(int j = i; j <= maxItemsId; j++){
-                if(mFreq[i][j] > 0){
-                    mteste[i][j] = mteste[i][j] / mFreq[i][j];
-                }
-            }
+    private static void print(HashMap<Pessoa, Double> hashMap) {
+        NumberFormat formatter = new DecimalFormat("#0.000");
+        for (Pessoa j : hashMap.keySet()) {
+            System.out.println(" " + j.getNome() + " --> " + formatter.format(hashMap.get(j).doubleValue()));
         }
     }
 

@@ -42,8 +42,9 @@
         <activity android:name=".avaliacao.gui.FormularioActivity" />
         <activity android:name=".usuario.gui.EsqueciSenhaActivity" />
         <activity android:name=".pessoa.gui.SearchResultsActivity" />
-        <activity android:name=".servico.gui.ServicoOutraPessoaActivity"></activity>
-        <activity android:name=".avaliacao.gui.AvaliacoesActivity"></activity>
+        <activity android:name=".servico.gui.ServicoOutraPessoaActivity" />
+        <activity android:name=".avaliacao.gui.AvaliacoesActivity" />
+        <activity android:name=".servico.gui.ServicosRecomendadosActivity"></activity>
     </application>
 
 </manifest>

@@ -13,9 +13,9 @@
             android:icon="@drawable/ic_menu_profile"
             android:title="Perfil" />
         <item
-            android:id="@+id/nav_services"
-            android:icon="@drawable/ic_menu_services"
-            android:title="Serviços" />
+            android:id="@+id/nav_recommended"
+            android:icon="@drawable/ic_menu_star"
+            android:title="Serviços Recomendados" />
         <item
             android:id="@+id/nav_chat"
             android:icon="@drawable/ic_menu_chat"

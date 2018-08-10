@@ -4,10 +4,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.SphericalUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import br.ufrpe.artemis.endereco.negocio.EnderecoNegocio;
 import br.ufrpe.artemis.infra.Sessao;
+import br.ufrpe.artemis.infra.SlopeOne;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
 import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 import br.ufrpe.artemis.servico.dao.ServicoDao;
@@ -79,5 +82,21 @@ public class ServicoNegocio {
     public List<Servico> listarServicos(){
         ServicoDao banco = new ServicoDao();
         return banco.retornarServicos();
+    }
+
+    public List<Servico> buscarRecomendados(){
+        SlopeOne.slopeOne();
+        Map<Pessoa, HashMap<Pessoa, Double>> map = SlopeOne.getOutputData();
+        HashMap<Pessoa, Double> hashMap = map.get(Sessao.instance.getPessoa());
+        ServicoDao dao = new ServicoDao();
+        List<Servico> list = new ArrayList<>();
+        if(hashMap != null) {
+            for (Pessoa pessoa : hashMap.keySet()) {
+                if (hashMap.get(pessoa) > 3.5 && pessoa != Sessao.instance.getPessoa()) {
+                    list.addAll(dao.recuperarDoBancoUs(pessoa.getId()));
+                }
+            }
+        }
+        return list;
     }
 }

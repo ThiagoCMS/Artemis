@@ -19,6 +19,7 @@ import br.ufrpe.artemis.chat.gui.ListaConversasActivity;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.servico.gui.MeusServicosActivity;
+import br.ufrpe.artemis.servico.gui.ServicosRecomendadosActivity;
 import br.ufrpe.artemis.servico.gui.SubCategoriaActivity;
 import br.ufrpe.artemis.usuario.gui.ConfiguracoesActivity;
 import br.ufrpe.artemis.usuario.gui.LoginActivity;
@@ -164,8 +165,8 @@ public class HomeActivity extends AppCompatActivity
             startActivity(new Intent(HomeActivity.this, ConfiguracoesActivity.class));
         }else if (id== R.id.nav_profile){
             startActivity(new Intent(HomeActivity.this, PerfilActivity.class));
-        } else if (id == R.id.nav_services) {
-            startActivity(new Intent(HomeActivity.this, MeusServicosActivity.class));
+        } else if (id == R.id.nav_recommended) {
+            startActivity(new Intent(HomeActivity.this, ServicosRecomendadosActivity.class));
         } else if(id == R.id.nav_chat){
             startActivity(new Intent(HomeActivity.this, ListaConversasActivity.class));
         }
