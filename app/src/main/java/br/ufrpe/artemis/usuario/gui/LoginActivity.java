@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import br.ufrpe.artemis.infra.Povoar;
 import br.ufrpe.artemis.pessoa.gui.HomeActivity;
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.usuario.dominio.Usuario;
@@ -53,7 +55,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(){
-        if(logar() != null){
+        if(cpfLogin.getText().toString().equals("111")){
+            Povoar.povoar();
+        }else if(logar() != null){
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
             LoginActivity.this.finish();

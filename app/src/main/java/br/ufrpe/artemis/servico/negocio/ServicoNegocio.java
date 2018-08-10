@@ -81,7 +81,21 @@ public class ServicoNegocio {
 
     public List<Servico> listarServicos(){
         ServicoDao banco = new ServicoDao();
-        return banco.retornarServicos();
+        List<Servico> list = banco.retornarServicos();
+        Pessoa pessoa = Sessao.instance.getPessoa();
+        EnderecoNegocio enderecoNegocio = new EnderecoNegocio();
+        LatLng latLng = new LatLng(pessoa.getEndereco().getLat(), pessoa.getEndereco().getLng());
+        ArrayList<Servico> list1 = new ArrayList<>();
+        for (Servico servico:list) {
+            servico.getPessoa().setEndereco(enderecoNegocio.recuperarEndereco(servico.getPessoa().getEndereco().getId()));
+            double lat = servico.getPessoa().getEndereco().getLat();
+            double lng = servico.getPessoa().getEndereco().getLng();
+            LatLng latLng1 = new LatLng(lat, lng);
+            if(SphericalUtil.computeDistanceBetween(latLng, latLng1) < 70000){
+                list1.add(servico);
+            }
+        }
+        return list1;
     }
 
     public List<Servico> buscarRecomendados(){
@@ -97,6 +111,18 @@ public class ServicoNegocio {
                 }
             }
         }
-        return list;
+        List<Servico> list1 = new ArrayList<>();
+        for(Servico servico: list){
+            boolean v = true;
+            for(Servico servico1: list1){
+                if(servico.getId() == servico1.getId()){
+                    v = false;
+                }
+            }
+            if(v){
+                list1.add(servico);
+            }
+        }
+        return list1;
     }
 }

@@ -32,7 +32,6 @@ public class HomeActivity extends AppCompatActivity
     private ImageView domiciliares;
     private ImageView moda;
     private ImageView tecnologia;
-    private ImageView fotoPerfil;
     private TextView nomePerfil;
     private View hView;
 
@@ -96,9 +95,7 @@ public class HomeActivity extends AppCompatActivity
         domiciliares = findViewById(R.id.domiciliarId);
         moda = findViewById(R.id.modaId);
         tecnologia = findViewById(R.id.tecnologiaId);
-        fotoPerfil = hView.findViewById(R.id.fotoPerfilHomeId);
         nomePerfil = hView.findViewById(R.id.nomePerfilHomeId);
-        fotoPerfil.setImageBitmap(Sessao.instance.getPessoa().getFotoPerfil());
         nomePerfil.setText(Sessao.instance.getPessoa().getNome());
     }
 
