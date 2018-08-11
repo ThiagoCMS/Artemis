@@ -134,9 +134,8 @@ public class ServicoDao {
     }
 
     public List<Servico> retornarServicos(){
-        Cursor cursor = banco.query("servico",new String[]{"*"},"1=1",null,null,null,null);
-        List<Servico> list = montarServicos(cursor);
-        return list;
+        Cursor cursor = banco.query("servico",new String[]{"*"},null,null,null,null,null);
+        return montarServicos(cursor);
     }
 
     private List<Servico> montarServicos(Cursor cursor) {

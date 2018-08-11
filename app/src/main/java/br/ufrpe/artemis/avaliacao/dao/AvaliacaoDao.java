@@ -38,49 +38,13 @@ public class AvaliacaoDao {
     }
 
     public List<Avaliacao> recuperarNotas(int idPrestadora){
-        List<Avaliacao> list = new ArrayList<>();
         Cursor cursor = banco.query("classificacao", new String[]{"*"}, "idpessoa = ?", new String[]{String.valueOf(idPrestadora)}, null, null, null);
-        cursor.moveToFirst();
-        for (int i = 0; i < cursor.getCount(); i++) {
-            Avaliacao avaliacao = new Avaliacao();
-            avaliacao.setId(cursor.getInt(0));
-            avaliacao.setNotaPreco(cursor.getDouble(1));
-            avaliacao.setNotaQualidade(cursor.getDouble(2));
-            avaliacao.setNotaAtendimento(cursor.getDouble(3));
-            avaliacao.setComentario(cursor.getString(4));
-            Pessoa pessoa = new Pessoa();
-            pessoa.setId(cursor.getInt(5));
-            avaliacao.setPrestadora(pessoa);
-            Pessoa pessoa1 = new Pessoa();
-            pessoa1.setId(cursor.getInt(6));
-            avaliacao.setCliente(pessoa1);
-            list.add(avaliacao);
-            cursor.moveToNext();
-        }
-        return list;
+        return montarAvaliacoes(cursor);
     }
 
     public List<Avaliacao> retornarTudo() {
-        List<Avaliacao> list = new ArrayList<>();
         Cursor cursor = banco.query("classificacao", new String[]{"*"}, null, null, null, null, null);
-        cursor.moveToFirst();
-        for (int i = 0; i < cursor.getCount(); i++) {
-            Avaliacao avaliacao = new Avaliacao();
-            avaliacao.setId(cursor.getInt(0));
-            avaliacao.setNotaPreco(cursor.getDouble(1));
-            avaliacao.setNotaQualidade(cursor.getDouble(2));
-            avaliacao.setNotaAtendimento(cursor.getDouble(3));
-            avaliacao.setComentario(cursor.getString(4));
-            Pessoa pessoa = new Pessoa();
-            pessoa.setId(cursor.getInt(5));
-            avaliacao.setPrestadora(pessoa);
-            Pessoa pessoa1 = new Pessoa();
-            pessoa1.setId(cursor.getInt(6));
-            avaliacao.setCliente(pessoa1);
-            list.add(avaliacao);
-            cursor.moveToNext();
-        }
-        return list;
+        return montarAvaliacoes(cursor);
     }
 
     public List<Pessoa> retornarPrestadorasAvaliadas(){
@@ -106,5 +70,25 @@ public class AvaliacaoDao {
         return list;
     }
 
-
+    private List<Avaliacao> montarAvaliacoes(Cursor cursor){
+        List<Avaliacao> list = new ArrayList<>();
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++) {
+            Avaliacao avaliacao = new Avaliacao();
+            avaliacao.setId(cursor.getInt(0));
+            avaliacao.setNotaPreco(cursor.getDouble(1));
+            avaliacao.setNotaQualidade(cursor.getDouble(2));
+            avaliacao.setNotaAtendimento(cursor.getDouble(3));
+            avaliacao.setComentario(cursor.getString(4));
+            Pessoa pessoa = new Pessoa();
+            pessoa.setId(cursor.getInt(5));
+            avaliacao.setPrestadora(pessoa);
+            Pessoa pessoa1 = new Pessoa();
+            pessoa1.setId(cursor.getInt(6));
+            avaliacao.setCliente(pessoa1);
+            list.add(avaliacao);
+            cursor.moveToNext();
+        }
+        return list;
+    }
 }

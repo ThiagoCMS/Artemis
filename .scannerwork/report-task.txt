@@ -1,6 +1,6 @@
-projectKey=Artemis
+projectKey=ArtemisTeste
 serverUrl=http://localhost:9000
 serverVersion=7.2.1.14109
-dashboardUrl=http://localhost:9000/dashboard?id=Artemis
-ceTaskId=AWUbIUIO3ik5gK4pVXSO
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWUbIUIO3ik5gK4pVXSO
+dashboardUrl=http://localhost:9000/dashboard?id=ArtemisTeste
+ceTaskId=AWUm5oGe3ik5gK4pVXSn
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWUm5oGe3ik5gK4pVXSn

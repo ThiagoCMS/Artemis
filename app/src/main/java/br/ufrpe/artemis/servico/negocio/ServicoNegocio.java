@@ -12,7 +12,6 @@ import br.ufrpe.artemis.endereco.negocio.EnderecoNegocio;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.infra.SlopeOne;
 import br.ufrpe.artemis.pessoa.dominio.Pessoa;
-import br.ufrpe.artemis.pessoa.negocio.PessoaNegocio;
 import br.ufrpe.artemis.servico.dao.ServicoDao;
 import br.ufrpe.artemis.servico.dominio.Categoria;
 import br.ufrpe.artemis.servico.dominio.Servico;
@@ -32,21 +31,7 @@ public class ServicoNegocio {
 
     public List<Servico> listarSevicosSub(int idSub){
         ServicoDao banco = new ServicoDao();
-        List<Servico> list = banco.recuperarDoBancoSub(idSub);
-        Pessoa pessoa = Sessao.instance.getPessoa();
-        EnderecoNegocio enderecoNegocio = new EnderecoNegocio();
-        LatLng latLng = new LatLng(pessoa.getEndereco().getLat(), pessoa.getEndereco().getLng());
-        ArrayList<Servico> list1 = new ArrayList<>();
-        for (Servico servico:list) {
-            servico.getPessoa().setEndereco(enderecoNegocio.recuperarEndereco(servico.getPessoa().getEndereco().getId()));
-            double lat = servico.getPessoa().getEndereco().getLat();
-            double lng = servico.getPessoa().getEndereco().getLng();
-            LatLng latLng1 = new LatLng(lat, lng);
-            if(SphericalUtil.computeDistanceBetween(latLng, latLng1) < 70000){
-                list1.add(servico);
-            }
-        }
-        return list1;
+        return montarServicos(banco.recuperarDoBancoSub(idSub));
     }
 
     public List<Servico> listarSevicosPessoa(int idPessoa){
@@ -81,21 +66,7 @@ public class ServicoNegocio {
 
     public List<Servico> listarServicos(){
         ServicoDao banco = new ServicoDao();
-        List<Servico> list = banco.retornarServicos();
-        Pessoa pessoa = Sessao.instance.getPessoa();
-        EnderecoNegocio enderecoNegocio = new EnderecoNegocio();
-        LatLng latLng = new LatLng(pessoa.getEndereco().getLat(), pessoa.getEndereco().getLng());
-        ArrayList<Servico> list1 = new ArrayList<>();
-        for (Servico servico:list) {
-            servico.getPessoa().setEndereco(enderecoNegocio.recuperarEndereco(servico.getPessoa().getEndereco().getId()));
-            double lat = servico.getPessoa().getEndereco().getLat();
-            double lng = servico.getPessoa().getEndereco().getLng();
-            LatLng latLng1 = new LatLng(lat, lng);
-            if(SphericalUtil.computeDistanceBetween(latLng, latLng1) < 70000){
-                list1.add(servico);
-            }
-        }
-        return list1;
+        return montarServicos(banco.retornarServicos());
     }
 
     public List<Servico> buscarRecomendados(){
@@ -120,6 +91,23 @@ public class ServicoNegocio {
                 }
             }
             if(v){
+                list1.add(servico);
+            }
+        }
+        return list1;
+    }
+
+    private List<Servico> montarServicos(List<Servico> list){
+        Pessoa pessoa = Sessao.instance.getPessoa();
+        EnderecoNegocio enderecoNegocio = new EnderecoNegocio();
+        LatLng latLng = new LatLng(pessoa.getEndereco().getLat(), pessoa.getEndereco().getLng());
+        ArrayList<Servico> list1 = new ArrayList<>();
+        for (Servico servico:list) {
+            servico.getPessoa().setEndereco(enderecoNegocio.recuperarEndereco(servico.getPessoa().getEndereco().getId()));
+            double lat = servico.getPessoa().getEndereco().getLat();
+            double lng = servico.getPessoa().getEndereco().getLng();
+            LatLng latLng1 = new LatLng(lat, lng);
+            if(SphericalUtil.computeDistanceBetween(latLng, latLng1) < 70000){
                 list1.add(servico);
             }
         }

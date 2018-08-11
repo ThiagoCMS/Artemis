@@ -1,12 +1,8 @@
 package br.ufrpe.artemis.avaliacao.negocio;
 
-import android.support.annotation.NonNull;
-
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import br.ufrpe.artemis.avaliacao.dao.AvaliacaoDao;
 import br.ufrpe.artemis.avaliacao.dominio.Avaliacao;

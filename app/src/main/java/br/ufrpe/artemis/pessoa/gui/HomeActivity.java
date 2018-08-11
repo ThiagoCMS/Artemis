@@ -18,7 +18,6 @@ import android.widget.TextView;
 import br.ufrpe.artemis.chat.gui.ListaConversasActivity;
 import br.ufrpe.artemis.infra.Sessao;
 import br.ufrpe.artemis.R;
-import br.ufrpe.artemis.servico.gui.MeusServicosActivity;
 import br.ufrpe.artemis.servico.gui.ServicosRecomendadosActivity;
 import br.ufrpe.artemis.servico.gui.SubCategoriaActivity;
 import br.ufrpe.artemis.usuario.gui.ConfiguracoesActivity;
