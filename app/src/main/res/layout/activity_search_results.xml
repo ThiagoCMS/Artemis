@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.ufrpe.artemis.pessoa.gui.SearchResultsActivity"
+    tools:context="br.ufrpe.artemis.servico.gui.SearchResultsActivity"
     tools:layout_editor_absoluteY="25dp">
 
     <ListView

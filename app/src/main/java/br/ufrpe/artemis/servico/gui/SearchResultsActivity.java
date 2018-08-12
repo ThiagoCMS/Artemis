@@ -1,4 +1,4 @@
-package br.ufrpe.artemis.pessoa.gui;
+package br.ufrpe.artemis.servico.gui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +14,6 @@ import java.util.List;
 
 import br.ufrpe.artemis.R;
 import br.ufrpe.artemis.servico.dominio.Servico;
-import br.ufrpe.artemis.servico.gui.ServicoActivity;
-import br.ufrpe.artemis.servico.gui.ServicoAdapter;
 import br.ufrpe.artemis.servico.negocio.ServicoNegocio;
 
 public class SearchResultsActivity extends AppCompatActivity {
