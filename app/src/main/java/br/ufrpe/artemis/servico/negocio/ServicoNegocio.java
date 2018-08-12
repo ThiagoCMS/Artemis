@@ -19,24 +19,24 @@ import br.ufrpe.artemis.servico.dominio.Subcategoria;
 
 public class ServicoNegocio {
 
-    public void inserirServicoNoBanco(Servico servico){
+    public void inserirServico(Servico servico){
         ServicoDao banco = new ServicoDao();
-        banco.inserirNoBanco(servico);
+        banco.inserirServico(servico);
     }
 
-    public void deletarServicoDoBanco(Servico servico){
+    public void deletarServico(Servico servico){
         ServicoDao banco = new ServicoDao();
-        banco.deletarDoBanco(servico);
+        banco.deletarServico(servico);
     }
 
     public List<Servico> listarSevicosSub(int idSub){
         ServicoDao banco = new ServicoDao();
-        return montarServicos(banco.recuperarDoBancoSub(idSub));
+        return montarServicos(banco.recuperarServicoSub(idSub));
     }
 
     public List<Servico> listarSevicosPessoa(int idPessoa){
         ServicoDao banco = new ServicoDao();
-        return banco.recuperarDoBancoUs(idPessoa);
+        return banco.recuperarServicoUs(idPessoa);
     }
 
     public Servico infoTelaServico(int id){
@@ -78,7 +78,7 @@ public class ServicoNegocio {
         if(hashMap != null) {
             for (Pessoa pessoa : hashMap.keySet()) {
                 if (hashMap.get(pessoa) > 3.5 && pessoa != Sessao.instance.getPessoa()) {
-                    list.addAll(dao.recuperarDoBancoUs(pessoa.getId()));
+                    list.addAll(dao.recuperarServicoUs(pessoa.getId()));
                 }
             }
         }

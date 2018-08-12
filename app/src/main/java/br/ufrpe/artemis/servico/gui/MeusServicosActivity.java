@@ -79,7 +79,7 @@ public class MeusServicosActivity extends AppCompatActivity {
                     for(Object Item : selections){
                         listaServicos.remove(Item);
                         ServicoNegocio negocio = new ServicoNegocio();
-                        negocio.deletarServicoDoBanco((Servico) Item);
+                        negocio.deletarServico((Servico) Item);
                     }
                     adapterNew.notifyDataSetChanged();
                     mode.finish();

@@ -116,7 +116,7 @@ public class EditarServicoActivity extends AppCompatActivity {
 
     private void deletar(){
         ServicoNegocio negocio = new ServicoNegocio();
-        negocio.deletarServicoDoBanco(servico);
+        negocio.deletarServico(servico);
         Toast.makeText(this, "Serviço deletado com sucesso", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(EditarServicoActivity.this, MeusServicosActivity.class));
         EditarServicoActivity.this.finish();

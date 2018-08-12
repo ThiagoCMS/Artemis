@@ -9,14 +9,14 @@ import br.ufrpe.artemis.usuario.negocio.UsuarioNegocio;
 
 public class PessoaNegocio {
 
-    public void inserirPessoaBanco(Pessoa pessoa){
+    public void inserirPessoa(Pessoa pessoa){
         PessoaDao banco = new PessoaDao();
-        banco.inserirNoBanco(pessoa);
+        banco.inserirPessoa(pessoa);
     }
 
     public Pessoa recuperarPessoaPorUsuario(int id){
         PessoaDao banco = new PessoaDao();
-        Pessoa pessoa = banco.recuperarDoBancoPorUsuario(id);
+        Pessoa pessoa = banco.recuperarPessoaPorUsuario(id);
         EnderecoNegocio enderecoNegocio = new EnderecoNegocio();
         pessoa.setEndereco(enderecoNegocio.recuperarEndereco(pessoa.getEndereco().getId()));
         return pessoa;
@@ -24,7 +24,7 @@ public class PessoaNegocio {
 
     public Pessoa recuperarPessoaPorId(int id){
         PessoaDao banco = new PessoaDao();
-        Pessoa pessoa = banco.recuperarDoBanco(id);
+        Pessoa pessoa = banco.recuperarPessoa(id);
         EnderecoNegocio enderecoNegocio = new EnderecoNegocio();
         pessoa.setEndereco(enderecoNegocio.recuperarEndereco(pessoa.getEndereco().getId()));
         return pessoa;
@@ -49,7 +49,7 @@ public class PessoaNegocio {
         Pessoa pessoa;
         if (usuario != null) {
             PessoaDao pessoaDao = new PessoaDao();
-            pessoa = pessoaDao.recuperarDoBancoPorUsuario(usuario.getId());
+            pessoa = pessoaDao.recuperarPessoaPorUsuario(usuario.getId());
         } else {
             pessoa = null;
         }

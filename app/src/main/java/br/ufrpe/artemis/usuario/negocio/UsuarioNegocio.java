@@ -12,9 +12,9 @@ import br.ufrpe.artemis.usuario.dominio.Usuario;
 
 public class UsuarioNegocio {
 
-    public void inserirUsuarioBanco(Usuario usuario, Pessoa pessoa, Endereco endereco){
+    public void inserirUsuario(Usuario usuario, Pessoa pessoa, Endereco endereco){
         UsuarioDao banco = new UsuarioDao();
-        banco.inserirNoBanco(usuario);
+        banco.inserirUsuario(usuario);
         usuario = recuperarUsuario(usuario.getCpf());
         pessoa.setUsuario(usuario);
         EnderecoNegocio enderecoNegocio = new EnderecoNegocio();
@@ -22,12 +22,12 @@ public class UsuarioNegocio {
         endereco = enderecoNegocio.recuperarUltimoEndereco();
         pessoa.setEndereco(endereco);
         PessoaNegocio negocio = new PessoaNegocio();
-        negocio.inserirPessoaBanco(pessoa);
+        negocio.inserirPessoa(pessoa);
     }
 
     public boolean existeUsuario(String cpf){
         UsuarioDao banco = new UsuarioDao();
-        return banco.existeNoBanco(cpf);
+        return banco.existeUsuario(cpf);
     }
 
     public Usuario verificarUsuario(String cpf, String senha){
@@ -37,12 +37,7 @@ public class UsuarioNegocio {
 
     public Usuario recuperarUsuario(String cpf){
         UsuarioDao banco = new UsuarioDao();
-        return banco.recuperarDoBanco(cpf);
-    }
-
-    public Usuario recuperarUsuario(int id){
-        UsuarioDao banco = new UsuarioDao();
-        return banco.recuperarDoBanco(id);
+        return banco.recuperarUsuario(cpf);
     }
 
     public void alterarSenha(String senha){

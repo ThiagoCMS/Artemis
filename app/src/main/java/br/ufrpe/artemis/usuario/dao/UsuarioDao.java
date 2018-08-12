@@ -11,16 +11,16 @@ import br.ufrpe.artemis.usuario.dominio.Usuario;
 public class UsuarioDao {
     private SQLiteDatabase banco;
     public UsuarioDao(){
-        escreverNoBanco(ArtemisApp.getContext());
+        habilitarBanco(ArtemisApp.getContext());
     }
 
-    private SQLiteDatabase escreverNoBanco(Context ctx){
+    private SQLiteDatabase habilitarBanco(Context ctx){
         DB auxDB = new DB(ctx);
         banco = auxDB.getWritableDatabase();
         return banco;
     }
 
-    public void inserirNoBanco(Usuario usuario){
+    public void inserirUsuario(Usuario usuario){
         ContentValues valores = new ContentValues();
         valores.put("cpf", usuario.getCpf());
         valores.put("senha", usuario.getSenha());
@@ -28,7 +28,7 @@ public class UsuarioDao {
         banco.close();
     }
 
-    public boolean existeNoBanco(String cpf){
+    public boolean existeUsuario(String cpf){
         Cursor cursor = banco.query("usuario", new String[]{"*"}, "cpf = ?", new String[]{cpf}, null, null, null);
         boolean resposta = false;
         if(cursor.getCount() > 0){
@@ -61,7 +61,7 @@ public class UsuarioDao {
         return usuario;
     }
 
-    public Usuario recuperarDoBanco(String cpf){
+    public Usuario recuperarUsuario(String cpf){
         Usuario usuario;
         Cursor cursor = banco.query("usuario", new String[]{"*"}, "cpf = ?", new String[]{cpf}, null, null, null);
         if(cursor.getCount() > 0){
@@ -74,7 +74,7 @@ public class UsuarioDao {
         return usuario;
     }
 
-    public Usuario recuperarDoBanco(int id){
+    public Usuario recuperarUsuario(int id){
         Usuario usuario;
         Cursor cursor = banco.query("usuario", new String[]{"*"}, "id = ?", new String[]{String.valueOf(id)}, null, null, null);
         if(cursor.getCount()>0){

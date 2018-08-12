@@ -36,14 +36,14 @@ public class Povoar {
         endereco.setNumero("111");
         endereco.setLat(-8.026990399999999);
         endereco.setLng(-34.9297431);
-        negocio.inserirUsuarioBanco(usuario, pessoa, endereco);
+        negocio.inserirUsuario(usuario, pessoa, endereco);
         pessoa.setId(1);
         servico.setNome("Conserto Celulares");
         servico.setTexto("Eu conserto seu celular barato.");
         subcategoria.setId(7);
         servico.setSubcategoria(subcategoria);
         servico.setPessoa(pessoa);
-        servicoNegocio.inserirServicoNoBanco(servico);
+        servicoNegocio.inserirServico(servico);
 
         usuario.setCpf("11433878946");
         senhaCriptografada = criptografia.criptografarString("123456");
@@ -57,14 +57,14 @@ public class Povoar {
         endereco.setNumero("455");
         endereco.setLat( -8.036073199999999);
         endereco.setLng(-34.9134402);
-        negocio.inserirUsuarioBanco(usuario, pessoa, endereco);
+        negocio.inserirUsuario(usuario, pessoa, endereco);
         pessoa.setId(2);
         servico.setNome("Formatar Pc");
         servico.setTexto("Eu formato notebook e faço backup.");
         subcategoria.setId(5);
         servico.setSubcategoria(subcategoria);
         servico.setPessoa(pessoa);
-        servicoNegocio.inserirServicoNoBanco(servico);
+        servicoNegocio.inserirServico(servico);
 
         usuario.setCpf("11433878950");
         senhaCriptografada = criptografia.criptografarString("123456");
@@ -78,14 +78,14 @@ public class Povoar {
         endereco.setNumero("789");
         endereco.setLat(-8.0379652);
         endereco.setLng(-34.9156638);
-        negocio.inserirUsuarioBanco(usuario, pessoa, endereco);
+        negocio.inserirUsuario(usuario, pessoa, endereco);
         pessoa.setId(3);
         servico.setNome("Aniversários");
         servico.setTexto("Festas de Aniversário por um preço barato.");
         subcategoria.setId(11);
         servico.setSubcategoria(subcategoria);
         servico.setPessoa(pessoa);
-        servicoNegocio.inserirServicoNoBanco(servico);
+        servicoNegocio.inserirServico(servico);
 
         usuario.setCpf("11433878150");
         senhaCriptografada = criptografia.criptografarString("123456");
@@ -99,14 +99,14 @@ public class Povoar {
         endereco.setNumero("15");
         endereco.setLat(-8.060369);
         endereco.setLng(-34.8787366);
-        negocio.inserirUsuarioBanco(usuario, pessoa, endereco);
+        negocio.inserirUsuario(usuario, pessoa, endereco);
         pessoa.setId(4);
         servico.setNome("Casamentos");
         servico.setTexto("Casamentos Personalizados");
         subcategoria.setId(12);
         servico.setSubcategoria(subcategoria);
         servico.setPessoa(pessoa);
-        servicoNegocio.inserirServicoNoBanco(servico);
+        servicoNegocio.inserirServico(servico);
 
         usuario.setCpf("11433878964");
         senhaCriptografada = criptografia.criptografarString("123456");
@@ -120,14 +120,14 @@ public class Povoar {
         endereco.setNumero("690");
         endereco.setLat(-7.9693988);
         endereco.setLng(-34.8379287);
-        negocio.inserirUsuarioBanco(usuario, pessoa, endereco);
+        negocio.inserirUsuario(usuario, pessoa, endereco);
         pessoa.setId(5);
         servico.setNome("Camisas Personalizadas");
         servico.setTexto("Crio camisas personalizadas.");
         subcategoria.setId(13);
         servico.setSubcategoria(subcategoria);
         servico.setPessoa(pessoa);
-        servicoNegocio.inserirServicoNoBanco(servico);
+        servicoNegocio.inserirServico(servico);
 
         usuario.setCpf("11433878978");
         senhaCriptografada = criptografia.criptografarString("123456");
@@ -141,14 +141,14 @@ public class Povoar {
         endereco.setNumero("400");
         endereco.setLat(-8.0245707);
         endereco.setLng(-34.9302035);
-        negocio.inserirUsuarioBanco(usuario, pessoa, endereco);
+        negocio.inserirUsuario(usuario, pessoa, endereco);
         pessoa.setId(6);
         servico.setNome("Roupas Rasgadas");
         servico.setTexto("Eu costuro roupas rasgadas");
         subcategoria.setId(13);
         servico.setSubcategoria(subcategoria);
         servico.setPessoa(pessoa);
-        servicoNegocio.inserirServicoNoBanco(servico);
+        servicoNegocio.inserirServico(servico);
 
         usuario.setCpf("11433878989");
         senhaCriptografada = criptografia.criptografarString("123456");
@@ -162,14 +162,14 @@ public class Povoar {
         endereco.setNumero("540");
         endereco.setLat(-8.0300122);
         endereco.setLng(-34.8994949);
-        negocio.inserirUsuarioBanco(usuario, pessoa, endereco);
+        negocio.inserirUsuario(usuario, pessoa, endereco);
         pessoa.setId(7);
         servico.setNome("Limpeza de Casa");
         servico.setTexto("Limpo sua casa.");
         subcategoria.setId(15);
         servico.setSubcategoria(subcategoria);
         servico.setPessoa(pessoa);
-        servicoNegocio.inserirServicoNoBanco(servico);
+        servicoNegocio.inserirServico(servico);
 
         usuario.setCpf("11433878914");
         senhaCriptografada = criptografia.criptografarString("123456");
@@ -183,14 +183,14 @@ public class Povoar {
         endereco.setNumero("500");
         endereco.setLat(-8.0313538);
         endereco.setLng(-34.9148534);
-        negocio.inserirUsuarioBanco(usuario, pessoa, endereco);
+        negocio.inserirUsuario(usuario, pessoa, endereco);
         pessoa.setId(8);
         servico.setNome("Lavagem de Carro");
         servico.setTexto("Eu lavo seu carro");
         subcategoria.setId(15);
         servico.setSubcategoria(subcategoria);
         servico.setPessoa(pessoa);
-        servicoNegocio.inserirServicoNoBanco(servico);
+        servicoNegocio.inserirServico(servico);
 
         usuario.setCpf("11433878973");
         senhaCriptografada = criptografia.criptografarString("123456");
@@ -204,14 +204,14 @@ public class Povoar {
         endereco.setNumero("45");
         endereco.setLat(-8.0458801);
         endereco.setLng(-34.904522);
-        negocio.inserirUsuarioBanco(usuario, pessoa, endereco);
+        negocio.inserirUsuario(usuario, pessoa, endereco);
         pessoa.setId(9);
         servico.setNome("Passo pano na casa");
         servico.setTexto("Passo pano na sua casa por 50 reais.");
         subcategoria.setId(15);
         servico.setSubcategoria(subcategoria);
         servico.setPessoa(pessoa);
-        servicoNegocio.inserirServicoNoBanco(servico);
+        servicoNegocio.inserirServico(servico);
 
         usuario.setCpf("11433878654");
         senhaCriptografada = criptografia.criptografarString("123456");
@@ -225,20 +225,20 @@ public class Povoar {
         endereco.setNumero("500");
         endereco.setLat(-8.054487);
         endereco.setLng(-34.91326);
-        negocio.inserirUsuarioBanco(usuario, pessoa, endereco);
+        negocio.inserirUsuario(usuario, pessoa, endereco);
         pessoa.setId(10);
         servico.setNome("Cuido de Idosos");
         servico.setTexto("Eu cuido de Idosos em horario integral.");
         subcategoria.setId(1);
         servico.setPessoa(pessoa);
-        servicoNegocio.inserirServicoNoBanco(servico);
+        servicoNegocio.inserirServico(servico);
         pessoa.setId(10);
         servico.setNome("Pintura de moveis");
         servico.setTexto("Eu pinto seus moveis");
         subcategoria.setId(9);
         servico.setSubcategoria(subcategoria);
         servico.setPessoa(pessoa);
-        servicoNegocio.inserirServicoNoBanco(servico);
+        servicoNegocio.inserirServico(servico);
 
 
         Avaliacao avaliacao = new Avaliacao();

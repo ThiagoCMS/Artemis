@@ -17,16 +17,16 @@ public class PessoaDao {
     private SQLiteDatabase banco;
 
     public PessoaDao(){
-        escreverNoBanco(ArtemisApp.getContext());
+        habilitarBanco(ArtemisApp.getContext());
     }
 
-    private SQLiteDatabase escreverNoBanco(Context context){
+    private SQLiteDatabase habilitarBanco(Context context){
         DB auxDB = new DB(context);
         banco = auxDB.getWritableDatabase();
         return banco;
     }
 
-    public void inserirNoBanco(Pessoa pessoa){
+    public void inserirPessoa(Pessoa pessoa){
         ContentValues valores = new ContentValues();
         valores.put("nome", pessoa.getNome());
         valores.put("idusuario", pessoa.getUsuario().getId());
@@ -38,7 +38,7 @@ public class PessoaDao {
         banco.close();
     }
 
-    public Pessoa recuperarDoBancoPorUsuario(int id){
+    public Pessoa recuperarPessoaPorUsuario(int id){
         Pessoa pessoa = null;
         Cursor cursor = banco.query("pessoa", new String[]{"*"}, "idusuario = ?", new String[]{String.valueOf(id)}, null, null, null);
         if(cursor.getCount()>0){
@@ -47,7 +47,7 @@ public class PessoaDao {
         return pessoa;
     }
 
-    public Pessoa recuperarDoBanco(int id){
+    public Pessoa recuperarPessoa(int id){
         Pessoa pessoa = null;
         Cursor cursor = banco.query("pessoa", new String[]{"*"}, "id = ?", new String[]{String.valueOf(id)}, null, null, null);
         if(cursor.getCount()>0){
@@ -81,7 +81,7 @@ public class PessoaDao {
         pessoa.setTelefone(cursor.getString(4));
         pessoa.setFotoPerfil(Auxiliar.byteToBitmap(cursor.getBlob(6)));
         UsuarioDao bancoUsuario = new UsuarioDao();
-        Usuario usuario = bancoUsuario.recuperarDoBanco(cursor.getInt(2));
+        Usuario usuario = bancoUsuario.recuperarUsuario(cursor.getInt(2));
         pessoa.setUsuario(usuario);
         Endereco endereco = new Endereco();
         endereco.setId(cursor.getInt(5));

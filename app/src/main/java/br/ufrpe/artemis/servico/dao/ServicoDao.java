@@ -18,15 +18,15 @@ import br.ufrpe.artemis.servico.dominio.Subcategoria;
 public class ServicoDao {
     private SQLiteDatabase banco;
     public ServicoDao(){
-        escreverNoBanco(ArtemisApp.getContext());
+        habilitarBanco(ArtemisApp.getContext());
     }
-    private SQLiteDatabase escreverNoBanco(Context context){
+    private SQLiteDatabase habilitarBanco(Context context){
         DB auxDB = new DB(context);
         banco = auxDB.getWritableDatabase();
         return banco;
     }
 
-    public void inserirNoBanco(Servico servico){
+    public void inserirServico(Servico servico){
         ContentValues valores = new ContentValues();
         valores.put("nome", servico.getNome());
         valores.put("texto", servico.getTexto());
@@ -36,17 +36,17 @@ public class ServicoDao {
         banco.close();
     }
 
-    public void deletarDoBanco(Servico servico){
+    public void deletarServico(Servico servico){
         banco.delete("servico", "id = ?", new String[]{String.valueOf(servico.getId())});
         banco.close();
     }
 
-    public List<Servico> recuperarDoBancoSub(int idSub){
+    public List<Servico> recuperarServicoSub(int idSub){
         Cursor cursor = banco.query("servico", new String[]{"*"}, "idsubcategoria = ?", new String[]{String.valueOf(idSub)}, null, null, null);
         return montarServicos(cursor);
     }
 
-    public List<Servico> recuperarDoBancoUs(int idPessoa){
+    public List<Servico> recuperarServicoUs(int idPessoa){
         Cursor cursor = banco.query("servico", new String[]{"*"}, "idpessoa = ?", new String[]{String.valueOf(idPessoa)}, null, null, null);
         return montarServicos(cursor);
     }
@@ -59,7 +59,7 @@ public class ServicoDao {
         servico.setNome(cursor.getString(1));
         servico.setTexto(cursor.getString(2));
         PessoaDao bancoPessoa = new PessoaDao();
-        Pessoa pessoa = bancoPessoa.recuperarDoBanco(cursor.getInt(3));
+        Pessoa pessoa = bancoPessoa.recuperarPessoa(cursor.getInt(3));
         servico.setPessoa(pessoa);
         Subcategoria subcategoria = retornarSubcategoria(cursor.getInt(4));
         servico.setSubcategoria(subcategoria);
@@ -147,7 +147,7 @@ public class ServicoDao {
             servico.setNome(cursor.getString(1));
             servico.setTexto(cursor.getString(2));
             PessoaDao bancoPessoa = new PessoaDao();
-            Pessoa pessoa = bancoPessoa.recuperarDoBanco(cursor.getInt(3));
+            Pessoa pessoa = bancoPessoa.recuperarPessoa(cursor.getInt(3));
             servico.setPessoa(pessoa);
             Subcategoria subcategoria = retornarSubcategoria(cursor.getInt(4));
             servico.setSubcategoria(subcategoria);

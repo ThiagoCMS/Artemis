@@ -240,7 +240,7 @@ public class CriarContaUsuarioActivity extends AppCompatActivity {
         endereco.setLat(lat);
         endereco.setLng(lng);
         UsuarioNegocio negocio = new UsuarioNegocio();
-        negocio.inserirUsuarioBanco(usuario, pessoa, endereco);
+        negocio.inserirUsuario(usuario, pessoa, endereco);
         Toast.makeText(CriarContaUsuarioActivity.this, "Usuario registrado", Toast.LENGTH_SHORT).show();
         CriarContaUsuarioActivity.this.finish();
     }
